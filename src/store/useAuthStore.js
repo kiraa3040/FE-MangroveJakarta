@@ -154,7 +154,7 @@ export const useAuthStore = create(
             if (response.status === 401) {
               // console.log("Token Expired/Invalid -> Logout");
               get().logout();
-              throw new Error("Sesi habis, silakan login kembali.");
+              throw new Error("Session ended, please login again.");
             }
             if (response.status === 404) {
               throw new Error("Route /api/user tidak ditemukan di Laravel.");

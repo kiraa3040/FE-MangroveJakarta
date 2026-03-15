@@ -56,6 +56,12 @@ export default function LandingPage() {
     [],
   );
 
+  // stat
+  const [impactStats, setImpactStats] = useState({
+    totalPlants: 0,
+    totalCo2Absorbed: 0,
+  });
+
   // Import map component
   const MapComponent = dynamic(() => import("../../components/MapComponent"), {
     ssr: false,
@@ -81,6 +87,39 @@ export default function LandingPage() {
   // STATE UNTUK EVENT
   const [eventsData, setEventsData] = useState([]);
   const [isLoadingEvents, setIsLoadingEvents] = useState(true);
+
+  useEffect(() => {
+    const fetchImpactData = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/event-impacts/aggregate`,
+        );
+
+        if (!response.ok) throw new Error("failed fetch impact data");
+
+        const result = await response.json();
+
+        let totalPlants = 0;
+        let totalCo2Absorbed = 0;
+
+        if (result.plants_by_year && Array.isArray(result.plants_by_year)) {
+          result.plants_by_year.forEach((item) => {
+            totalPlants += Number(item.total_plants) || 0;
+            totalCo2Absorbed += Number(item.co2_absorbed_kg) || 0;
+          });
+        }
+
+        setImpactStats({
+          totalPlants: totalPlants,
+          totalCo2Absorbed: totalCo2Absorbed / 1000,
+        });
+      } catch (error) {
+        console.error("Error fetching impact data:", error);
+      }
+    };
+
+    fetchImpactData();
+  }, []);
 
   // HELPER URL GAMBAR
   const getImageUrl = (path) => {
@@ -125,7 +164,7 @@ export default function LandingPage() {
         setIsLoadingEvents(true);
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_API_URL}/events`,
-          { cache: "no-store" }
+          { cache: "no-store" },
         );
         if (!response.ok) throw new Error("Gagal mengambil data event");
 
@@ -229,7 +268,6 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* TAMBAHAN  */}
         {/* TAMBAHAN  */}
         <section className="py-12 xl:py-16 bg-white">
           <div className="mx-auto w-full max-w-[90%] xl:max-w-[1350px]">
@@ -613,36 +651,44 @@ export default function LandingPage() {
                   </div>
                 </div>
               </div>
+
+              {/* STATS */}
               <div className="grid md:grid-cols-2 gap-5 md:gap-9">
-                <div className="bg-white rounded-4xl md:rounded-[40px] p-6 sm:p-8 md:p-10 shadow-lg border border-slate-200 flex flex-col justify-center">
-                  <div className="flex flex-col sm:flex-row justify-between items-center sm:items-start md:items-center gap-2 sm:gap-4 text-center sm:text-left">
+                <div className="bg-white rounded-4xl md:rounded-[40px] p-6 md:p-8 lg:p-10 shadow-lg border border-slate-200 flex flex-col justify-center text-center sm:text-left">
+                  <div className="flex flex-col sm:flex-row justify-between items-center sm:items-start md:items-center gap-3 md:gap-4 mb-2 md:mb-0">
                     <div>
-                      <h3 className="text-xl sm:text-2xl md:text-4xl font-bold text-black leading-tight text-shadow-lg">
+                      <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black leading-tight text-shadow-lg">
                         Trees <br className="hidden sm:block" />{" "}
                         <span className="font-medium">Planted</span>
                       </h3>
                     </div>
                     <div>
-                      <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-black mt-1 sm:mt-3 tracking-tight text-shadow-lg">
-                        112,437{" "}
-                        <span className="font-bold text-lg sm:text-2xl md:text-3xl lg:text-4xl text-[#A4CF4A]">
+                      <p className="text-4xl sm:text-5xl lg:text-6xl font-black text-black mt-1 sm:mt-3 tracking-tight text-shadow-lg">
+                        {(impactStats.totalPlants || 0).toLocaleString("id-ID")}{" "}
+                        <span className="font-bold text-lg sm:text-xl md:text-2xl lg:text-4xl text-[#A4CF4A]">
                           Trees
                         </span>
                       </p>
                     </div>
                   </div>
                 </div>
-                <div className="bg-white rounded-4xl md:rounded-[40px] p-6 sm:p-8 md:p-10 shadow-lg border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+                <div className="bg-white rounded-4xl md:rounded-[40px] p-6 md:p-8 lg:p-10 shadow-lg border border-slate-200 flex flex-col sm:flex-row items-center justify-between text-center sm:text-left gap-4">
                   <div className="flex flex-col gap-2 md:gap-4 flex-1">
-                    <h3 className="text-xl sm:text-2xl md:text-4xl font-bold text-black leading-tight">
-                      CO2 <br className="hidden sm:block" />{" "}
+                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black leading-tight">
+                      CO2 <br className="hidden sm:block" />
+                      {""}
                       <span className="font-medium">Absorbed</span>
                     </h3>
                   </div>
-                  <div className="text-shadow-lg">
-                    <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-black tracking-tight">
-                      2,249{" "}
-                      <span className="font-bold text-lg sm:text-xl md:text-3xl lg:text-4xl text-[#A4CF4A]">
+                  <div className="text-left xl:text-right text-shadow-lg">
+                    <p className="text-4xl md:text-5xl lg:text-6xl font-black text-black tracking-tight">
+                      {(impactStats.totalCo2Absorbed || 0).toLocaleString(
+                        "id-ID",
+                        {
+                          maximumFractionDigits: 1,
+                        },
+                      )}{" "}
+                      <span className="text-xl md:text-2xl lg:text-4xl font-bold text-[#A4CF4A]">
                         Tons/year
                       </span>
                     </p>
