@@ -98,7 +98,8 @@ export default function CommunityPage() {
     } catch (error) {
       console.error("Failed to create post:", error);
       alert(
-        `Gagal membuat post:\n${error.response?.data?.message || error.message}.`,
+        // `Gagal membuat post:\n${error.response?.data?.message || error.message}.`,
+        setLocalError(result.message),
       );
     } finally {
       setIsSubmitting(false);

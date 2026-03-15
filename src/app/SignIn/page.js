@@ -38,7 +38,7 @@ export default function SignInPage() {
     // if admin
     if (result.success) {
       if (result.role === "admin") {
-        alert("Success..");
+        // alert("Success..");
         const currentToken = localStorage.getItem("token");
         const baseUrl = process.env.NEXT_PUBLIC_BASE_URL?.replace(/\/$/, "");
 
