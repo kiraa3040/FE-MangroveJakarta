@@ -195,7 +195,7 @@ export default function LandingPage() {
       <main className="pt-24">
         {/* HERO SECTION */}
         <section className="md:py-6" id="about">
-          <div className="mx-auto w-full max-w-[95%] sm:max-w-[90%] xl:max-w-[1350px]">
+          <div className="mx-auto w-full max-w-7xl px-6">
             <div
               className="rounded-4xl md:rounded-[48px] px-5 py-8 md:px-10 md:py-12 relative overflow-hidden"
               style={{ background: SOFT }}
@@ -270,9 +270,8 @@ export default function LandingPage() {
 
         {/* TAMBAHAN  */}
         <section className="py-12 xl:py-16 bg-white">
-          <div className="mx-auto w-full max-w-[90%] xl:max-w-[1350px]">
-            {/* FIX: Pakai xl: agar aman di laptop scaling 125% */}
-            <div className="grid xl:grid-cols-2 gap-10 xl:gap-20 items-center">
+          <div className="mx-auto w-full max-w-[1280] px-6">
+            <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
               <div className="flex flex-col sm:flex-row gap-5 xl:gap-6 order-2 xl:order-1">
                 {/* DONATION */}
                 <Link
@@ -346,8 +345,7 @@ export default function LandingPage() {
 
         {/* JOIN US */}
         <section id="activity" className="w-full py-12">
-          <div className="mx-auto w-full max-w-[92%] xl:max-w-[1350px]">
-            {/* FIX: Pakai xl:grid-cols-12 */}
+          <div className="mx-auto w-full max-w-7xl px-6">
             <div className="grid xl:grid-cols-12 gap-8 xl:gap-16 items-center">
               {/* LEFT TEXT */}
               <div className="xl:col-span-5 flex flex-col gap-4 text-center xl:text-left">
@@ -458,7 +456,7 @@ export default function LandingPage() {
 
         {/* EVENT */}
         <section className="pb-6 pt-6">
-          <div className="mx-auto w-full max-w-[92%] lg:max-w-[1550px]">
+          <div className="mx-auto w-full max-w-7xl px-6">
             <div className="rounded-4xl md:rounded-[48px] px-4 py-10 md:px-10 md:py-16 bg-linear-to-b from-[#ffffff] to-[#E2F2B5]">
               <div className="text-center mb-8 md:mb-14">
                 <p className="text-xs md:text-sm font-medium tracking-[0.2em] text-slate-400 uppercase mb-2 md:mb-3">
@@ -605,7 +603,7 @@ export default function LandingPage() {
 
         {/* MANGROVE PROGRESS */}
         <section className="py-10 md:py-12 mb-4">
-          <div className="mx-auto w-full max-w-[92%] lg:max-w-[1350px]">
+          <div className="mx-auto w-full max-w-7xl px-6">
             <div className="text-center mb-8">
               <p className="text-xs md:text-sm font-semibold tracking-[0.2em] text-slate-400 mb-2 md:mb-3">
                 PLANTING
@@ -701,7 +699,7 @@ export default function LandingPage() {
 
         {/* COMMUNITY */}
         <section className="pb-8 pt-4">
-          <div className="mx-auto max-w-[92%] lg:max-w-[1500px]">
+          <div className="mx-auto max-w-7xl px-6">
             <div className="rounded-3x1 md:rounded-[28px] py-16 md:py-24 px-5 md:px-10 relative overflow-hidden">
               <Image
                 src="/landing_page/Community.png"
@@ -744,7 +742,7 @@ export default function LandingPage() {
 
         {/* SPONSORS */}
         <section className="px-4 py-8 md:py-12">
-          <div className="mx-auto w-full max-w-[92%] lg:max-w-[1500px]">
+          <div className="mx-auto w-full max-w-7xl px-6">
             <div className="flex justify-center">
               <div
                 className="rounded-full px-6 sm:px-10 md:px-16 py-2 md:py-3 text-xl sm:text-3xl md:text-5xl font-regular tracking-wide text-white shadow-sm text-center"
