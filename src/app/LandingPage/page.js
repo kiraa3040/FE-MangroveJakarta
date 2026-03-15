@@ -87,8 +87,7 @@ export default function LandingPage() {
     if (!path) return "/event_img/AAJI Peduli Bumi 3.jpeg";
     if (path.startsWith("http")) return path;
 
-    const baseUrl =
-      process.env.NEXT_PUBLIC_BASE_URL?.replace(/\/$/, "");
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL?.replace(/\/$/, "");
     let cleanPath = path.startsWith("/") ? path : `/${path}`;
 
     if (!cleanPath.startsWith("/storage/")) {
@@ -230,10 +229,12 @@ export default function LandingPage() {
         </section>
 
         {/* TAMBAHAN  */}
-        <section className="py-12 lg:py-16 bg-white">
+        {/* TAMBAHAN  */}
+        <section className="py-12 xl:py-16 bg-white">
           <div className="mx-auto w-full max-w-[90%] xl:max-w-[1350px]">
-            <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
-              <div className="flex flex-col sm:flex-row gap-5 lg:gap-6 order-2 lg:order-1">
+            {/* FIX: Pakai xl: agar aman di laptop scaling 125% */}
+            <div className="grid xl:grid-cols-2 gap-10 xl:gap-20 items-center">
+              <div className="flex flex-col sm:flex-row gap-5 xl:gap-6 order-2 xl:order-1">
                 {/* DONATION */}
                 <Link
                   href="https://kitabisa.com/campaign/mangrovejakartauntukmuaragembong?utm_source=socialsharing_campaigner_ios_e57faa1b220f47ca8e84fa3aeb3fdfe8%26utm_medium=CampaignPage_nativeshare%26utm_campaign=Campaign"
@@ -289,12 +290,12 @@ export default function LandingPage() {
                 </Link>
               </div>
 
-              <div className="flex flex-col items-center lg:items-end text-center lg:text-right order-1 lg:order-2">
-                <h2 className="text-5xl lg:text-[56px] font-bold leading-[1.05] text-black text-right mb-5 tracking-tight">
+              <div className="flex flex-col items-center xl:items-end text-center xl:text-right order-1 xl:order-2">
+                <h2 className="text-4xl lg:text-5xl xl:text-[56px] font-bold leading-[1.05] text-black text-center xl:text-right mb-5 tracking-tight">
                   Take Action for <br />
                   <span style={{ color: ACCENT }}>Our Mangroves</span>
                 </h2>
-                <p className="text-slate-800 text-sm lg:text-[16px] text-center lg:text-right  font-medium leading-relaxed max-w-lg lg:max-w-fit">
+                <p className="text-slate-800 text-sm lg:text-[16px] text-center xl:text-right font-medium leading-relaxed max-w-md xl:max-w-fit">
                   There are many ways to support mangrove restoration.
                   Contribute through donations or support our mission by
                   purchasing eco-friendly products.
@@ -306,15 +307,16 @@ export default function LandingPage() {
 
         {/* JOIN US */}
         <section id="activity" className="w-full py-12">
-          <div className="mx-auto w-full max-w-[92%] lg:max-w-[1350px]">
-            <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">
-              {/*  LEFT TEXT  */}
-              <div className="lg:col-span-5 flex flex-col gap-4 text-center lg:text-left">
+          <div className="mx-auto w-full max-w-[92%] xl:max-w-[1350px]">
+            {/* FIX: Pakai xl:grid-cols-12 */}
+            <div className="grid xl:grid-cols-12 gap-8 xl:gap-16 items-center">
+              {/* LEFT TEXT */}
+              <div className="xl:col-span-5 flex flex-col gap-4 text-center xl:text-left">
                 <div>
-                  <p className="text-xs lg:text-sm font-medium tracking-widest text-[#9A9A9A] uppercase mb-2 lg:mb-3">
+                  <p className="text-xs lg:text-sm font-medium tracking-widest text-[#9A9A9A] uppercase mb-2 xl:mb-3">
                     MANGROVE COMMUNITY
                   </p>
-                  <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-medium leading-[1.1] lg:leading-[1.05] text-slate-900">
+                  <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-medium leading-[1.1] md:leading-[1.05] text-slate-900">
                     Join Us to <br />
                     <span style={{ color: ACCENT }} className="font-bold">
                       Protecting
@@ -336,7 +338,7 @@ export default function LandingPage() {
                   REGISTER
                 </Link>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4 lg:mt-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4 xl:mt-2">
                   <div
                     className="rounded-2xl p-5 text-left"
                     style={{ backgroundColor: "#EEF7BE" }}
@@ -364,10 +366,9 @@ export default function LandingPage() {
                 </div>
               </div>
 
-              {/*  RIGHT SLIDER */}
-              <div className="md:col-span-7 w-full h-full mt-8 md:mt-0">
-                {/* Wrapper */}
-                <div className="relative w-full rounded-4xl md:rounded-[40px] overflow-hidden shadow-xl aspect-square sm:aspect-video md:aspect-auto md:h-full min-h-[300px] sm:min-h-[400px] md:min-h-[500px] group">
+              {/* RIGHT SLIDER */}
+              <div className="xl:col-span-7 w-full h-full mt-8 xl:mt-0">
+                <div className="relative w-full rounded-4xl lg:rounded-[40px] overflow-hidden shadow-xl aspect-square sm:aspect-video xl:aspect-auto xl:h-full min-h-[300px] sm:min-h-[400px] xl:min-h-[500px] group">
                   <Image
                     src={joinSlides[joinIndex].src}
                     alt={joinSlides[joinIndex].alt}
@@ -385,9 +386,9 @@ export default function LandingPage() {
                           (prev - 1 + joinSlides.length) % joinSlides.length,
                       )
                     }
-                    className="absolute left-3 md:left-5 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform z-20 cursor-pointer"
+                    className="absolute left-3 lg:left-5 top-1/2 -translate-y-1/2 w-10 h-10 lg:w-12 lg:h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform z-20 cursor-pointer"
                   >
-                    <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-slate-700" />
+                    <ChevronLeft className="w-5 h-5 lg:w-6 lg:h-6 text-slate-700" />
                   </button>
 
                   {/* BUTTON KANAN */}
@@ -396,21 +397,17 @@ export default function LandingPage() {
                     onClick={() =>
                       setJoinIndex((prev) => (prev + 1) % joinSlides.length)
                     }
-                    className="absolute right-3 md:right-5 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform z-20 cursor-pointer"
+                    className="absolute right-3 lg:right-5 top-1/2 -translate-y-1/2 w-10 h-10 lg:w-12 lg:h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform z-20 cursor-pointer"
                   >
-                    <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-slate-700" />
+                    <ChevronRight className="w-5 h-5 lg:w-6 lg:h-6 text-slate-700" />
                   </button>
 
                   {/* DOT */}
-                  <div className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+                  <div className="absolute bottom-4 lg:bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20">
                     {joinSlides.map((_, i) => (
                       <div
                         key={i}
-                        className={`h-2 md:h-2.5 rounded-full transition-all duration-300 ${
-                          i === joinIndex
-                            ? "bg-white w-6 md:w-8"
-                            : "bg-white/60 w-2 md:w-2.5"
-                        }`}
+                        className={`h-2 lg:h-2.5 rounded-full transition-all duration-300 ${i === joinIndex ? "bg-white w-6 lg:w-8" : "bg-white/60 w-2 lg:w-2.5"}`}
                       />
                     ))}
                   </div>
