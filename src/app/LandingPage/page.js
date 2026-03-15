@@ -125,6 +125,7 @@ export default function LandingPage() {
         setIsLoadingEvents(true);
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_API_URL}/events`,
+          { cache: "no-store" }
         );
         if (!response.ok) throw new Error("Gagal mengambil data event");
 

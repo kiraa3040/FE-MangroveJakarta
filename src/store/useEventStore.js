@@ -36,7 +36,7 @@ export const useEventStore = create((set, get) => ({
     }
 
     if (activeFilter === "closed") {
-      return events.filter((item) => item.status !== "published" && item.is_full);
+      return events.filter((item) => item.status !== "published" || item.is_full);
     }
 
     return events;
@@ -48,6 +48,7 @@ export const useEventStore = create((set, get) => ({
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/events?page=${page}`,
+        { cache: "no-store" }
       );
 
       if (!response.ok) {
@@ -82,6 +83,7 @@ export const useEventStore = create((set, get) => ({
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/events/${id}`,
+        { cache: "no-store" }
       );
 
       if (!response.ok) {
