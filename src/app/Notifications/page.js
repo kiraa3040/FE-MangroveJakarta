@@ -59,7 +59,7 @@ export default function NotificationsPage() {
           },
         },
       );
-      console.log("All notificaton mark as read (read-all).");
+      // console.log("All notificaton mark as read (read-all).");
     } catch (error) {
       console.error(error);
     }

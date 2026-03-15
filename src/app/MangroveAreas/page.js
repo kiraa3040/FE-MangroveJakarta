@@ -41,14 +41,19 @@ export default function MangroveMapPage() {
     fetchAreas();
   }, [fetchAreas]);
 
-  //  HELPER UNTUK GAMBAR EVENT 
+  //  HELPER UNTUK GAMBAR EVENT
   const getImageUrl = (path) => {
     if (!path) return "/landing_page/bg_hero.png";
     if (path.startsWith("http")) return path;
-    return `https://api.satriodev.online${path}`;
+
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL?.replace(/\/$/, "") || "";
+
+    const cleanPath = path.startsWith("/") ? path : `/${path}`;
+
+    return `${baseUrl}${cleanPath}`;
   };
 
-  //  HELPER FORMAT TANGGAL 
+  //  HELPER FORMAT TANGGAL
   const formatDate = (dateString) => {
     if (!dateString) return "-";
     return new Date(dateString).toLocaleDateString("id-ID", {

@@ -66,7 +66,7 @@ export const useAuthStore = create(
           const token = loginData.access_token;
           localStorage.setItem("token", token);
 
-          console.log("Token found:", token);
+          // console.log("Token found:", token);
 
           const sessionUrl = loginData.sessionUrl || null;
 
@@ -79,7 +79,7 @@ export const useAuthStore = create(
           });
 
           const userData = await userResponse.json();
-          console.log("User Data found:", userData);
+          // console.log("User Data found:", userData);
 
           if (!userResponse.ok) {
             throw new Error("Failed", error);
@@ -93,7 +93,7 @@ export const useAuthStore = create(
             return name === "admin" || name === "administrator";
           });
 
-          console.log("IS ADMIN?:", isAdmin);
+          // console.log("IS ADMIN?:", isAdmin);
 
           const detectedRole = isAdmin ? "admin" : "member";
 
@@ -136,7 +136,7 @@ export const useAuthStore = create(
         set({ isLoading: true });
 
         try {
-          console.log("Mengambil data user dengan token:", token);
+          // console.log("Mengambil data user dengan token:", token);
 
           const response = await fetch(`${API_BASE_URL}/me`, {
             method: "GET",
@@ -148,11 +148,11 @@ export const useAuthStore = create(
           });
 
           // DEBUG 2
-          console.log("Status Response:", response.status);
+          // console.log("Status Response:", response.status);
 
           if (!response.ok) {
             if (response.status === 401) {
-              console.log("Token Expired/Invalid -> Logout");
+              // console.log("Token Expired/Invalid -> Logout");
               get().logout();
               throw new Error("Sesi habis, silakan login kembali.");
             }
@@ -165,7 +165,7 @@ export const useAuthStore = create(
           }
 
           const userData = await response.json();
-          console.log("Data User berhasil didapat:", userData);
+          // console.log("Data User berhasil didapat:", userData);
 
           set({ user: userData, isLoading: false });
         } catch (err) {
@@ -199,7 +199,7 @@ export const useAuthStore = create(
 
           // payload.append("_method", "PUT");
 
-          console.log("Kirim update ke backend menggunakan FormData");
+          // console.log("Kirim update ke backend menggunakan FormData");
 
           const response = await fetch(`${API_BASE_URL}/me/profile`, {
             method: "POST",

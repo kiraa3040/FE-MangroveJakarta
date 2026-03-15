@@ -42,8 +42,7 @@ export default function MemberPage() {
     if (path.startsWith("http")) return path;
 
     const baseUrl =
-      process.env.NEXT_PUBLIC_BASE_URL?.replace(/\/$/, "") ||
-      "https://api.satriodev.online";
+      process.env.NEXT_PUBLIC_BASE_URL?.replace(/\/$/, "");
     let cleanPath = path.startsWith("/") ? path : `/${path}`;
 
     if (!cleanPath.startsWith("/storage/")) {

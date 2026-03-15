@@ -18,7 +18,7 @@ L.Icon.Default.mergeOptions({
 
 export default function MapComponent({ locations = [] }) {
   // Cek di console apakah data masuk ke komponen ini
-  console.log("📍 Data lokasi di MapComponent:", locations);
+  // console.log("📍 Data lokasi di MapComponent:", locations);
 
   return (
     <MapContainer

@@ -59,7 +59,7 @@ export default function EventPaymentPage() {
     if (!path) return "/event_img/AAJI Peduli Bumi 3.jpeg";
     if (path.startsWith("http")) return path;
     const baseUrl =
-      process.env.NEXT_PUBLIC_BASE_URL || "https://api.satriodev.online";
+      process.env.NEXT_PUBLIC_BASE_URL;
     let cleanPath = path.startsWith("/") ? path : `/${path}`;
     if (!cleanPath.startsWith("/storage/")) cleanPath = `/storage${cleanPath}`;
     return `${baseUrl}${cleanPath}`;
@@ -104,7 +104,7 @@ export default function EventPaymentPage() {
         },
       );
 
-      console.log("Response dari Backend:", response.data);
+      // console.log("Response dari Backend:", response.data);
 
       const paymentUrl =
         response.data.payment_link_url ||

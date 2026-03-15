@@ -38,16 +38,20 @@ export default function SignInPage() {
     // if admin
     if (result.success) {
       if (result.role === "admin") {
-        alert("Success..")
+        alert("Success..");
         const currentToken = localStorage.getItem("token");
-        window.location.href = `https://api.satriodev.online/admin/auth/session-login?token=${currentToken}`;
+        const baseUrl = process.env.NEXT_PUBLIC_BASE_URL?.replace(/\/$/, "");
+
+        window.location.href = `${baseUrl}/admin/auth/session-login?token=${currentToken}`;
       } else {
-      router.push("/LandingPageMember")
-     }
-  } else {
-    setLocalError(result.message || "Login Failed, please check your email and password")
-  }
-};
+        router.push("/LandingPageMember");
+      }
+    } else {
+      setLocalError(
+        result.message || "Login Failed, please check your email and password",
+      );
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#EEF7BE] text-slate-900 flex flex-col font-sans">
@@ -130,7 +134,10 @@ export default function SignInPage() {
                 className="text-xs font-semibold text-left mt-2"
                 style={{ color: ACCENT }}
               >
-                <a href="/ForgotPassword" className="underline hover:text-emerald-600">
+                <a
+                  href="/ForgotPassword"
+                  className="underline hover:text-emerald-600"
+                >
                   Forgot your password?
                 </a>
               </p>
@@ -141,7 +148,10 @@ export default function SignInPage() {
               >
                 Didn't have an account?{" "}
                 <span>
-                  <a href="/SignUp" className="underline hover:text-emerald-600">
+                  <a
+                    href="/SignUp"
+                    className="underline hover:text-emerald-600"
+                  >
                     Register here.
                   </a>
                 </span>

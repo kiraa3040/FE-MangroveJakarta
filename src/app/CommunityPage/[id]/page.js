@@ -74,7 +74,7 @@ const CommentNode = ({
 
     const baseUrl =
       process.env.NEXT_PUBLIC_BASE_URL?.replace(/\/$/, "") ||
-      "https://api.satriodev.online";
+      "https://admin.yayasanmangroveindonesia.com";
     let cleanPath = path;
 
     // if (!cleanPath.startsWith("public/")) {
@@ -506,7 +506,7 @@ export default function PostDetailPage() {
     
     if (path.startsWith("http")) return path;
 
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL?.replace(/\/$/, "") || "https://api.satriodev.online";
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL?.replace(/\/$/, "");
     
     let cleanPath = path;
 

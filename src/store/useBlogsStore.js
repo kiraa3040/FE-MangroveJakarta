@@ -3,7 +3,7 @@ import { create } from "zustand";
 const API_BASE_URL = "process.env.NEXT_PUBLIC_API_URL;";
 
 export const useBlogsStore = create((set, get) => ({
-  // --- STATE ---
+  //  STATE 
   blogs: [],
   currentPage: 1,
   totalPages: 1,
@@ -13,7 +13,7 @@ export const useBlogsStore = create((set, get) => ({
   isLoadingDetail: false,
   error: null,
 
-  // --- ACTIONS ---
+  //  ACTIONS 
   fetchBlog: async (page = 1, filter = "all") => {
     set({ isLoading: true, error: null });
 
@@ -60,7 +60,7 @@ export const useBlogsStore = create((set, get) => ({
       }
 
       const result = await response.json();
-      console.log("📦 HASIL API DETAIL:", result);
+      // console.log("📦 HASIL API DETAIL:", result);
 
       const dataDetail = result.data || result;
       set({

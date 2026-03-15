@@ -170,7 +170,7 @@ export default function ProfilePage() {
 
   useEffect(() => {
     if (user) {
-      console.log("DATA FROM BE:", user);
+      // console.log("DATA FROM BE:", user);
 
       const userProfile = user.profile || {};
 

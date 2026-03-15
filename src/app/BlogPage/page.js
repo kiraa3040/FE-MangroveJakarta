@@ -49,7 +49,7 @@ export default function NewsPage() {
     if (!path) return "/event_img/AAJI Peduli Bumi 3.jpeg";
     if (path.startsWith("http")) return path;
 
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://api.satriodev.online";
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
     let cleanPath = path.startsWith("/") ? path : `/${path}`
 
     if (!cleanPath.startsWith("/storage")) {

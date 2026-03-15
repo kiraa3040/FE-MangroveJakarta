@@ -55,7 +55,7 @@ export default function NewsDetail() {
     if (!path) return "/event_img/Agrowisata Pulau Tidung Kecil.jpg";
     if (path.startsWith("http")) return path;
 
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://api.satriodev.online";
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
     let cleanPath = path.startsWith("/") ? path : `/${path}`;
 
     if (!cleanPath.startsWith("/storage")) {

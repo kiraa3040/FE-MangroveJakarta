@@ -72,9 +72,9 @@ export default function CommunityPage() {
         selectedImages.forEach((file) => {
           formData.append("images[]", file);
         });
-        console.log(`Mengirim post dengan ${selectedImages.length} gambar...`);
+        // console.log(`Mengirim post dengan ${selectedImages.length} gambar...`);
       } else {
-        console.log("Mengirim post teks saja...");
+        // console.log("Mengirim post teks saja...");
       }
 
       const postRes = await axios.post(
@@ -88,7 +88,7 @@ export default function CommunityPage() {
         },
       );
 
-      console.log("Respon Create Post:", postRes.data);
+      // console.log("Respon Create Post:", postRes.data);
 
       setPostContent("");
       setSelectedImages([]);
@@ -244,8 +244,7 @@ export default function CommunityPage() {
     if (path.startsWith("http")) return path;
 
     const baseUrl =
-      process.env.NEXT_PUBLIC_BASE_URL?.replace(/\/$/, "") ||
-      "https://api.satriodev.online";
+      process.env.NEXT_PUBLIC_BASE_URL?.replace(/\/$/, "");
     let cleanPath = path.startsWith("/") ? path : `/${path}`;
 
     if (!cleanPath.startsWith("/storage")) {
