@@ -42,7 +42,7 @@ export default function AboutUsPage() {
       affiliations: ["IPB University"],
     },
     {
-      name: "Galih Hakim Antarnusa",
+      name: "Galih Hakim Antarnusa M. Si.",
       role: "Head of Community Engagement & Communications",
       img: "/about_us/3.png",
       affiliations: [
@@ -51,7 +51,7 @@ export default function AboutUsPage() {
       ],
     },
     {
-      name: "Alfian Fajri N.",
+      name: "Alfian Fajri Nasrulloh, S.Pd.",
       role: "Head of Operations",
       img: "/about_us/4.png",
       affiliations: ["Universitas Sultan Ageng Tirtayasa"],
@@ -74,7 +74,7 @@ export default function AboutUsPage() {
     {
       id: 3,
       img: "/about_us/nayy.png",
-      name: "Nayli Amira Firdaus",
+      name: "Nayli Amirah Firdaus",
       role: "UI/UX Designer",
     },
     {

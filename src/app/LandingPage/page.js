@@ -230,10 +230,10 @@ export default function LandingPage() {
         </section>
 
         {/* TAMBAHAN  */}
-        <section className="py-12 md:py-16 bg-white">
+        <section className="py-12 lg:py-16 bg-white">
           <div className="mx-auto w-full max-w-[90%] xl:max-w-[1350px]">
-            <div className="grid md:grid-cols-2 gap-10 lg:gap-20 items-center">
-              <div className="flex flex-col sm:flex-row gap-5 lg:gap-6 order-2 md:order-0">
+            <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
+              <div className="flex flex-col sm:flex-row gap-5 lg:gap-6 order-2 lg:order-1">
                 {/* DONATION */}
                 <Link
                   href="https://kitabisa.com/campaign/mangrovejakartauntukmuaragembong?utm_source=socialsharing_campaigner_ios_e57faa1b220f47ca8e84fa3aeb3fdfe8%26utm_medium=CampaignPage_nativeshare%26utm_campaign=Campaign"
@@ -251,7 +251,7 @@ export default function LandingPage() {
                     </svg>
                   </div>
                   <h3
-                    className="text-xl md:text-2xl font-extrabold mb-1.5"
+                    className="text-xl lg:text-2xl font-extrabold mb-1.5"
                     style={{ color: ACCENT }}
                   >
                     Donation
@@ -278,7 +278,7 @@ export default function LandingPage() {
                     </svg>
                   </div>
                   <h3
-                    className="text-xl md:text-2xl font-bold mb-1.5 tracking-widest"
+                    className="text-xl lg:text-2xl font-bold mb-1.5 tracking-widest"
                     style={{ color: ACCENT }}
                   >
                     Our Product
@@ -289,12 +289,12 @@ export default function LandingPage() {
                 </Link>
               </div>
 
-              <div className="flex flex-col items-center md:items-end text-center md:text-right order-1 md:order-2">
+              <div className="flex flex-col items-center lg:items-end text-center lg:text-right order-1 lg:order-2">
                 <h2 className="text-5xl lg:text-[56px] font-bold leading-[1.05] text-black text-right mb-5 tracking-tight">
                   Take Action for <br />
                   <span style={{ color: ACCENT }}>Our Mangroves</span>
                 </h2>
-                <p className="text-slate-800 text-sm md:text-[16px] text-center md:text-right  font-medium leading-relaxed max-w-md md:max-w-fit">
+                <p className="text-slate-800 text-sm lg:text-[16px] text-center lg:text-right  font-medium leading-relaxed max-w-lg lg:max-w-fit">
                   There are many ways to support mangrove restoration.
                   Contribute through donations or support our mission by
                   purchasing eco-friendly products.
@@ -307,14 +307,14 @@ export default function LandingPage() {
         {/* JOIN US */}
         <section id="activity" className="w-full py-12">
           <div className="mx-auto w-full max-w-[92%] lg:max-w-[1350px]">
-            <div className="grid md:grid-cols-12 gap-8 lg:gap-16 items-center">
+            <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">
               {/*  LEFT TEXT  */}
-              <div className="md:col-span-5 flex flex-col gap-4 text-center md:text-left">
+              <div className="lg:col-span-5 flex flex-col gap-4 text-center lg:text-left">
                 <div>
-                  <p className="text-xs md:text-sm font-medium tracking-widest text-[#9A9A9A] uppercase mb-2 md:mb-3">
+                  <p className="text-xs lg:text-sm font-medium tracking-widest text-[#9A9A9A] uppercase mb-2 lg:mb-3">
                     MANGROVE COMMUNITY
                   </p>
-                  <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-medium leading-[1.1] md:leading-[1.05] text-slate-900">
+                  <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-medium leading-[1.1] lg:leading-[1.05] text-slate-900">
                     Join Us to <br />
                     <span style={{ color: ACCENT }} className="font-bold">
                       Protecting
@@ -330,13 +330,13 @@ export default function LandingPage() {
                 </p>
                 <Link
                   href="/SignUp"
-                  className="w-full rounded-full py-4 mt-2 text-xs md:text-sm text-center font-extrabold text-white shadow-lg hover:brightness-95 transition tracking-[0.15em]"
+                  className="w-full rounded-full py-4 mt-2 text-xs lg:text-sm text-center font-extrabold text-white shadow-lg hover:brightness-95 transition tracking-[0.15em]"
                   style={{ backgroundColor: ACCENT }}
                 >
                   REGISTER
                 </Link>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4 md:mt-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4 lg:mt-2">
                   <div
                     className="rounded-2xl p-5 text-left"
                     style={{ backgroundColor: "#EEF7BE" }}

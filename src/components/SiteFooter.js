@@ -9,12 +9,12 @@ export default function SiteFooter() {
   const BG_COLOR = "#F2F9D6";
 
   // email
-  const emailTo = "najoanrizki5@gmail.com";
-  const emailCC = "kuuhaku123425@gmail.com";
+  const emailTo = "info@yayasanmangroveindonesia.com";
+  const emailCC = "phanutama@gmail.com";
   const mailtoLink = `mailto:${emailTo}?cc=${emailCC}`;
 
   // wa
-  const waNumber = "62895382155800";
+  const waNumber = "08179460145";
   const waMessage = encodeURIComponent("");
   const waLink = `https://wa.me/${waNumber}?text=${waMessage}`;
 

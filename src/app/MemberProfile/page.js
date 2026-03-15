@@ -258,7 +258,7 @@ export default function ProfilePage() {
   let maxPoints = 0;
 
   if (userPoints < 100) {
-    currentBadge = "1st Root";
+    currentBadge = "First Root";
     nextBadge = "Green Initiator";
     minPoints = 0;
     maxPoints = 100;
