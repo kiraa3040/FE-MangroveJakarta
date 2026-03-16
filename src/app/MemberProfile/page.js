@@ -280,13 +280,16 @@ export default function ProfilePage() {
   let pointsNeeded = maxPoints - userPoints;
 
   return (
-    <div className="min-h-screen bg-gray-50 font-sans text-slate-800 flex flex-col pt-10">
+    <div className="min-h-screen bg-gray-50 text-slate-800 flex flex-col">
       <MemberHeader />
-      <main className="grow pt-20 pb-20">
-        <div className="mx-auto w-full max-w-[1400px] px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+      <main className="grow pt-28 pb-26 px-4 sm:px-6">
+        <div className="mx-auto w-full max-w-[1400px]">
+          <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
+
             {/*  PROFILE KIRI  */}
-            <div className="relative z-10 bg-white rounded-[30px] shadow-xl p-8 flex flex-col items-center h-fit border border-gray-100">
+            <div className="relative z-10 bg-white rounded-3xl md:rounded-[30px] shadow-xl p-8 flex flex-col items-center h-fit border border-gray-100">
+            
               {/* profpic */}
               <div className="relative mb-4">
                 <input
@@ -297,7 +300,7 @@ export default function ProfilePage() {
                   className="hidden"
                 />
 
-                <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-[#A4CF4A]/20 shadow-sm relative flex items-center justify-center bg-slate-100 group">
+                <div className="w-28 h-28 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-[#A4CF4A]/20 shadow-sm relative flex items-center justify-center bg-slate-100 group">
                   {displayAvatar ? (
                     <Image
                       src={displayAvatar}
@@ -332,9 +335,9 @@ export default function ProfilePage() {
               </div>
 
               {/* Badge Avatar */}
-              <div className="flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#A4CF4A] bg-[#F7FDE8] mb-6">
-                <div className="w-2.5 h-2.5 rounded-full bg-[#A4CF4A]"></div>
-                <span className="text-[10px] font-bold text-[#A4CF4A] tracking-wider">
+              <div className="flex items-center justify-center gap-2 px-4 md:px-5 py-2 rounded-full border border-[#A4CF4A] bg-[#F7FDE8] mb-6 w-fit max-w-full">
+                <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-[#A4CF4A] shrink-0"></div>
+                <span className="text-[10px] md:text-xs font-bold text-[#A4CF4A] tracking-wider whitespace-nowrap">
                   {currentBadge}
                 </span>
               </div>
@@ -425,7 +428,7 @@ export default function ProfilePage() {
 
             {/*  EDIT FORM  */}
             <div
-              className={`relative z-0 lg:col-span-2 bg-white rounded-[30px] shadow-xl p-8 md:p-12 border border-gray-100 h-full transition-opacity duration-300 ${
+              className={`relative z-0 lg:col-span-2 bg-white rounded-3xl md:rounded-[30px] shadow-xl p-6 md:p-10 border border-gray-100 h-full transition-opacity duration-300 ${
                 isEditing ? "opacity-100" : "opacity-80"
               }`}
             >
@@ -446,7 +449,7 @@ export default function ProfilePage() {
                 )}
               </div>
 
-              <form className="space-y-8">
+              <form className="space-y-6 md:space-y-8">
                 {/* Name Field */}
                 <div className="space-y-2">
                   <label
@@ -473,7 +476,7 @@ export default function ProfilePage() {
                   </label>
                   <input
                     type="email"
-                    className="w-full rounded-xl border border-gray-200 bg-gray-100 px-4 py-3 outline-none text-slate-400 text-sm cursor-not-allowed"
+                    className="w-full rounded-xl border border-gray-200 bg-gray-100 px-4 py-3 md:py-4 outline-none text-slate-400 text-sm cursor-not-allowed"
                     value={user.email || ""}
                     disabled
                   />
@@ -576,13 +579,13 @@ export default function ProfilePage() {
           {/* BADGE */}
           <div className="mt-8">
             {/* Box Badge */}
-            <div className="bg-white rounded-[30px] shadow-xl p-8 md:p-12 border border-gray-100 relative flex flex-col items-center">
+            <div className="bg-white rounded-3xl md:rounded-[30px] shadow-xl p-6 md:p-10 border border-gray-100 relative flex flex-col items-center">
               {/* <div className="absolute top-0 right-0 bottom-0 w-1/2 opacity-20 pointer-events-none" style={{ backgroundImage: "url('/images/leaf-pattern.png')", backgroundSize: 'cover', backgroundPosition: 'right' }}></div> */}
 
               <div className="relative w-full flex justify-center items-center mb-8">
-                <div className="flex items-center gap-3 px-6 py-2.5 rounded-full border-2 border-[#A4CF4A] bg-white z-10 shadow-sm">
+                <div className="flex items-center gap-2 md:gap-3 px-4 md:px-6 py-2 rounded-full border-2 border-[#A4CF4A] bg-white z-10 shadow-sm text-center max-w-full">
                   <div className="w-5 h-5 rounded-full border-2 border-[#A4CF4A]"></div>
-                  <span className="text-base md:text-xl font-medium text-slate-800 tracking-wide">
+                  <span className="text-sm md:text-lg lg:text-xl font-medium text-slate-800 tracking-wide">
                     YOU'VE REACHED{" "}
                     <span className="font-extrabold text-[#A4CF4A]">
                       {currentBadge}
@@ -593,11 +596,12 @@ export default function ProfilePage() {
                 {/* Info */}
                 <div className="absolute right-0 group cursor-help z-50">
                   <Info
-                    className="w-8 h-8 md:w-10 md:h-10 text-slate-800 hover:text-[#A4CF4A] transition-colors duration-300"
+                    className="w-6 h-6 md:w-8 md:h-8 text-slate-800 hover:text-[#A4CF4A] transition-colors duration-300"
                     strokeWidth={2.5}
                   />
 
-                  <div className="absolute bottom-full right-0 mb-3 w-[260px] md:w-[300px] bg-white rounded-[20px] shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] border border-slate-100 p-4 md:p-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 origin-bottom-right">
+                {/* tooltip */}
+                  <div className="absolute bottom-full right-0 md:right-0 left-1/2 md:left-auto mb-3 w-[260px] md:w-[300px] bg-white rounded-[20px] shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] border border-slate-100 p-4 md:p-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 origin-bottom-right">
                     <p className="text-[11px] md:text-xs text-slate-600 text-center leading-relaxed mb-3 font-medium">
                       Badge levels reflect your contribution through
                       conservation events and community participation
@@ -621,9 +625,9 @@ export default function ProfilePage() {
               </div>
 
               {/* Progress Bar Container */}
-              <div className="w-full max-w-4xl mb-3">
+              <div className="w-full max-w-3xl mb-4">
                 <div
-                  className="w-full h-5 md:h-6 rounded-full overflow-hidden"
+                  className="w-full h-4 md:h-5 rounded-full overflow-hidden"
                   style={{ backgroundColor: "#EAF3C8" }}
                 >
                   <div
@@ -637,12 +641,12 @@ export default function ProfilePage() {
               </div>
 
               {userPoints < 500 ? (
-                <h3 className="text-xl md:text-2xl font-bold text-slate-800 tracking-wide">
+                <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-slate-800 tracking-wide text-center">
                   {pointsNeeded} points to{" "}
                   <span style={{ color: ACCENT }}>{nextBadge}</span>
                 </h3>
               ) : (
-                <h3 className="text-xl md:text-2xl font-bold text[#A4CF4A] tracking-wide text-center">
+                <h3 className="text-lg md:text-xl lg:text-2xl font-bold text[#A4CF4A] tracking-wide text-center">
                   Maximum Level Reached, Congrats!!
                 </h3>
               )}
@@ -652,7 +656,7 @@ export default function ProfilePage() {
             <div className="mt-8">
               <Link href="/MemberProfile/RecapActivity">
                 <button
-                  className="w-full py-5 rounded-full text-white text-sm md:text-base font-extrabold shadow-lg hover:shadow-xl transition-all duration-300 uppercase tracking-[0.2em] hover:-translate-y-1"
+                  className="w-full py-4 md:py-5 rounded-full text-white text-sm md:text-base font-extrabold shadow-lg hover:shadow-xl transition-all duration-300 uppercase tracking-[0.2em] hover:-translate-y-1"
                   style={{ backgroundColor: ACCENT }}
                 >
                   RECAP ACTIVITY

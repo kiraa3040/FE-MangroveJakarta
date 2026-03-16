@@ -46,9 +46,9 @@ const CommentNode = ({
 
   const getIndentClass = (level) => {
     if (level === 0) return "pl-0";
-    if (level === 1) return "pl-8 md:pl-16";
-    if (level === 2) return "pl-16 md:pl-32";
-    if (level >= 3) return "pl-20 md:pl-48";
+    if (level === 1) return "pl-4 md:pl-10";
+    if (level === 2) return "pl-8 md:pl-16";
+    if (level >= 3) return "pl-10 md:pl-24";
     return "pl-0";
   };
 
@@ -138,9 +138,10 @@ const CommentNode = ({
 
   return (
     <>
+    {/* comment section */}
       <div
         onClick={toggleExpand}
-        className={`p-6 md:p-8 hover:bg-slate-50/50 transition-colors border-b border-slate-100 ${
+        className={`p-4 md:p-6 lg:p-8 hover:bg-slate-50/50 transition-colors border-b border-slate-100 ${
           comment.replies?.length > 0 ? "cursor-pointer" : ""
         }`}
       >
@@ -149,17 +150,17 @@ const CommentNode = ({
         >
           {depth > 0 && (
             <CornerDownRight
-              size={28}
-              className="text-slate-400 shrink-0 mr-3 md:mr-5 mt-1"
+              size={20}
+              className="text-slate-400 shrink-0 md:w-6 md:h-6 mr-3 md:mr-5 mt-1"
               strokeWidth={1.5}
             />
           )}
 
           {/* Container Comment */}
-          <div className="flex-1">
+          <div className="flex-1 min-w-0">
             <div className="flex justify-between items-start mb-3">
-              <div className="flex items-center gap-3">
-                <div className="relative w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 border-[#A4CF4A] shrink-0 bg-slate-100 flex items-center justify-center">
+              <div className="flex items-start gap-3 min-w-0">
+                <div className="relative w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 border-[#A4CF4A] shrink-0 bg-slate-100 flex items-center justify-center">
                   {avatarUrl ? (
                     <Image
                       src={avatarUrl}
@@ -180,7 +181,7 @@ const CommentNode = ({
                       {authorRole}
                     </p>
                   </div>
-                  <h3 className="text-sm md:text-base font-extrabold text-slate-900 leading-none mt-0.5">
+                  <h3 className="text-sm md:text-base font-extrabold text-slate-900 leading-none mt-0.5 wrap-break-word">
                     {authorName}
                   </h3>
                   <p className="text-[9px] md:text-[10px] text-slate-400 mt-1">
@@ -208,7 +209,7 @@ const CommentNode = ({
             </p>
 
             {/* Comment & count */}
-            <div className="flex justify-between items-center mt-2 pl-1">
+            <div className="flex flex-wrap gap-3 justify-between items-center ">
               <button
                 onClick={(e) => {
                   e.stopPropagation();
@@ -605,7 +606,7 @@ export default function PostDetailPage() {
       {isAuthenticated ? <MemberHeader /> : <SiteHeader />}
 
       <main className="grow pt-32 pb-20">
-        <div className="mx-auto w-full max-w-[900px] px-4 md:px-0">
+        <div className="mx-auto w-full max-w-[1200px] px-4 md:px-6 lg:px-8">
           <button
             onClick={() => router.back()}
             className="flex items-center gap-2 text-slate-400 hover:text-[#A4CF4A] transition mb-6 font-medium"
@@ -784,7 +785,7 @@ export default function PostDetailPage() {
                       }
                     }}
                     placeholder="LEAVE YOUR COMMENT HERE"
-                    className="w-full py-3 bg-transparent outline-none text-xs md:text-sm font-medium text-slate-700 placeholder:text-slate-400 tracking-wide"
+                    className="w-full py-3 bg-transparent outline-none text-[13px] md:text-sm font-medium text-slate-700 placeholder:text-slate-400 tracking-wide"
                     disabled={isSubmittingComment}
                   />
                 </label>

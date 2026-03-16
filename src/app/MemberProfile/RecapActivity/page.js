@@ -65,7 +65,7 @@ export default function RecapActivityPage() {
             action: "You've Joined",
             event: item.event?.title || "Mangrove Event", 
             location: item.event?.location || "Lokasi Event",
-            link: `/EventPage/EventDetail?id=${item.event_id || item.event?.id}`,
+            link: `/EventPage/${item.event_id || item.event?.id}`,
           }));
           
           combinedActivities = [...combinedActivities, ...mappedEvents];
@@ -118,7 +118,7 @@ export default function RecapActivityPage() {
       <MemberHeader />
 
       <main className="grow pt-32 pb-20 relative z-10">
-        <div className="mx-auto w-full max-w-[1000px] px-6">
+        <div className="mx-auto w-full max-w-[1250px] px-6">
           <button
             onClick={() => router.back()}
             className="flex items-center gap-1 text-slate-400 hover:text-[#A4CF4A] transition mb-6 md:mb-2 text-sm md:text-base font-medium"

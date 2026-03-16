@@ -111,17 +111,17 @@ export default function NotificationsPage() {
     <div className="min-h-screen bg-[#FDFDFD] font-medium text-slate-800 flex flex-col">
       <MemberHeader />
 
-      <main className="grow pt-32 pb-20">
-        <div className="mx-auto w-full max-w-[1250px] px-4 md:px-6">
+      <main className="grow pt-24 md:pt-28 lg:pt-32 pb:16 md:pb-20">
+        <div className="mx-auto w-full max-w-[1250px] px-4 sm:px-6 lg:px-8">
           {/* Header Section */}
-          <div className="flex items-center gap-4 mb-10 border-slate-200 pb-2">
+          <div className="flex items-center gap-3 md:gap-4 mb-8 md:mb-10 border-slate-200 pb-2">
             <button
               onClick={() => router.back()}
               className="p-2 -ml-2 text-slate-400 hover:text-[#A4CF4A] hover:bg-[#F4F9EB] rounded-full transition-all"
             >
-              <ChevronLeft size={28} />
+              <ChevronLeft size={24} className="md:w-7 md:h-7"/>
             </button>
-            <h1 className="text-xl md:text-2xl font-medium text-slate-600 tracking-tight flex items-center gap-3">
+            <h1 className="text-lg sm:text-xl md:text-2xl font-medium text-slate-600 tracking-tight flex items-center gap-2 md:gap-3">
               Back
             </h1>
           </div>
@@ -147,8 +147,8 @@ export default function NotificationsPage() {
               </div>
             ) : notifications.length === 0 ? (
               // notif kosong
-              <div className="flex flex-col items-center justify-center py-20 text-center bg-white rounded-[30px] border border-slate-100 shadow-sm">
-                <div className="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mb-6">
+              <div className="flex flex-col items-center justify-center py-16 md:py-20 text-center bg-white rounded-2xl md:rounded-[30px] border border-slate-100 shadow-sm">
+                <div className="w-16 h-16 md:w-20 md:h-20 bg-slate-50 rounded-full flex items-center justify-center mb-6">
                   <BellOff size={32} className="text-slate-300" />
                 </div>
                 <h3 className="text-xl font-extrabold text-slate-900 mb-2">
@@ -168,30 +168,30 @@ export default function NotificationsPage() {
                     <div
                       key={notif.id}
                       onClick={() => markSingleAsRead(notif.id)}
-                      className={`relative rounded-3xl p-6 shadow-sm border transition-all duration-300 hover:shadow-md overflow-hidden cursor-pointer ${
+                      className={`relative rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-sm border transition-all duration-300 hover:shadow-md overflow-hidden cursor-pointer ${
                         isUnread
                           ? "bg-white border-[#A4CF4A]/30"
                           : "bg-slate-50/50 border-slate-100"
                       }`}
                     >
                       {isUnread && (
-                        <div className="absolute top-7 right-6 w-3 h-3 bg-[#A4CF4A] rounded-full shadow-[0_0_10px_rgba(164,207,74,0.5)]"></div>
+                        <div className="absolute top-5 right-4 md:top-7 md:right-6 w-3 h-3 bg-[#A4CF4A] rounded-full shadow-[0_0_10px_rgba(164,207,74,0.5)]"></div>
                       )}
 
                       <h3
-                        className={`text-base md:text-lg font-extrabold mb-2 pr-6 ${isUnread ? "text-slate-900" : "text-slate-700"}`}
+                        className={`text-sm sm:text-base md:text-lg font-extrabold mb-2 pr-6 ${isUnread ? "text-slate-900" : "text-slate-700"}`}
                       >
                         {notif.data.title}
                       </h3>
 
                       <p
-                        className={`text-sm leading-relaxed mb-4 tracking-wide font-medium ${isUnread ? "text-slate-700" : "text-slate-500"}`}
+                        className={`text-sm md:text-[15px] leading-relaxed mb-4 tracking-wide font-medium ${isUnread ? "text-slate-700" : "text-slate-500"}`}
                       >
                         {notif.data.message}
                       </p>
 
                       <div className="flex items-center gap-2">
-                        <span className="text-[11px] font-extrabold uppercase tracking-widest text-[#56B6E4]">
+                        <span className="text-[11px] md:text-xs font-extrabold uppercase tracking-widest text-[#56B6E4]">
                           {formattedTime(notif.created_at)}
                         </span>
                       </div>

@@ -268,13 +268,13 @@ export default function CommunityPage() {
       {/* NAVBAR */}
       {isAuthenticated ? <MemberHeader /> : <SiteHeader />}
 
-      <main className="grow pt-32 pb-20">
-        <div className="mx-auto w-full max-w-[900px] px-4 md:px-0">
+      <main className="grow pt-24 md:pt-28 lg:pt-32 pb-16 md:pb-20">
+        <div className="mx-auto w-full max-w-[950px] px-4 sm:px-6 lg:px-8">
           <button
             onClick={() => router.back()}
-            className="flex items-center gap-2 text-slate-400 hover:text-[#A4CF4A] transition mb-6 font-medium"
+            className="flex items-center gap-2 text-slate-400 hover:text-[#A4CF4A] transition mb-6 md:mb-8 font-medium"
           >
-            <ChevronLeft size={20} />
+            <ChevronLeft size={18} className="md:w-5 md:h-5" />
             Back
           </button>
 
@@ -282,16 +282,16 @@ export default function CommunityPage() {
             <p className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">
               WELCOME TO
             </p>
-            <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900">
               Mangrove<span style={{ color: "#A4CF4A" }}>Community</span>
             </h1>
           </div>
 
           {/*  TABS (GENERAL & MY POSTS) */}
-          <div className="flex bg-white rounded-full shadow-sm border border-slate-100 p-1 mb-8">
+          <div className="flex bg-white rounded-full shadow-sm border border-slate-100 p-1 mb-6 md:mb-8">
             <button
               onClick={() => setTab("general")}
-              className={`flex-1 py-3 rounded-full text-sm font-bold uppercase tracking-widest transition-all duration-300 ${
+              className={`flex-1 py-2.5 md:py-3 rounded-full text-xs md:text-sm font-bold uppercase tracking-widest transition-all duration-300 ${
                 activeTab === "general"
                   ? "bg-[#A4CF4A] text-white shadow-md"
                   : "bg-transparent text-slate-500 hover:bg-slate-50"
@@ -315,8 +315,8 @@ export default function CommunityPage() {
           <div className="flex flex-col gap-6">
             {/* CREATE POST BOX */}
             {activeTab === "general" && isAuthenticated && (
-              <div className="bg-white rounded-[30px] p-6 md:p8 shadow-sm border border-slate-100 flex items-center gap-4 mb-2 animate-in fade-in slide-in-from-top-4 duration-300">
-                <div className="relative w-12 h-12 rounded-full overflow-hidden shrink-0 border-2 border-[#A4CF4A]/20 bg-slate-100 flex items-center justify-center shadow-inner">
+              <div className="bg-white rounded-[30px] p-4 md:p-6 shadow-sm border border-slate-100 flex items-center gap-3 md:gap-4 mb-2 animate-in fade-in slide-in-from-top-4 duration-300">
+                <div className="relative w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden shrink-0 border-2 border-[#A4CF4A]/20 bg-slate-100 flex items-center justify-center shadow-inner">
                   {currentUserAvatarUrl ? (
                     <Image
                       src={currentUserAvatarUrl}
@@ -331,7 +331,7 @@ export default function CommunityPage() {
                   )}
                 </div>
 
-                <label className="flex-1 border border-slate-200 rounded-full flex items-center px-5 bg-slate-50 focus-within:border-[#A4CF4A]/50 focus-within:bg-white transition cursor-text">
+                <label className="flex-1 border border-slate-200 rounded-full flex items-center px-4 md:px-5 bg-slate-50 focus-within:border-[#A4CF4A]/50 focus-within:bg-white transition cursor-text">
                   <input
                     type="text"
                     value={postContent}
@@ -410,7 +410,7 @@ export default function CommunityPage() {
                       className="animate-spin text-[#A4CF4A]"
                     />
                   ) : (
-                    <Send size={28} strokeWidth={2.5} />
+                    <Send size={24} className="md:w-7 md:h-7" strokeWidth={2.5} />
                   )}
                 </button>
               </div>
@@ -480,11 +480,11 @@ export default function CommunityPage() {
                   <div
                     key={post.id}
                     onClick={() => router.push(`/CommunityPage/${post.id}`)}
-                    className="bg-white rounded-[30px] p-6 shadow-sm border border-slate-100"
+                    className="bg-white rounded-2xl md:rounded-[30px] p-4 md:p-6 shadow-sm border border-slate-100"
                   >
                     <div className="flex justify-between items-start mb-4">
                       <div className="flex items-center gap-3">
-                        <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-[#A4CF4A]/20 shrink-0 bg-slate-100 flex items-center justify-center">
+                        <div className="relative w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 border-[#A4CF4A]/20 shrink-0 bg-slate-100 flex items-center justify-center">
                           {avatarUrl ? (
                             <Image
                               src={avatarUrl}
@@ -505,7 +505,7 @@ export default function CommunityPage() {
                               {authorRole}
                             </p>
                           </div>
-                          <h3 className="text-base font-extrabold text-slate-900 leading-none mt-2">
+                          <h3 className="text-sm md:text-base font-extrabold text-slate-900 leading-none mt-2">
                             {authorName}
                           </h3>
                           <p className="text-[10px] text-slate-400 mt-2">
@@ -525,7 +525,7 @@ export default function CommunityPage() {
                       </button>
                     </div>
 
-                    <p className="text-slate-700 text-sm font-medium leading-relaxed mb-4 pl-1 line-clamp-4">
+                    <p className="text-slate-700 text-sm md:text-[15px] font-medium leading-relaxed mb-4 pl-1 line-clamp-4">
                       {post.body}
                     </p>
 
@@ -534,7 +534,7 @@ export default function CommunityPage() {
                       Array.isArray(post.images) &&
                       post.images.length > 0 && (
                         <div
-                          className={`grid gap-2 mb-4 mt-2 ${
+                          className={`grid gap-2 md:gap-3 mb-4 mt-2 ${
                             post.images.length === 1
                               ? "grid-cols-1"
                               : post.images.length === 2
@@ -550,7 +550,7 @@ export default function CommunityPage() {
                                 className={`relative w-full rounded-2xl overflow-hidden shadow-inner border border-slate-100 bg-slate-50 ${
                                   post.images.length === 1
                                     ? "h-[300px] md:h-[450px]"
-                                    : "h-[150px] md:h-[200px]"
+                                    : "h-[140px] sm:h-40 md:h-[200px]"
                                 }`}
                               >
                                 <Image
@@ -577,7 +577,7 @@ export default function CommunityPage() {
                       </div>
                     )}
 
-                    <div className="flex justify-end items-center gap-4 text-slate-700 pt-3 border-t border-slate-100 mt-2">
+                    <div className="flex justify-end items-center gap-3 md:gap-4 text-slate-700 pt-3 border-t border-slate-100 mt-2">
                       {/* up vote */}
                       <div
                         onClick={(e) => {
@@ -587,9 +587,9 @@ export default function CommunityPage() {
                         className="flex items-center gap-1 hover:text-[#A4CF4A] cursor-pointer transition group"
                       >
                         <ArrowUp
-                          size={22}
+                          size={20}
                           strokeWidth={2.5}
-                          className="group-hover:-translate-y-0.5 transition-transform"
+                          className="group-hover:-translate-y-0.5 transition-transform md:w-5 md:h-5"
                         />
                         <span className="font-bold">
                           {post.upvotes_count || 0}
@@ -605,9 +605,9 @@ export default function CommunityPage() {
                         className="flex items-center gap-1 hover:text-red-500 cursor-pointer transition group"
                       >
                         <ArrowDown
-                          size={22}
+                          size={20}
                           strokeWidth={2.5}
-                          className="group-hover:translate-y-0.5 transition-transform"
+                          className="group-hover:translate-y-0.5 transition-transform md:w-5 md:h-5"
                         />
                         <span className="font-bold">
                           {post.downvotes_count || 0}
@@ -618,7 +618,7 @@ export default function CommunityPage() {
                           size={22}
                           className="fill-slate-700 hover:fill-[#A4CF4A] transition-colors"
                         />
-                        <span className="font-extrabold text-lg leading-none mt-0.5">
+                        <span className="font-extrabold text-base md:text-lg leading-none mt-0.5">
                           {commentsCount}
                         </span>
                       </div>

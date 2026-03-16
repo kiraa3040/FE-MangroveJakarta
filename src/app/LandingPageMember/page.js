@@ -41,8 +41,7 @@ export default function MemberPage() {
     if (!path) return "/event_img/AAJI Peduli Bumi 3.jpeg";
     if (path.startsWith("http")) return path;
 
-    const baseUrl =
-      process.env.NEXT_PUBLIC_BASE_URL?.replace(/\/$/, "");
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL?.replace(/\/$/, "");
     let cleanPath = path.startsWith("/") ? path : `/${path}`;
 
     if (!cleanPath.startsWith("/storage/")) {
@@ -200,36 +199,37 @@ export default function MemberPage() {
       {/* NAVBAR MEMBER */}
       <MemberHeader />
 
-      <main className="grow pt-32 pb-0">
-        <div className="mx-auto w-full max-w-[92%] lg:max-w-[1350px]">
+      <main className="grow pt-28 md:pt-32 lg:pt-36 pb-0">
+        <div className="mx-auto w-full max-w-[1350px] px-4 sm:px-6 lg:px-8">
           {/*  TITLE SECTION  */}
           <div className="text-center mb-12">
             <p className="text-[10px] md:text-sm font-semibold tracking-[0.2em] text-slate-400 mb-1">
               WELCOME TO
             </p>
-            <h1 className="text-4xl md:text-[56px] font-bold text-black">
+            <h1 className="text-3xl sm:text-4xl md:text-[56px] font-bold text-black">
               Mangrove<span style={{ color: ACCENT }}>Member</span>
             </h1>
           </div>
 
           {/*  MAIN BUTTONS SECTION  */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16 items-stretch">
+           
             {/* OUR EVENT */}
             <Link href="/EventPage" className="w-full">
               <button
-                className="w-full group relative rounded-[20px] px-6 py-8 md:px-8 md:py-6 flex items-center gap-5 text-left shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+                className="w-full h-full group relative rounded-2xl px-6 py-6 md:px-8 md:py-8 flex items-center gap-5 text-left shadow-md hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 overflow-hidden"
                 style={{ backgroundColor: "#99C543" }}
               >
                 <div className="shrink-0 relative z-10">
-                  <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center shadow-inner backdrop-blur-sm">
-                    <CalendarDays className="w-8 h-8 md:w-10 md:h-10 text-white" />
+                  <div className="w-14 h-14 md:w-16 md:h-16 shrink-0 bg-white/20 rounded-2xl flex items-center justify-center shadow-inner backdrop-blur-sm">
+                    <CalendarDays className="w-7 h-7 md:w-9 md:h-9 text-white" />
                   </div>
                 </div>
-                <div className="relative z-10 text-white">
+                <div className="relative z-10 text-white flex-1">
                   <h3 className="text-base md:text-xl font-extrabold tracking-wide leading-tight mb-1">
                     OUR EVENT
                   </h3>
-                  <p className="text-[11px] md:text-sm font-light text-justify opacity-90 leading-relaxed max-w-[250px]">
+                  <p className="text-xs md:text-sm font-light text-justify opacity-90 leading-relaxed max-w-[260px] min-h-10">
                     Check our latest upcoming event here and join now!
                   </p>
                 </div>
@@ -240,19 +240,19 @@ export default function MemberPage() {
             {/* MANGROVE RESTORATION */}
             <Link href="/RestorationPage" className="w-full">
               <button
-                className="w-full group relative rounded-[20px] px-6 py-8 md:px-8 md:py-6 flex items-center gap-5 text-left shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+                className="w-full group relative rounded-[20px] px-6 py-6 md:px-8 md:py-8 flex items-center gap-5 text-left shadow-md hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 overflow-hidden"
                 style={{ backgroundColor: "#99C543" }}
               >
                 <div className="shrink-0 relative z-10">
-                  <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center shadow-inner backdrop-blur-sm">
-                    <ClipboardList className="w-8 h-8 md:w-10 md:h-10 text-white" />
+                  <div className="w-14 h-14 md:w-16 md:h-16 shrink-0 bg-white/20 rounded-2xl flex items-center justify-center shadow-inner backdrop-blur-sm">
+                    <ClipboardList className="w-7 h-7 md:w-9 md:h-9 text-white" />
                   </div>
                 </div>
-                <div className="relative z-10 text-white">
+                <div className="relative z-10 text-white flex-1">
                   <h3 className="text-base md:text-xl font-extrabold tracking-wide leading-tight mb-1">
                     MANGROVE RESTORATION
                   </h3>
-                  <p className="text-[11px] md:text-sm font-light text-justify opacity-90 leading-relaxed max-w-[250px]">
+                  <p className="text-xs md:text-sm font-light text-justify opacity-90 leading-relaxed max-w-[260px] min-h-10">
                     Check our latest upcoming event here and join now!
                   </p>
                 </div>
@@ -263,19 +263,19 @@ export default function MemberPage() {
             {/* MANGROVE COMMUNITY */}
             <Link href="/CommunityPage" className="w-full">
               <button
-                className="w-full group relative rounded-[20px] px-6 py-8 md:px-8 md:py-6 flex items-center gap-5 text-left shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+                className="w-full group relative rounded-[20px] px-6 py-6 md:px-8 md:py-8 flex items-center gap-5 text-left shadow-md hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 overflow-hidden"
                 style={{ backgroundColor: "#99C543" }}
               >
                 <div className="shrink-0 relative z-10">
-                  <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center shadow-inner backdrop-blur-sm">
-                    <MessageSquareText className="w-8 h-8 md:w-10 md:h-10 text-white" />
+                  <div className="w-14 h-14 md:w-16 md:h-16 shrink-0 bg-white/20 rounded-2xl flex items-center justify-center shadow-inner backdrop-blur-sm">
+                    <MessageSquareText className="w-7 h-7 md:w-9 md:h-9 text-white" />
                   </div>
                 </div>
-                <div className="relative z-10 text-white">
+                <div className="relative z-10 text-white flex-1">
                   <h3 className="text-base md:text-xl font-extrabold tracking-wide leading-tight mb-1">
                     MANGROVE COMMUNITY
                   </h3>
-                  <p className="text-[11px] md:text-sm font-light text-justify opacity-90 leading-relaxed max-w-[250px]">
+                  <p className="text-xs md:text-sm font-light text-justify opacity-90 leading-relaxed max-w-[260px] min-h-10">
                     Check our latest upcoming event here and join now!
                   </p>
                 </div>
@@ -284,15 +284,15 @@ export default function MemberPage() {
             </Link>
           </div>
 
-          <section className="py-12 md:py-10 mb-8 bg-white">
-            {/* DONATION */}
-            <div className="mx-auto w-full max-w-[90%] xl:max-w-[1350px]">
-              <div className="grid md:grid-cols-2 gap-10 lg:gap-20 items-center">
-                {/* CARDS CONTAINER */}
-                <div className="flex flex-col sm:flex-row gap-5 lg:gap-6 order-2 md:order-1">
+          <section className="py-12 xl:py-16 bg-white">
+            <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+              {" "}
+              <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
+                <div className="flex flex-col sm:flex-row gap-5 xl:gap-6 order-2 xl:order-1">
+                  {/* DONATION */}
                   <Link
-                    href="/Donation"
-                    className="flex-1 bg-white rounded-[28px] p-6 lg:p-8 flex flex-col items-center justify-center text-center shadow-[0_8px_30px_rgba(0,0,0,0.06)] border border-slate-100 transition-transform duration-300 hover:-translate-y-2 cursor-pointer group"
+                    href="https://kitabisa.com/campaign/mangrovejakartauntukmuaragembong?utm_source=socialsharing_campaigner_ios_e57faa1b220f47ca8e84fa3aeb3fdfe8%26utm_medium=CampaignPage_nativeshare%26utm_campaign=Campaign"
+                    className="flex-1 bg-white rounded-2xl md:rounded-[28px] p-6 lg:p-8 flex flex-col items-center justify-center text-center shadow-[0_8px_30px_rgba(0,0,0,0.06)] border border-slate-100 transition-transform duration-300 hover:-translate-y-2 cursor-pointer group"
                   >
                     <div className="mb-3 transform transition-transform duration-300 group-hover:scale-110">
                       <svg
@@ -306,7 +306,7 @@ export default function MemberPage() {
                       </svg>
                     </div>
                     <h3
-                      className="text-2xl font-extrabold mb-1.5"
+                      className="text-xl lg:text-2xl font-extrabold mb-1.5"
                       style={{ color: ACCENT }}
                     >
                       Donation
@@ -333,7 +333,7 @@ export default function MemberPage() {
                       </svg>
                     </div>
                     <h3
-                      className="text-2xl font-bold mb-1.5 tracking-widest"
+                      className="text-xl lg:text-2xl font-bold mb-1.5 tracking-widest"
                       style={{ color: ACCENT }}
                     >
                       Our Product
@@ -344,13 +344,12 @@ export default function MemberPage() {
                   </Link>
                 </div>
 
-                {/* TEXT CONTAINER */}
-                <div className="flex flex-col items-center md:items-end text-center md:text-right order-1 md:order-2 mb-4 md:mb-0">
-                  <h2 className="text-4xl md:text-5xl lg:text-[56px] font-bold leading-[1.05] text-black mb-4 md:mb-5 tracking-tight">
+                <div className="flex flex-col items-center xl:items-end text-center xl:text-right order-1 xl:order-2">
+                  <h2 className="text-4xl lg:text-5xl xl:text-[56px] font-bold leading-[1.05] text-black text-center xl:text-right mb-5 tracking-tight">
                     Take Action for <br />
                     <span style={{ color: ACCENT }}>Our Mangroves</span>
                   </h2>
-                  <p className="text-slate-800 text-[14px] md:text-[16px] font-medium leading-relaxed max-w-sm md:max-w-fit">
+                  <p className="text-slate-800 text-sm lg:text-[16px] text-center xl:text-right font-medium leading-relaxed max-w-md xl:max-w-fit">
                     There are many ways to support mangrove restoration.
                     Contribute through donations or support our mission by
                     purchasing eco-friendly products.
@@ -400,7 +399,7 @@ export default function MemberPage() {
                     </div>
                   </div>
                 </div>
-                <div className="bg-white rounded-4xl md:rounded-[40px] p-6 md:p-8 lg:p-10 shadow-lg border border-slate-200 flex flex-col sm:flex-row items-center justify-between text-center sm:text-left gap-4">
+                <div className="bg-white rounded-3xl md:rounded-[40px] p-6 md:p-8 lg:p-10 shadow-lg border border-slate-200 flex flex-col sm:flex-row items-center justify-between text-center sm:text-left gap-4">
                   <div className="flex flex-col gap-2 md:gap-4 flex-1">
                     <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black leading-tight">
                       CO2 <br className="hidden sm:block" />
@@ -427,7 +426,7 @@ export default function MemberPage() {
           </section>
 
           {/*  MANGROVE BLOG  */}
-          <section className="mb-24">
+          <section className="mb-20 md:mb-24 px-4 md:px-0">
             <div className="text-center mb-10">
               <p className="text-[10px] md:text-sm font-semibold tracking-[0.2em] text-slate-400 uppercase mb-2">
                 READ OUR
@@ -458,7 +457,7 @@ export default function MemberPage() {
                 {" "}
                 {newsData.map((item) => (
                   <Link href={`/BlogPage/${item.id}`} key={item.id}>
-                    <div className="relative h-[400px] rounded-[30px] overflow-hidden group shadow-md cursor-pointer">
+                    <div className="relative h-80 sm:h-[360px] md:h-[400px] rounded-[30px] overflow-hidden group shadow-md cursor-pointer">
                       <Image
                         src={getImageUrl(item.image_path)}
                         alt={item.title || "Mangrove Blog"}
@@ -486,7 +485,7 @@ export default function MemberPage() {
             <div className="flex justify-center px-4 md:px-0">
               <Link href="/BlogPage" className="w-full sm:w-auto">
                 <button
-                  className="w-full sm:w-auto px-8 md:px-24 lg-px-40 py-3.5 md:py-4 rounded-full text-white font-bold text-xs sm:text-sm shadow-lg hover:brightness-105 transition"
+                  className="w-full sm:w-auto px-8 md:px-24 lg:px-40 py-3.5 md:py-4 rounded-full text-white font-bold text-xs sm:text-sm shadow-lg hover:brightness-105 transition"
                   style={{ backgroundColor: ACCENT }}
                 >
                   VIEW MORE

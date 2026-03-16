@@ -37,13 +37,12 @@ export default function MemberHeader() {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur border-b border-slate-100">
-      <div className="mx-auto w-full max-w-[92%] lg:max-w-[1350px] py-3 md:py-4 flex items-center justify-between">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur border-b border-slate-100 min-h-16 md:min-h-[72px] flex items-center ">
+      <div className="mx-auto w-full max-w-[1350px] px-4 sm:px-6 lg:px-8 py-3 md:py-4 flex items-center justify-between">
         {/* LOGO KIRI */}
         <div className="flex items-center">
           <Link href="/LandingPageMember">
-            {/* Ukuran logo mengecil di HP (w-28 h-8) dan membesar di MD (w-40 h-12) */}
-            <div className="relative w-28 h-8 sm:w-32 sm:h-10 md:w-40 md:h-12 shrink-0">
+            <div className="relative w-28 h-8 sm:w-32 sm:h-9 md:w-40 md:h-11 shrink-0">
               <Image
                 src="/landing_page/logo2.png"
                 alt="Yayasan Mangrove"
@@ -55,11 +54,10 @@ export default function MemberHeader() {
           </Link>
         </div>
 
-        {/* MENU KANAN (About Us + Icons) */}
-        <div className="flex items-center gap-4 md:gap-6">
+        {/* About Us + Icons */}
+        <div className="flex items-center gap-3 sm:gap-4 md:gap-6">
           <Link href="/AboutUs">
-            {/* Tetap disembunyikan di HP sesuai kodemu sebelumnya */}
-            <span className="hidden md:block text-xs font-semibold tracking-widest text-slate-600 hover:text-[#A4CF4A] transition-colors">
+            <span className="hidden sm:block text-xs font-semibold tracking-widest text-slate-600 hover:text-[#A4CF4A] transition-colors">
               ABOUT US
             </span>
           </Link>
@@ -68,23 +66,21 @@ export default function MemberHeader() {
             {/* User Icon */}
             <Link
               href="/MemberProfile"
-              /* Ukuran lingkaran mengecil di HP (w-8 h-8) */
-              className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#A4CF4A] flex items-center justify-center hover:brightness-105 transition shadow-sm shrink-0"
+              className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-[#A4CF4A] flex items-center justify-center hover:brightness-105 transition shadow-sm shrink-0"
             >
-              <User className="w-5 h-5 md:w-6 md:h-6 text-white fill-white" />
+              <User className="w-5 h-5 sm:w-5.5 sm:h-5.5 md:w-6 md:h-6 text-white fill-white" />
             </Link>
 
             {/* Notification Bell */}
             <Link
               href="/Notifications"
-              className="relative p-1 md:p-2 text-slate-500 hover:text-[#A4CF4A] transition shrink-0"
+              className="relative p-1.5 md:p-2 text-slate-500 hover:text-[#A4CF4A] transition shrink-0"
             >
-              {/* Ukuran Bell mengecil di HP */}
-              <Bell className="w-5 h-5 md:w-6 md:h-6" />
+              <Bell className="w-5 h-5 sm:w-5.5 sm:h-5.5 md:w-6 md:h-6" />
 
               {unreadCount > 0 && (
-                /* Ukuran Badge merah mengecil di HP */
-                <span className="absolute top-0 right-0 md:top-1 md:right-1 flex h-3.5 w-3.5 md:h-4 md:w-4 items-center justify-center rounded-full bg-red-500 text-[9px] md:text-[10px] font-bold text-white shadow-sm ring-2 ring-white">
+                /* Ukuran Badge mobile */
+                <span className="absolute top-0.5 right-0.5 md:top-1 md:right-1 flex h-3.5 w-3.5 md:h-4 md:w-4 items-center justify-center rounded-full bg-red-500 text-[9px] md:text-[10px] font-bold text-white shadow-sm ring-2 ring-white">
                   {unreadCount > 99 ? "99+" : unreadCount}
                 </span>
               )}

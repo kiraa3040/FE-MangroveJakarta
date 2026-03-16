@@ -117,8 +117,8 @@ export default function MangroveRestorationPage() {
     >
       <MemberHeader />
 
-      <main className="grow pt-32 pb-20 relative z-10">
-        <div className="mx-auto w-full max-w-[1250px] px-6">
+      <main className="grow pt-28 md:pt-32 lg:pt-36 pb-16 md:pb-20 relative z-10">
+        <div className="mx-auto w-full max-w-[1300px] px-4 sm:px-6 lg:px-8">
           <button
             onClick={() => router.back()}
             className="flex items-center gap-1 text-slate-400 hover:text-[#A4CF4A] transition mb-6 font-medium"
@@ -128,7 +128,7 @@ export default function MangroveRestorationPage() {
           </button>
 
           {/* BANNER */}
-          <div className="w-full rounded-[30px] overflow-hidden relative h-48 md:h-64 flex flex-col items-center justify-center text-white shadow-sm mb-8 bg-linear-to-r from-[#de6853] to-[#b33a3a]">
+          <div className="w-full rounded-2xl md:rounded-[30px] overflow-hidden relative h-44 sm:h-48 md:h-64 flex flex-col items-center justify-center text-white shadow-sm mb-8 bg-linear-to-r from-[#de6853] to-[#b33a3a]">
             <Image
               src="/images/header mangrest.png"
               alt="Community Background"
@@ -140,7 +140,7 @@ export default function MangroveRestorationPage() {
               <p className="text-[10px] md:text-xs tracking-widest uppercase mb-1 md:mb-2 font-bold opacity-90">
                 Welcome To
               </p>
-              <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
+              <h1 className="text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
                 MangroveRestoration
               </h1>
               <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest opacity-90">
@@ -152,8 +152,8 @@ export default function MangroveRestorationPage() {
           {/* EXAMPLE REPORT PHOTO */}
           <div className="bg-white rounded-[30px] p-6 md:p-10 shadow-sm border border-slate-100 mb-8">
             <SectionTitle title="Example Report Photo" />
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="relative h-40 md:h-48 rounded-xl overflow-hidden shadow-sm">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              <div className="relative h-40 sm:h-44 md:h-48 rounded-2xl md:rounded-[30px] overflow-hidden shadow-sm">
                 <Image
                   src="/images/example 1.png"
                   alt="Example 1"
@@ -181,14 +181,14 @@ export default function MangroveRestorationPage() {
           </div>
 
           {/* RESTORATION FORM */}
-          <div className="bg-white rounded-[30px] p-6 md:p-10 shadow-sm border border-slate-100">
+          <div className="bg-white rounded-2xl md:rounded-[30px] p-6 md:p-10 shadow-sm border border-slate-100">
             <SectionTitle title="Restoration Form" />
 
             <div className="flex flex-col gap-5 mt-2">
               {/* Map Picker */}
               <div>
                 <label className={labelStyle}>Pick Mangrove Location</label>
-                <div className="rounded-xl overflow-hidden border border-[#A4CF4A]">
+                <div className="rounded-xl overflow-hidden border border-[#A4CF4A] min-h-[280px] md:min-h-80 ">
                   <MapPicker position={position} setPosition={setPosition} />
                 </div>
               </div>
@@ -219,10 +219,10 @@ export default function MangroveRestorationPage() {
               <div>
                 <label className={labelStyle}>Description</label>
                 <textarea
-                  rows="6"
+                  rows="5"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  className={`${inputStyle} resize-none`}
+                  className={`${inputStyle} resize-none min-h-[120px]`}
                   placeholder="Write your report description in here..."
                 ></textarea>
               </div>
@@ -238,7 +238,7 @@ export default function MangroveRestorationPage() {
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
                   />
                   <div
-                    className="w-full flex items-center justify-center gap-2 text-white font-bold text-sm py-4 rounded-full shadow-md transition-all uppercase tracking-widest relative z-0"
+                    className="w-full flex items-center justify-center gap-2 text-white font-bold text-sm py-3.5 md:py-4 rounded-full shadow-md transition-all uppercase tracking-widest relative z-0"
                     style={{ backgroundColor: "#56B6E4" }}
                   >
                     <Upload size={18} strokeWidth={2.5} />
@@ -252,7 +252,7 @@ export default function MangroveRestorationPage() {
                 <button
                   onClick={handleSubmit}
                   disabled={isLoading}
-                  className="w-full text-white font-bold text-sm py-4 rounded-full shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 uppercase tracking-widest"
+                  className="w-full text-white font-bold text-sm py-3.5 md:py-4 rounded-full shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 uppercase tracking-widest"
                   style={{ backgroundColor: "#A4CF4A" }}
                 >
                   {isLoading ? (
@@ -283,10 +283,10 @@ export default function MangroveRestorationPage() {
           ></div>
 
           <div
-            className="rounded-[30px] p-8 md:p-10 w-full max-w-[450px] shadow-2xl relative z-10 animate-in fade-in zoom-in-95 duration-200 flex flex-col items-center text-center"
+            className="rounded-[30px] p-6 sm:p-8 md:p-10 w-full max-w-[420px] md:max-w-[450px] shadow-2xl relative z-10 animate-in fade-in zoom-in-95 duration-200 flex flex-col items-center text-center"
             style={{ backgroundColor: "#F4F9DF" }}
           >
-            <div className="relative w-24 h-24 mb-6 flex items-center justify-center">
+            <div className="relative w-20 h-20 md:w-24 md:h-24 mb-6 flex items-center justify-center">
               <div className="absolute inset-0 bg-white/40 rounded-full scale-125"></div>
               <div className="absolute inset-2 bg-white/70 rounded-full scale-110"></div>
               <div className="relative w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-sm z-10">
@@ -311,7 +311,7 @@ export default function MangroveRestorationPage() {
                 setIsSuccessModalOpen(false);
                 router.push("/LandingPageMember");
               }}
-              className="w-full py-4 rounded-full text-white text-sm font-bold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all uppercase tracking-widest"
+              className="w-full py-3.5 md:py-4 rounded-full text-white text-sm font-bold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all uppercase tracking-widest"
               style={{ backgroundColor: "#A4CF4A" }}
             >
               CLOSE
