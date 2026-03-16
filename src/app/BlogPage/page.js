@@ -84,11 +84,11 @@ export default function NewsPage() {
     <div className="min-h-screen bg-[#F8F9FA] font-sans text-slate-800 flex flex-col">
       {isAuthenticated ? <MemberHeader /> : <SiteHeader />}
 
-      <main className="grow pt-32 pb-20">
-        <div className="mx-auto w-full max-w-[1200px] px-6 relative">
+      <main className="grow pt-28 md:pt-32 lg:pt-36 pb-20">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 relative">
           {/* TITLE & FILTER DROPDOWN */}
-          <div className="flex flex-col md:flex-row justify-center items-center relative mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 text-center">
+          <div className="flex flex-col md:flex-row items-center md:justify-center mb-12">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 text-center">
               {/* Judul sesuai Filter */}
               {activeFilter === "all" && (
                 <>
@@ -159,7 +159,7 @@ export default function NewsPage() {
               filteredBlogs.map((item) => (
                 <div
                   key={item.id}
-                  className="bg-white rounded-[30px] p-5 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col md:flex-row gap-6 items-center md:items-start border border-gray-100 relative overflow-hidden"
+                  className="bg-white rounded-2xl md:rounded-[30px] p-4 sm:p-5 md:p-6 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col md:flex-row gap-6 items-center md:items-start border border-gray-100 relative overflow-hidden"
                 >
                   <div
                     className={`absolute top-5 right-5 px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider
@@ -168,7 +168,7 @@ export default function NewsPage() {
                     {item.type || "General"}
                   </div>
 
-                  <div className="relative w-full md:w-[45%] h-56 md:h-64 rounded-2xl overflow-hidden shrink-0 bg-slate-100">
+                  <div className="relative w-full md:w-[42%] h-52 sm:h-56 md:h-64 rounded-2xl overflow-hidden shrink-0 bg-slate-100">
                     <img
                       src={getImageUrl(item.image_path)}
                       alt={item.title}
@@ -176,7 +176,7 @@ export default function NewsPage() {
                     />
                   </div>
                   <div className="flex flex-col justify-center h-full w-full py-2">
-                    <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4 leading-tight pr-12">
+                    <h3 className="text-2xl md:text-3xl wrap-break-word font-bold text-slate-900 mb-4 leading-tight pr-12">
                       {item.title}
                     </h3>
                     <p className="text-slate-500 text-sm leading-relaxed mb-6 line-clamp-3">
@@ -184,7 +184,7 @@ export default function NewsPage() {
                     </p>
                     <div>
                       <Link href={`/BlogPage/DetailBlogs?id=${item.id}`}>
-                        <button className="px-6 py-2.5 rounded-full bg-[#A4CF4A] text-white text-[10px] md:text-xs font-bold tracking-widest hover:bg-[#8eb63d] transition shadow-sm">
+                        <button className="px-6 py-2.5 rounded-full bg-[#A4CF4A] text-white text-xs md:text-sm font-bold tracking-widest hover:bg-[#8eb63d] transition shadow-sm">
                           VIEW MORE
                         </button>
                       </Link>
@@ -197,7 +197,7 @@ export default function NewsPage() {
 
           {/* PAGINATION CONTROLS */}
           {!isLoading && totalPages > 1 && (
-            <div className="flex justify-center md:justify-start items-center gap-6 mt-16 text-slate-400 font-medium select-none">
+            <div className="flex justify-center md:justify-start items-center gap-4 md:gap-6 mt-16 text-slate-400 font-medium select-none">
               {Array.from({ length: totalPages }, (_, i) => i + 1).map(
                 (number) => (
                   <span

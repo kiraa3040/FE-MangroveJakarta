@@ -86,14 +86,14 @@ export default function NewsDetail() {
 
   return (
     <div className="min-h-screen bg-white font-sans text-slate-800 flex flex-col">
-      {isHydrated && isAuthenticated ? <SiteHeader /> : <MemberHeader />}
+      {isHydrated && isAuthenticated ? <MemberHeader /> : <SiteHeader />}
 
-      <main className="grow pt-32 pb-20">
-        <div className="mx-auto w-full max-w-7xl px-6 md:px-12">
+      <main className="grow pt-28 md:pt-32 lg:pt-36 pb-20">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Tombol Back */}
           <button
             onClick={() => router.back()}
-            className="group flex items-center gap-1 text-slate-400 hover:text-[#A4CF4A] transition mb-8 text-sm font-medium italic"
+            className="group flex items-center gap-1 text-slate-400 hover:text-[#A4CF4A] transition mb-6 md:mb-8 text-lg font-medium italic"
           >
             <ChevronLeft
               size={18}
@@ -103,12 +103,12 @@ export default function NewsDetail() {
           </button>
 
           {/* Judul */}
-          <h1 className="text-3xl md:text-4xl lg:text-4xl font-bold text-slate-900 leading-tight text-center mb-6">
+          <h1 className="text-3xl md:text-4xl lg:text-4xl wrap-break-word font-bold text-slate-900 leading-tight text-center mb-6">
             {activeBlog?.title}
           </h1>
 
           {/* Data dibawah judul */}
-          <div className="flex flex-wrap justify-center items-center gap-6 md:gap-12 text-[10px] md:text-xs font-medium text-slate-500 uppercase tracking-widest mb-10">
+          <div className="flex flex-wrap justify-center items-center gap-6 md:gap-12 text-xs md:text-sm font-medium text-slate-500 uppercase tracking-widest mb-10">
             <div className="flex items-center gap-2">
               <User size={14} />
               <span>by {activeBlog?.author?.name || "Admin"} </span>
@@ -125,11 +125,11 @@ export default function NewsDetail() {
 
           {/* Gambar */}
           <figure className="mb-10">
-            <div className="relative w-full h-[300px] md:h-[500px] rounded-2xl overflow-hidden shadow-sm">
+            <div className="relative w-full h-[220px] sm:h-80 md:h-[420px] lg:h-[500px] rounded-2xl overflow-hidden shadow-sm">
               <img
                 src={getImageUrl(activeBlog?.image_path)}
                 alt={activeBlog?.title}
-                className="object-cover"
+                className="w-full h-full object-cover"
               />
             </div>
             {/* <figcaption className="text-center text-[10px] md:text-xs text-slate-400 italic mt-3">
@@ -137,7 +137,7 @@ export default function NewsDetail() {
             {/* </figcaption> */} */
           </figure>
 
-          <div className="prose prose-lg prose-slate max-w-3xl text-justify text-slate-700 leading-loose space-y-6">
+          <div className="prose prose-lg prose-slate max-w-3xl lg:max-w-4xl text-justify text-slate-700 leading-loose space-y-6">
             {/* <p>{activeBlog?.content}</p> */}
 
             <div

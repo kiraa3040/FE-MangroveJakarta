@@ -24,7 +24,7 @@ export default function SiteFooter() {
         className="w-full relative py-12 md:pt-20 md:pb-20 overflow-hidden"
         style={{ backgroundColor: BG_COLOR }}
       >
-        <div className="mx-auto w-full max-w-[92%] lg:max-w-[1350px] relative z-10 grid md:grid-cols-2 items-center text-center md:text-left">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10flex flex-col md:flex-row items-center text-center md:text-left">
           <div className="flex flex-col items-center md:items-start">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-4 md:mb-6">
               Get in Touch!
@@ -44,7 +44,7 @@ export default function SiteFooter() {
                 href={waLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto px-8 py-3.5 md:py-3 rounded-full text-white font-bold text-xs shadow-md hover:brightness-105 transition text-center"
+                className="w-full sm:w-auto px-6 py-3 md:py-3 rounded-full text-white font-bold text-xs shadow-md hover:brightness-105 transition text-center"
                 style={{ backgroundColor: ACCENT }}
               >
                 CONTACT US
@@ -52,7 +52,7 @@ export default function SiteFooter() {
               {/* BUTTON: EMAIL NOW */}
               <a
                 href={mailtoLink}
-                className="w-full sm:w-auto px-8 py-3.5 md:py-3 rounded-full text-white font-bold text-xs shadow-md hover:brightness-105 transition text-center"
+                className="w-full sm:w-auto px-6 py-3 md:py-3 rounded-full text-white font-bold text-xs shadow-md hover:brightness-105 transition text-center"
                 style={{ backgroundColor: ACCENT }}
               >
                 EMAIL NOW
@@ -62,7 +62,7 @@ export default function SiteFooter() {
         </div>
 
         {/* Background Tree Image */}
-        <div className="absolute bottom-0 right-0 w-[200px] sm:w-[300px] md:w-[600px] h-[200px] sm:h-[300px] md:h-[600px] pointer-events-none opacity-30 sm:opacity-60 md:opacity-100 z-0">
+        <div className="absolute bottom-0 right-0 w-40 sm:w-[260px] md:w-[420px] lg:w-[520px] h-[200px] sm:h-[300px] md:h-[600px] pointer-events-none opacity-30 sm:opacity-60 md:opacity-100 z-0">
           <Image
             src="/landing_page/Pohon-2.png"
             alt="Footer Tree"
@@ -72,12 +72,12 @@ export default function SiteFooter() {
         </div>
       </section>
 
-      {/* --- SECTION 2: COPYRIGHT BAR --- */}
+      {/*  SECTION 2: COPYRIGHT BAR  */}
       <div
         className="w-full border-t border-slate-300/50 py-6"
         style={{ backgroundColor: BG_COLOR }}
       >
-        <div className="mx-auto w-full max-w-[92%] lg:max-w-[1350px] flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 gap-4 text-center md:text-left">
+        <div className="mx-auto w-full max-w-[92%] lg:max-w-[1350px] flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 gap-3 md:gap-4 text-center md:text-left">
           <p>
             &copy; 2025{" "}
             <span className="font-bold text-slate-700">Greensy</span>. All

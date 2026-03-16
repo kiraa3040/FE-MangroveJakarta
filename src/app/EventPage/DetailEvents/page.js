@@ -106,11 +106,11 @@ export default function EventDetail() {
     >
       {isHydrated && isAuthenticated ? <MemberHeader /> : <SiteHeader />}
 
-      <main className="grow pt-32 pb-20 w-full relative z-10">
-        <div className="mx-auto w-full max-w-[1250px] px-6 md:px-0">
+      <main className="grow pt-28 md:pt-32 lg:pt-36 pb-20 w-full relative z-10">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <button
             onClick={() => router.back()}
-            className="flex items-center gap-1 text-slate-500 hover:text-[#A4CF4A] transition mb-6 text-sm font-medium"
+            className="flex items-center gap-1 text-slate-500 hover:text-[#A4CF4A] transition mb-6 text-lg font-medium"
           >
             <ChevronLeft size={18} />
             Back
@@ -120,7 +120,7 @@ export default function EventDetail() {
             <p className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">
               EVENT
             </p>
-            <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900">
               Registration{" "}
               <span style={{ color: "#A4CF4A" }}>
                 {isAvailable ? "Open!" : "Closed!"}
@@ -128,10 +128,8 @@ export default function EventDetail() {
             </h1>
           </div>
 
-          {/*  BANNER EVENT  */}
           {/* BANNER EVENT  */}
-          <div className="relative w-full h-48 md:h-64 rounded-[30px] overflow-hidden shadow-sm mb-6 flex flex-col items-center justify-center">
-            {/* Latar Belakang (Gambar & Overlay) */}
+          <div className="relative w-full h-44 sm:h-52 md:h-64 lg:h-72 rounded-2xl md:rounded-[30px] overflow-hidden shadow-sm mb-6 flex flex-col items-center justify-center">
             <div className="absolute inset-0 z-0 w-full h-full">
               {isAvailable ? (
                 // BG HIJAU SAAT AVAILABLE
@@ -155,7 +153,6 @@ export default function EventDetail() {
                     priority
                     className="object-cover grayscale opacity-40 mix-blend-multiply"
                   />
-                  {/* Overlay putih tipis agar gambar abu-abunya terang seperti referensi */}
                   <div className="absolute inset-0 bg-white/30 backdrop-grayscale" />
                 </div>
               )}
@@ -169,7 +166,7 @@ export default function EventDetail() {
                   <div className="absolute -top-4 md:-top-4.5 left-1/2 -translate-x-1/2 border-[3px] border-white text-white px-8 md:px-10 py-1 md:py-1.5 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest shadow-md whitespace-nowrap bg-[#56B6E4]">
                     AVAILABLE
                   </div>
-                  <h2 className="text-2xl md:text-4xl font-extrabold text-white text-center drop-shadow-md">
+                  <h2 className="text-2xl md:text-4xl wrap-break-word font-extrabold text-white text-center drop-shadow-md">
                     {activeEvent?.title}
                   </h2>
                 </div>
@@ -177,7 +174,7 @@ export default function EventDetail() {
                 //  LAYOUT UNAVAVAIL
                 <div className="w-full max-w-[650px] flex flex-col items-center justify-center gap-1.5 md:gap-2">
                   <div className="w-full border-[3px] border-white rounded-full px-6 py-5 md:py-6 flex justify-center items-center shadow-md bg-[#A5A5A5]/80 backdrop-blur-[2px]">
-                    <h2 className="text-2xl md:text-4xl font-extrabold text-white text-center drop-shadow-md px-4 truncate">
+                    <h2 className="text-2xl md:text-4xl wrap-break-word font-extrabold text-white text-center drop-shadow-md px-4 truncate">
                       {activeEvent?.title}
                     </h2>
                   </div>
@@ -192,7 +189,7 @@ export default function EventDetail() {
           </div>
 
           {/*  CONTENT CARD  */}
-          <div className="bg-white rounded-[30px] p-8 md:p-12 shadow-sm border border-slate-100 mb-12">
+          <div className="bg-white rounded-[30px] p-6 sm:p-8 md:p-12 shadow-sm border border-slate-100 mb-12">
             <div className="mb-10 space-y-6">
               {/* Detail Event Section */}
               <div>
@@ -245,7 +242,7 @@ export default function EventDetail() {
               </div>
             </div>
 
-            <div className="prose prose-slate max-w-none prose-headings:font-bold prose-headings:text-slate-900 prose-p:text-slate-700 prose-li:text-slate-700 mb-12 text-sm md:text-base">
+            <div className="prose prose-slate max-w-none lg:max-w-3xl prose-headings:font-bold prose-headings:text-slate-900 prose-p:text-slate-700 prose-li:text-slate-700 mb-12 text-sm md:text-base">
               {activeEvent?.description ? (
                 <div
                   dangerouslySetInnerHTML={{ __html: activeEvent.description }}
@@ -262,7 +259,7 @@ export default function EventDetail() {
               {isAvailable ? (
                 <Link href={`/EventPage/EventRegister?id=${activeEvent?.id}`}>
                   <button
-                    className="w-full text-white font-bold text-sm md:text-base py-4 rounded-full shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 uppercase tracking-widest"
+                    className="w-full text-white font-bold py-3.5 md:py-4 text-sm md:text-base rounded-full shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 uppercase tracking-widest"
                     style={{ backgroundColor: "#A4CF4A" }}
                   >
                     REGISTER NOW!

@@ -90,8 +90,8 @@ export default function AboutUsPage() {
       {/* NAVBAR */}
       {isHydrated && isAuthenticated ? <MemberHeader /> : <SiteHeader />}
 
-      <main className="grow pt-24 md:pt-32 pb-0">
-        <div className="mx-auto w-full max-w-[92%] sm:max-w-[90%] lg:max-w-[1200px]">
+      <main className="grow pt-28 md:pt-32 lg:pt-36 pb-0">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* TOMBOL BACK */}
           <button
             onClick={() => router.back()}
@@ -114,7 +114,7 @@ export default function AboutUsPage() {
           </div>
 
           {/*  VISION & MISSION  */}
-          <div className="grid grid-cols-1 gap-5 md:gap-6 mb-10 md:mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6 mb-10 md:mb-12">
             {/* Vision Card */}
             <div className="bg-white rounded-3xl md:rounded-[30px] border border-slate-200 shadow-sm p-6 md:p-8 text-center transition-all">
               <h3 className="text-lg md:text-xl font-extrabold mb-2">Vision</h3>
@@ -151,58 +151,65 @@ export default function AboutUsPage() {
           </div>
 
           {/* BEHIND US */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {teamMembers.map((member, index) => (
-              <div key={index} className="group h-full">
-                <div className="bg-white rounded-3xl md:rounded-[30px] shadow-sm border border-slate-200 p-6 md:p-8 text-center h-full flex flex-col transition-all duration-300 hover:shadow-md">
-                  <div className="relative mx-auto w-[130px] h-[130px] sm:w-[150px] sm:h-[150px] md:w-[180px] md:h-[180px] mb-6 md:mb-8 rounded-full border border-slate-100 flex shrink-0 items-center justify-center overflow-hidden shadow-sm">
-                    {member.img ? (
-                      <Image
-                        src={member.img}
-                        alt={member.name}
-                        fill
-                        className="object-cover"
-                      />
-                    ) : (
-                      <span className="text-slate-300 text-xs font-bold tracking-widest">
-                        FOTO
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Content */}
-                  <div className="flex flex-col h-full">
-                    <div className="min-h-12 flex items-center justify-center mb-3 md:mb-5">
-                      <h4 className="text-[14px] md:text-[15px] font-bold text-black leading-tight">
-                        {member.name}
-                      </h4>
+          <div className="mb-16 md:mb-20">
+            <div className="text-center mb-10 md:mb-14">
+              <h2 className="text-4xl md:text-5xl font-extrabold text-black">
+                Behind<span style={{ color: ACCENT }}>Us</span>
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12">
+              {teamMembers.map((member, index) => (
+                <div key={index} className="group h-full">
+                  <div className="bg-white rounded-3xl md:rounded-[30px] shadow-sm border border-slate-200 p-6 md:p-8 text-center h-full flex flex-col transition-all duration-300 hover:shadow-md">
+                    <div className="relative mx-auto w-[120px] h-[120px] sm:w-[140px] sm:h-[140px] md:w-40 md:h-40 mb-6 md:mb-8 rounded-full border border-slate-100 flex shrink-0 items-center justify-center overflow-hidden shadow-sm">
+                      {member.img ? (
+                        <Image
+                          src={member.img}
+                          alt={member.name}
+                          fill
+                          className="object-cover"
+                        />
+                      ) : (
+                        <span className="text-slate-300 text-xs font-bold tracking-widest">
+                          FOTO
+                        </span>
+                      )}
                     </div>
 
-                    <div className="min-h-10 flex items-start justify-center mb-2">
-                      <p className="text-[12px] md:text-[13px] font-medium text-slate-700">
-                        {member.role}
-                      </p>
-                    </div>
+                    {/* Content */}
+                    <div className="flex flex-col h-full">
+                      <div className="min-h-12 flex items-center justify-center mb-3 md:mb-5">
+                        <h4 className="text-[14px] md:text-[15px] font-bold text-black leading-tight">
+                          {member.name}
+                        </h4>
+                      </div>
 
-                    <div className="flex-1 flex flex-col justify-start border-t border-slate-100 pt-4 md:pt-5">
-                      <ul className="text-left text-[11px] text-slate-500 items-start space-y-2 list-disc pl-4">
-                        {member.affiliations.map((aff, idx) => (
-                          <li key={idx} className="leading-relaxed">
-                            {aff}
-                          </li>
-                        ))}
-                      </ul>
+                      <div className="min-h-10 flex items-start justify-center mb-2">
+                        <p className="text-[12px] md:text-[13px] font-medium text-slate-700">
+                          {member.role}
+                        </p>
+                      </div>
+
+                      <div className="flex-1 flex flex-col justify-start border-t border-slate-100 pt-4 md:pt-5">
+                        <ul className="text-left text-[11px] wrap-break-word text-slate-500 items-start space-y-2 list-disc pl-4">
+                          {member.affiliations.map((aff, idx) => (
+                            <li key={idx} className="leading-relaxed">
+                              {aff}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
           {/*  GREENSY TEAM  */}
           <div className="mb-16 md:mb-24">
-            <div className="bg-white rounded-4x1 md:rounded-[40px] shadow-sm border border-slate-200 p-5 sm:p-6 md:p-8 text-center max-w-7xl mx-auto">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 mb-8 md:mb-10">
+            <div className="bg-white rounded-4xl md:rounded-[40px] shadow-sm border border-slate-200 p-5 sm:p-6 md:p-8 text-center max-w-7xl mx-auto">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-6 mb-8 md:mb-10">
                 {greensyMembers.map((item) => (
                   <div
                     key={item.id}
@@ -224,7 +231,7 @@ export default function AboutUsPage() {
                     )}
 
                     {/* mobile */}
-                    <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/30 to-transparent md:bg-none md:bg-black/20 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 flex flex-col items-center justify-end md:justify-center p-3 md:p-4 text-center z-10 pb-4 md:pb-4">                      
+                    <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/30 to-transparent md:bg-none md:bg-black/20 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 flex flex-col items-center justify-end md:justify-center p-3 md:p-4 text-center z-10 pb-4 md:pb-4">
                       <div className="translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-transform duration-300">
                         <h4 className="text-white text-sm sm:text-base md:text-lg font-bold mb-0.5 md:mb-1 drop-shadow-md">
                           {item.name}
@@ -233,7 +240,6 @@ export default function AboutUsPage() {
                           {item.role}
                         </p>
                       </div>
-
                     </div>
 
                     <div className="absolute inset-0 bg-[#A4CF4A]/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-4 text-center z-10">

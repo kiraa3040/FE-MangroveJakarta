@@ -91,8 +91,8 @@ export default function EventsPage() {
       {/* NAVBAR */}
       {isHydrated && isAuthenticated ? <MemberHeader /> : <SiteHeader />}
 
-      <main className="grow pt-36 pb-20">
-        <div className="mx-auto w-full max-w-[90%] lg:max-w-[1250px]">
+      <main className="grow pt-28 md:pt-32 lg:pt-36 pb-20">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-8">
             <div className="text-center">
               <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900">
@@ -101,7 +101,7 @@ export default function EventsPage() {
             </div>
 
             {/*  FILTER DROPDOWN  */}
-            <div className="flex justify-end mt-6 md:mt-8 pb-4 relative group z-30">
+            <div className="flex justify-center md:justify-end mt-6 md:mt-8 pb-4 relative group z-30">
               <button className="flex items-center gap-2 font-bold text-lg text-slate-800 hover:text-[#A4CF4A] transition-colors outline-none py-2">
                 <Filter className="w-5 h-5" />
                 <span className="uppercase text-sm">
@@ -166,7 +166,7 @@ export default function EventsPage() {
 
           {/* EVENTS GRID */}
           {!isLoading && !error && displayEvents.length > 0 && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
               {displayEvents.map((item) => {
                 const dateInfo = formatDate(item.starts_at);
 
@@ -176,12 +176,12 @@ export default function EventsPage() {
                 return (
                   <div
                     key={item.id}
-                    className={`group flex flex-col bg-[#A4CF4A] rounded-[20px] overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-slate-100 ${
+                    className={`group flex flex-col bg-[#A4CF4A] rounded-[20px] overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-slate-100 ${
                       isAvailable ? "bg-[#A4CF4A]" : "bg-[#B5B5B5]"
                     }`}
                   >
                     {/* Image */}
-                    <div className="relative h-56 w-full bg-slate-200 rounded-b-[20px] overflow-hidden shadow-sm z-10">
+                    <div className="relative h-48 sm:h-52 md:h-56 w-full bg-slate-200 rounded-b-[20px] overflow-hidden shadow-sm z-10">
                       <Image
                         src={getImageUrl(item.thumbnail || item.image)}
                         alt={item.title}
@@ -232,7 +232,7 @@ export default function EventsPage() {
 
                         {/* Location Info Box */}
                         <div
-                          className={`mt-auto bg-[#F6F8E8] rounded-2xl p-3 flex items-start gap-3 ${isAvailable ? "bg-[F6F8E8]" : "bg-slate-50"}`}
+                          className={`mt-auto bg-[#F6F8E8] rounded-2xl p-3 flex items-start gap-3 ${isAvailable ? "bg-[#F6F8E8]" : "bg-slate-50"}`}
                         >
                           <div
                             className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 text-white shadow-sm mt-0.5 ${
@@ -242,7 +242,7 @@ export default function EventsPage() {
                             <MapPin className="w-4 h-4 fill-current" />
                           </div>
                           <div className="overflow-hidden">
-                            <p className="text-[11px] font-bold text-slate-900 leading-tight truncate">
+                            <p className="text-[11px] font-bold text-slate-900 leading-tight truncate wrap-break-word">
                               {item.location || "Location TBD"}
                             </p>
                             <p className="text-[9px] text-slate-500 leading-tight mt-0.5 line-clamp-2">
@@ -260,7 +260,7 @@ export default function EventsPage() {
 
           {/*  PAGINATION  */}
           {!isLoading && !error && totalPages > 1 && activeFilter === "all" && (
-            <div className="flex justify-start w-full">
+            <div className="flex justify-center md:justify-start w-full">
               <div className="flex items-center gap-6 text-xl font-bold text-slate-300 select-none">
                 <button
                   onClick={() => handlePageChange(currentPage - 1)}

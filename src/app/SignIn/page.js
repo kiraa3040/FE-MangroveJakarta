@@ -59,12 +59,12 @@ export default function SignInPage() {
       <SiteHeader accent={ACCENT} />
 
       {/* MAIN CONTENT */}
-      <main className="grow pt-30 pb-10 px-4 flex items-center justify-center">
-        <div className="bg-white w-full max-w-[1100px] rounded-[50px] shadow-xl p-8 md:p-14 grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <main className="grow pt-28 md:pt-32 lg:pt-36 pb-10 px-4 flex items-center justify-center">
+        <div className="bg-white w-full max-w-[1100px] rounded-2xl md:rounded-[40px] shadow-xl p-8 md:p-14 grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div className="flex flex-col gap-0">
             <div>
               <h1
-                className="text-3xl md:text-5xl font-bold"
+                className="text-2xl sm:text-3xl md:text-5xl font-bold"
                 style={{ color: ACCENT }}
               >
                 Login
@@ -98,7 +98,7 @@ export default function SignInPage() {
                   onChange={handleChange}
                   required
                   type="email"
-                  className="mt-4 w-full rounded-xl border border-[#A4CF4A] px-4 py-4 outline-none focus:ring-2 focus:ring-[#A4CF4A]/50 transition text-slate-700 text-sm"
+                  className="mt-4 w-full rounded-xl border border-[#A4CF4A] px-4 py-3 md:py-4 outline-none focus:ring-2 focus:ring-[#A4CF4A]/50 transition text-slate-700 text-sm"
                 />
               </div>
 
@@ -117,7 +117,7 @@ export default function SignInPage() {
                     onChange={handleChange}
                     required
                     type={showPassword ? "text" : "password"}
-                    className="mt-4 w-full rounded-xl border border-[#A4CF4A] px-4 py-4 outline-none focus:ring-2 focus:ring-[#A4CF4A]/50 transition text-slate-700 text-sm pr-10"
+                    className="mt-4 w-full rounded-xl border border-[#A4CF4A] px-4 py-3 md:py-4 outline-none focus:ring-2 focus:ring-[#A4CF4A]/50 transition text-slate-700 text-sm pr-10"
                   />
                   <button
                     type="button"
@@ -161,7 +161,7 @@ export default function SignInPage() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full rounded-full py-4 text-xs md:text-lg font-extrabold text-white shadow-md hover:brightness-105 transition tracking-[0.15em] mt-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                className="w-full rounded-full py-3.5 md:py-4 text-sm md:text-lg font-extrabold text-white shadow-md hover:brightness-105 transition tracking-[0.15em] mt-2 disabled:opacity-70 disabled:cursor-not-allowed"
                 style={{ backgroundColor: ACCENT }}
               >
                 {isLoading ? "LOGGING IN..." : "LOGIN"}
@@ -170,10 +170,10 @@ export default function SignInPage() {
           </div>
 
           <div
-            className="hidden md:flex flex-col items-center justify-center text-center rounded-[30px] p-12 h-full min-h-[450px]"
+            className="hidden md:flex flex-col items-center justify-center text-center rounded-[30px] p-12 h-full min-h-80 md:min-h-[450px]"
             style={{ backgroundColor: "#A6CF4F" }}
           >
-            <div className="relative w-32 h-32 md:w-80 md:h-80 mb-4">
+            <div className="relative w-28 h-28 sm:w-32 sm:h-32 md:w-72 md:h-72 mb-4">
               <Image
                 src="/landing_page/logo2.png"
                 alt="Logo Mangrove"

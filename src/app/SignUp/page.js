@@ -74,13 +74,13 @@ export default function SignUpPage() {
     <div className="min-h-screen bg-[#EEF7BE] text-slate-900 flex flex-col font-sans">
       <SiteHeader accent={ACCENT} />
 
-      <main className="grow pt-30 pb-10 px-4 flex items-center justify-center">
-        <div className="bg-white w-full max-w-[1100px] rounded-[50px] shadow-xl p-8 md:p-14 grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* --- LEFT SIDE: FORM --- */}
+      <main className="grow pt-28 md:pt-32 lg:pt-36 pb-10 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
+        <div className="bg-white w-full max-w-[1100px] rounded-2xl md:rounded-[40px] shadow-xl p-8 md:p-14 grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
+          {/* FORM  */}
           <div className="flex flex-col gap-0">
             <div>
               <h1
-                className="text-3xl md:text-5xl font-bold"
+                className="text-2xl sm:text-3xl md:text-5xl font-bold"
                 style={{ color: ACCENT }}
               >
                 Register
@@ -114,7 +114,7 @@ export default function SignUpPage() {
                   onChange={handleChange}
                   required
                   type="text"
-                  className="w-full rounded-xl border border-[#A4CF4A] px-4 py-3 outline-none focus:ring-2 focus:ring-[#A4CF4A]/50 transition text-slate-700 text-sm"
+                  className="w-full rounded-xl border border-[#A4CF4A] px-4 py-2.5 md:py-3 outline-none focus:ring-2 focus:ring-[#A4CF4A]/50 transition text-slate-700 text-sm"
                 />
               </div>
               <div className="space-y-2">
@@ -130,7 +130,7 @@ export default function SignUpPage() {
                   onChange={handleChange}
                   required
                   type="tel"
-                  className="w-full rounded-xl border border-[#A4CF4A] px-4 py-3 outline-none focus:ring-2 focus:ring-[#A4CF4A]/50 transition text-slate-700 text-sm"
+                  className="w-full rounded-xl border border-[#A4CF4A] px-4 py-2.5 md:py-3 outline-none focus:ring-2 focus:ring-[#A4CF4A]/50 transition text-slate-700 text-sm"
                 />
               </div>
               {/* Birth Date  */}
@@ -149,7 +149,7 @@ export default function SignUpPage() {
                     onChange={handleChange}
                     required
                     type="date"
-                    className="w-full rounded-xl border border-[#A4CF4A] px-4 py-3 outline-none focus:ring-2 focus:ring-[#A4CF4A]/50 transition text-[#A4CF4A] text-sm pr-10"
+                    className="w-full rounded-xl border border-[#A4CF4A] px-4 py-2.5 md:py-3 outline-none focus:ring-2 focus:ring-[#A4CF4A]/50 transition text-[#A4CF4A] text-sm pr-10"
                   />
                   <button
                     type="button"
@@ -174,7 +174,7 @@ export default function SignUpPage() {
                   onChange={handleChange}
                   required
                   type="text"
-                  className="w-full rounded-xl border border-[#A4CF4A] px-4 py-3 outline-none focus:ring-2 focus:ring-[#A4CF4A]/50 transition text-slate-700 text-sm"
+                  className="w-full rounded-xl border border-[#A4CF4A] px-4 py-2.5 md:py-3 outline-none focus:ring-2 focus:ring-[#A4CF4A]/50 transition text-slate-700 text-sm"
                 />
               </div>
               {/* Province */}
@@ -191,7 +191,7 @@ export default function SignUpPage() {
                   onChange={handleChange}
                   required
                   type="text"
-                  className="w-full rounded-xl border border-[#A4CF4A] px-4 py-3 outline-none focus:ring-2 focus:ring-[#A4CF4A]/50 transition text-slate-700 text-sm"
+                  className="w-full rounded-xl border border-[#A4CF4A] px-4 py-2.5 md:py-3 outline-none focus:ring-2 focus:ring-[#A4CF4A]/50 transition text-slate-700 text-sm"
                 />
               </div>
               {/* Email */}
@@ -208,7 +208,7 @@ export default function SignUpPage() {
                   onChange={handleChange}
                   required
                   type="email"
-                  className="w-full rounded-xl border border-[#A4CF4A] px-4 py-3 outline-none focus:ring-2 focus:ring-[#A4CF4A]/50 transition text-slate-700 text-sm"
+                  className="w-full rounded-xl border border-[#A4CF4A] px-4 py-2.5 md:py-3 outline-none focus:ring-2 focus:ring-[#A4CF4A]/50 transition text-slate-700 text-sm"
                 />
               </div>
               {/* Password */}
@@ -226,7 +226,7 @@ export default function SignUpPage() {
                     onChange={handleChange}
                     required
                     type={showPassword ? "text" : "password"}
-                    className="w-full rounded-xl border border-[#A4CF4A] px-4 py-3 outline-none focus:ring-2 focus:ring-[#A4CF4A]/50 transition text-slate-700 text-sm pr-10"
+                    className="w-full rounded-xl border border-[#A4CF4A] px-4 py-2.5 md:py-3 outline-none focus:ring-2 focus:ring-[#A4CF4A]/50 transition text-slate-700 text-sm pr-10"
                   />
                   <button
                     type="button"
@@ -251,14 +251,14 @@ export default function SignUpPage() {
                   onChange={handleChange}
                   required
                   type="password"
-                  className="w-full rounded-xl border border-[#A4CF4A] px-4 py-3 outline-none focus:ring-2 focus:ring-[#A4CF4A]/50 transition text-slate-700 text-sm"
+                  className="w-full rounded-xl border border-[#A4CF4A] px-4 py-2.5 md:py-3 outline-none focus:ring-2 focus:ring-[#A4CF4A]/50 transition text-slate-700 text-sm"
                 />
               </div>
-              {/* Button Sign Up */}
+              {/* Button Register */}
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full rounded-3xl py-4 text-sm font-bold text-white shadow-md hover:brightness-105 transition tracking-[0.15em] mt-4 disabled:opacity-70 disabled:cursor-not-allowed"
+                className="w-full rounded-3xl py-3.5 md:py-4 text-sm font-bold text-white shadow-md hover:brightness-105 transition tracking-[0.15em] mt-4 disabled:opacity-70 disabled:cursor-not-allowed"
                 style={{ backgroundColor: ACCENT }}
               >
                 {isLoading ? "PROCESSING..." : "REGISTER"}
@@ -278,12 +278,12 @@ export default function SignUpPage() {
             </form>
           </div>
 
-          {/* --- RIGHT SIDE--- */}
+          {/*  Image */}
           <div
-            className="hidden md:flex flex-col items-center justify-center text-center rounded-[30px] p-12 h-full min-h-[450px]"
+            className="hidden md:flex flex-col items-center justify-center text-center rounded-[30px] p-12 h-full min-h-80 md:min-h-[450px]"
             style={{ backgroundColor: "#A6CF4F" }}
           >
-            <div className="relative w-32 h-32 md:w-80 md:h-80 mb-4">
+            <div className="relative w-28 h-28 sm:w-32 sm:h-32 md:w-72 md:h-72 mb-4">
               <Image
                 src="/landing_page/logo2.png"
                 alt="Logo Mangrove"
@@ -301,9 +301,9 @@ export default function SignUpPage() {
 
       {/* popup */}
      {showSuccessPopup && (
-        <div className="fixed inset-0 scale-z-100 flex items-center justify-center bg-black/40 backdrop-blur-sm px-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm px-4">
           {/* Kotak Modal */}
-          <div className="bg-[#EEF7C8] w-full max-w-lg rounded-[40px] p-10 flex flex-col items-center text-center shadow-2xl relative animate-in fade-in zoom-in duration-300">
+          <div className="bg-[#EEF7C8] w-full max-w-lg rounded-2xl md:rounded-4xl p-10 flex flex-col items-center text-center shadow-2xl relative animate-in fade-in zoom-in duration-300">
             
             {/* Ikon Checkmark */}
             <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center shadow-[0_0_0_12px_rgba(255,255,255,0.4)] mb-8">

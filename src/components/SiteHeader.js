@@ -11,9 +11,10 @@ export default function SiteHeader({ accent = "#A4CF4A" }) {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur border-b border-slate-100 shadow-sm">
-      <div className="mx-auto px-4 py-4 flex items-center justify-between max-w-full lg:px-10">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-10 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="relative w-32 h-10 md:w-40 md:h-12">
+          <div className="relative w-[120px] sm:w-[140px] md:w-40 h-10">
+            {" "}
             <Link href="/LandingPage">
               <Image
                 src="/landing_page/logo2.png"
@@ -36,9 +37,9 @@ export default function SiteHeader({ accent = "#A4CF4A" }) {
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
-        <nav className="hidden md:flex items-center gap-10">
+        <nav className="hidden md:flex items-center gap-6 lg:gap-10">
           <div className="relative group h-full flex items-center">
-            <button className="flex items-center gap-1 text-[12px] font-semibold tracking-wider hover:text-emerald-700 transition-colors py-4 outline-none">
+            <button className="flex items-center gap-1 text-xs lg:text-sm font-semibold tracking-wider hover:text-emerald-700 transition-colors py-4 outline-none">
               OUR ACTIVITY
               <ChevronDown
                 size={14}
@@ -71,14 +72,14 @@ export default function SiteHeader({ accent = "#A4CF4A" }) {
 
           <Link
             href="/AboutUs"
-            className="text-[12px] font-semibold tracking-wider hover:text-emerald-700 transition-colors"
+            className="text-xs lg:text-sm font-semibold tracking-wider hover:text-emerald-700 transition-colors"
           >
             ABOUT US
           </Link>
 
           <Link
             href="/SignUp"
-            className="text-[12px] font-bold tracking-wider px-6 py-2 rounded-full drop-shadow-md text-white hover:brightness-110 transition-all inline-block"
+            className="text-xs lg:text-sm font-bold tracking-wider px-5 py-2 lg:px-6 lg:py-2 rounded-full drop-shadow-md text-white hover:brightness-110 transition-all inline-block"
             style={{ backgroundColor: accent }}
           >
             LOGIN/REGISTER
@@ -86,9 +87,9 @@ export default function SiteHeader({ accent = "#A4CF4A" }) {
         </nav>
       </div>
 
-    {/* menu mobile */}
+      {/* menu mobile */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-white border-b border-slate-100 shadow-lg flex flex-col px-6 py-4 gap-4 z-40">
+        <div className="md:hidden fixed top-[72px] left-0 right-0 bg-white border-b border-slate-100 shadow-lg flex flex-col px-4 sm:px-6 py-4 gap-4 z-40">
           <div className="flex flex-col border-b border-slate-100 pb-2">
             <button
               className="flex items-center justify-between text-[12px] font-semibold tracking-wider py-2 text-slate-800"
