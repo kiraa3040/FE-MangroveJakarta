@@ -4,7 +4,14 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, Filter, CalendarDays, ChevronDown, Check, ChevronLeft } from "lucide-react";
+import {
+  MapPin,
+  Filter,
+  CalendarDays,
+  ChevronDown,
+  Check,
+  ChevronLeft,
+} from "lucide-react";
 
 import MemberHeader from "../../components/SiteHeaderMember";
 import SiteHeader from "../../components/SiteHeader";
@@ -15,9 +22,8 @@ import { useAuthStore } from "@/store/useAuthStore";
 import { useEventStore } from "@/store/useEventStore";
 
 export default function EventsPage() {
-
   const router = useRouter();
-  
+
   const ACCENT = "#A4CF4A";
   const SOFT = "#EEF7BE";
 
@@ -214,7 +220,9 @@ export default function EventsPage() {
 
                       {/* View More Button */}
                       <div className="absolute bottom-4 right-4 z-10">
-                        <Link href={`/EventPage/DetailEvents?id=${item.id}`}>
+                        <Link
+                          href={`/EventPage/DetailEvents?id=${btoa(item.id.toString())}`}
+                        >
                           <button
                             className="px-5 py-1.5 rounded-full text-[10px] font-extrabold text-white shadow-md tracking-wider uppercase hover:brightness-110 transition"
                             style={{ backgroundColor: "#95C23D" }}

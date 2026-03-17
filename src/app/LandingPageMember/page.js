@@ -213,7 +213,6 @@ export default function MemberPage() {
 
           {/*  MAIN BUTTONS SECTION  */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16 items-stretch">
-           
             {/* OUR EVENT */}
             <Link href="/EventPage" className="w-full">
               <button
@@ -456,7 +455,10 @@ export default function MemberPage() {
               >
                 {" "}
                 {newsData.map((item) => (
-                  <Link href={`/BlogPage/${item.id}`} key={item.id}>
+                  <Link
+                    href={`/BlogPage/DetailBlogs?id=${btoa(item.id.toString())}`}
+                    key={item.id}
+                  >
                     <div className="relative h-80 sm:h-[360px] md:h-[400px] rounded-[30px] overflow-hidden group shadow-md cursor-pointer">
                       <Image
                         src={getImageUrl(item.image_path)}

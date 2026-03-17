@@ -78,7 +78,7 @@ export default function SiteHeader({ accent = "#A4CF4A" }) {
           </Link>
 
           <Link
-            href="/SignUp"
+            href="/SignIn"
             className="text-xs lg:text-sm font-bold tracking-wider px-5 py-2 lg:px-6 lg:py-2 rounded-full drop-shadow-md text-white hover:brightness-110 transition-all inline-block"
             style={{ backgroundColor: accent }}
           >

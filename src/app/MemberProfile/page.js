@@ -135,8 +135,7 @@ export default function ProfilePage() {
     if (!path) return null;
     if (path.startsWith("http")) return path;
 
-    const baseUrl =
-      process.env.NEXT_PUBLIC_BASE_URL;
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
     let cleanPath = path.startsWith("/") ? path : `/${path}`;
 
     if (!cleanPath.startsWith("/storage/")) {
@@ -146,9 +145,7 @@ export default function ProfilePage() {
     return `${baseUrl}${cleanPath}`;
   };
 
-  const avatarPath =
-    user?.profile?.profile_picture_url;
-    
+  const avatarPath = user?.profile?.profile_picture_url;
 
   const displayAvatar = previewImage || getAvatarUrl(avatarPath);
 
@@ -251,7 +248,21 @@ export default function ProfilePage() {
     }`;
 
   // buat badge profile
-  const userPoints = user?.profile?.point || 0;
+  const backendPoints =
+    user?.point ||
+    user?.points ||
+    user?.profile?.point ||
+    user?.profile?.points;
+
+  const totalEvents = user?.total_events || user?.profile?.total_events || 0;
+  const totalVotes = user?.total_votes || user?.profile?.total_votes || 0;
+  const calculatedPoints = totalEvents * 25 + Math.floor(totalVotes / 5);
+
+  const userPoints =
+    backendPoints !== undefined && backendPoints !== null
+      ? Number(backendPoints)
+      : calculatedPoints;
+
   let currentBadge = "";
   let nextBadge = "";
   let minPoints = 0;
@@ -286,10 +297,8 @@ export default function ProfilePage() {
       <main className="grow pt-28 pb-26 px-4 sm:px-6">
         <div className="mx-auto w-full max-w-[1400px]">
           <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
-
             {/*  PROFILE KIRI  */}
             <div className="relative z-10 bg-white rounded-3xl md:rounded-[30px] shadow-xl p-8 flex flex-col items-center h-fit border border-gray-100">
-            
               {/* profpic */}
               <div className="relative mb-4">
                 <input
@@ -600,7 +609,7 @@ export default function ProfilePage() {
                     strokeWidth={2.5}
                   />
 
-                {/* tooltip */}
+                  {/* tooltip */}
                   <div className="absolute bottom-full right-0 md:right-0 left-1/2 md:left-auto mb-3 w-[260px] md:w-[300px] bg-white rounded-[20px] shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] border border-slate-100 p-4 md:p-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 origin-bottom-right">
                     <p className="text-[11px] md:text-xs text-slate-600 text-center leading-relaxed mb-3 font-medium">
                       Badge levels reflect your contribution through

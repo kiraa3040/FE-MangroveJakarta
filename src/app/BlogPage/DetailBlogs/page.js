@@ -18,7 +18,8 @@ import Loading from "@/app/loading";
 export default function NewsDetail() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const id = searchParams.get("id");
+  const encryptedId = searchParams.get("id");
+  // const id = searchParams.get("id");
 
   const { isAuthenticated } = useAuthStore();
   const [isHydrated, setIsHydrated] = useState(false);
@@ -30,15 +31,53 @@ export default function NewsDetail() {
     error,
   } = useBlogsStore();
 
+  // useEffect(() => {
+  //   if (id) {
+  //     fetchBlogDetail(id);
+  //   }
+
+  //   return () => {
+  //     resetActiveBlog();
+  //   };
+  // }, [id, fetchBlogDetail, resetActiveBlog]);
+
+  // let realId = null;
+  // if (encryptedId) {
+  //   try {
+  //     realId = atob(encryptedId);
+  //   } catch (e) {
+  //     console.error("ID not valid");
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   if (realId) {
+  //     fetchBlogDetail(realId);
+  //   }
+  // }, [realId]);
+
+  const [realId, setRealId] = useState(null);
+
   useEffect(() => {
-    if (id) {
-      fetchBlogDetail(id);
+    setIsHydrated(true); 
+
+    if (encryptedId) {
+      try {
+        const decodedId = atob(encryptedId);
+        setRealId(decodedId);
+
+        fetchBlogDetail(decodedId);
+      } catch (error) {
+        console.error("URL ID tidak valid/telah dirusak");
+        alert("Artikel tidak ditemukan atau link tidak valid.");
+        router.push("/BlogPage"); 
+      }
     }
 
     return () => {
       resetActiveBlog();
     };
-  }, [id, fetchBlogDetail, resetActiveBlog]);
+  }, [encryptedId, fetchBlogDetail, resetActiveBlog, router]);
 
   // TANGGAL
   const formatDate = (dateString) => {
@@ -60,7 +99,7 @@ export default function NewsDetail() {
 
     if (!cleanPath.startsWith("/storage")) {
       cleanPath = `/storage${cleanPath}`;
-    };
+    }
 
     return `${baseUrl}${cleanPath}`;
   };
@@ -134,7 +173,7 @@ export default function NewsDetail() {
             </div>
             {/* <figcaption className="text-center text-[10px] md:text-xs text-slate-400 italic mt-3">
               {/* {activeBlog.caption} */}
-            {/* </figcaption> */} */
+            {/* </figcaption> */}
           </figure>
 
           <div className="prose prose-lg prose-slate max-w-3xl lg:max-w-4xl text-justify text-slate-700 leading-loose space-y-6">

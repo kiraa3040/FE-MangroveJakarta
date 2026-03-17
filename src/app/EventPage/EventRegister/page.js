@@ -37,9 +37,16 @@ export default function RegisterEventPage() {
     setIsHydrated(true);
 
     // const params = new URLSearchParams(window.location.search);
-    const idFromUrl = searchParams.get("id");
-    if (idFromUrl) {
-      setEventId(idFromUrl);
+    const encryptedId = searchParams.get("id");
+    if (encryptedId) {
+      try {
+        const decodedId = atob(encryptedId);
+        setEventId(decodedId);
+      } catch (error) {
+        console.error("ID tidak valid");
+        alert("Link pendaftaran tidak valid atau telah rusak.");
+        router.push("/EventsPage");
+      }
     }
 
     // autofill
@@ -71,7 +78,7 @@ export default function RegisterEventPage() {
     e.preventDefault();
 
     if (!eventId) {
-      alert.error("Error: Event ID not found");
+      alert("Error: Event ID not found");
       return;
     }
 
@@ -81,7 +88,7 @@ export default function RegisterEventPage() {
     // }
 
     setTempRegData(formData);
-    router.push(`/EventPage/EventPayment?id=${eventId}`);
+    router.push(`/EventPage/EventPayment?id=${btoa(eventId.toString())}`);
 
     // try {
     //   setIsSubmitting(true);
@@ -253,7 +260,10 @@ export default function RegisterEventPage() {
               </div>
 
               <div>
-                <label className={labelStyle}>Upload File (CV, Portfolio, or Align certificate on PDF file) *Optional</label>
+                <label className={labelStyle}>
+                  Upload File (CV, Portfolio, or Align certificate on PDF file)
+                  *Optional
+                </label>
                 <div className="relative w-full">
                   <input
                     type="file"

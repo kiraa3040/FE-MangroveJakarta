@@ -50,7 +50,7 @@ export default function NewsPage() {
     if (path.startsWith("http")) return path;
 
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-    let cleanPath = path.startsWith("/") ? path : `/${path}`
+    let cleanPath = path.startsWith("/") ? path : `/${path}`;
 
     if (!cleanPath.startsWith("/storage")) {
       cleanPath = `/storage${cleanPath}`;
@@ -63,7 +63,7 @@ export default function NewsPage() {
     if (!htmlString) return "";
 
     return htmlString.replace(/<[^>]*>?/gm, " ").trim();
-  }
+  };
 
   // filter
   const filteredBlogs =
@@ -75,7 +75,9 @@ export default function NewsPage() {
     return (
       <div className="min-h-screen bg-[#FDFDFD] flex flex-col items-center justify-center">
         <Loader2 className="w-10 h-10 animate-spin text-[#A4CF4A] mb-4" />
-        <p className="text-slate-500 font-medium animate-pulse">Memuat halaman...</p>
+        <p className="text-slate-500 font-medium animate-pulse">
+          Memuat halaman...
+        </p>
       </div>
     );
   }
@@ -183,7 +185,9 @@ export default function NewsPage() {
                       {stripHtml(item.content)}
                     </p>
                     <div>
-                      <Link href={`/BlogPage/DetailBlogs?id=${item.id}`}>
+                      <Link
+                        href={`/BlogPage/DetailBlogs?id=${btoa(item.id.toString())}`}
+                      >
                         <button className="px-6 py-2.5 rounded-full bg-[#A4CF4A] text-white text-xs md:text-sm font-bold tracking-widest hover:bg-[#8eb63d] transition shadow-sm">
                           VIEW MORE
                         </button>

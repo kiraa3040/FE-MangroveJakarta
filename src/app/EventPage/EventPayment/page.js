@@ -16,7 +16,10 @@ import { useAuthStore } from "@/store/useAuthStore";
 export default function EventPaymentPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const id = searchParams.get("id");
+  const encryptedId = searchParams.get("id");
+  // const id = searchParams.get("id");
+
+  const [realId, setRealId] = useState(null);
 
   const { isAuthenticated } = useAuthStore();
   const [isHydrated, setIsHydrated] = useState(false);
@@ -33,10 +36,19 @@ export default function EventPaymentPage() {
 
   useEffect(() => {
     setIsHydrated(true);
-    if (id) {
-      fetchEventDetail(id);
+    if (encryptedId) {
+      try {
+        // BUKA BUNGKUSNYA!
+        const decodedId = atob(encryptedId);
+        setRealId(decodedId);
+        fetchEventDetail(decodedId);
+      } catch (error) {
+        console.error("ID tidak valid");
+        alert("Link pembayaran tidak valid atau telah rusak.");
+        router.push("/EventsPage");
+      }
     }
-  }, [id, fetchEventDetail]);
+  }, [encryptedId, fetchEventDetail, router]);
 
   const formatDate = (dateString) => {
     if (!dateString) return "-";
@@ -58,8 +70,7 @@ export default function EventPaymentPage() {
   const getImageUrl = (path) => {
     if (!path) return "/event_img/AAJI Peduli Bumi 3.jpeg";
     if (path.startsWith("http")) return path;
-    const baseUrl =
-      process.env.NEXT_PUBLIC_BASE_URL;
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
     let cleanPath = path.startsWith("/") ? path : `/${path}`;
     if (!cleanPath.startsWith("/storage/")) cleanPath = `/storage${cleanPath}`;
     return `${baseUrl}${cleanPath}`;
@@ -72,7 +83,7 @@ export default function EventPaymentPage() {
   const handleConfirmPayment = async () => {
     if (!tempRegData) {
       alert("Registration data not found. Please fill out the form again.");
-      router.push(`/EventPage/EventRegister?id=${id}`);
+      router.push(`/EventPage/EventRegister?id=${encryptedId}`);
       return;
     }
 
@@ -81,8 +92,9 @@ export default function EventPaymentPage() {
       const token = localStorage.getItem("token") || "";
 
       const payload = new FormData();
-      payload.append("event_id", id);
+      payload.append("event_id", realId);
       payload.append("email", tempRegData.email);
+      // payload.append("name", tempRegData.name);
       payload.append("participant_name", tempRegData.participant_name);
       payload.append("whatsapp_number", tempRegData.whatsapp);
       payload.append("city", tempRegData.city);
@@ -193,8 +205,6 @@ export default function EventPaymentPage() {
                   <span>{formatCurrency(totalFee)}</span>
                 </div>
               </div>
-
-             
 
               <div className="mt-8">
                 <button

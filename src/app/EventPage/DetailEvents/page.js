@@ -18,7 +18,8 @@ export default function EventDetail() {
   const router = useRouter();
 
   const searchParams = useSearchParams();
-  const id = searchParams.get("id");
+  const encryptedId = searchParams.get("id");
+  // const id = searchParams.get("id");
 
   const { isAuthenticated } = useAuthStore();
   const [isHydrated, setIsHydrated] = useState(false);
@@ -35,17 +36,17 @@ export default function EventDetail() {
   const { activeEvent, fetchEventDetail, isLoadingDetail, resetActiveEvent } =
     useEventStore();
 
-  useEffect(() => {
-    setIsHydrated(true);
-  }, []);
+  // useEffect(() => {
+  //   setIsHydrated(true);
+  // }, []);
 
   //  FETCH DATA
-  useEffect(() => {
-    if (id) {
-      fetchEventDetail(id);
-    }
-    return () => resetActiveEvent();
-  }, [id, fetchEventDetail, resetActiveEvent]);
+  // useEffect(() => {
+  //   if (id) {
+  //     fetchEventDetail(id);
+  //   }
+  //   return () => resetActiveEvent();
+  // }, [id, fetchEventDetail, resetActiveEvent]);
 
   // HELPER FORMATTER
   const formatDate = (dateString) => {
@@ -80,6 +81,42 @@ export default function EventDetail() {
     return `${process.env.NEXT_PUBLIC_BASE_URL}/${path}`;
   };
 
+  // let realId = null;
+  // if (encryptedId) {
+  //   try {
+  //     realId = atob(encryptedId);
+  //   } catch (e) {
+  //     console.error("ID not valid");
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   if (realId) {
+  //     fetchEventDetail(realId);
+  //   }
+
+  const [realId, setRealId] = useState(null);
+  useEffect(() => {
+    setIsHydrated(true);
+
+    if (encryptedId) {
+      try {
+        const decodedId = atob(encryptedId);
+        setRealId(decodedId);
+
+        fetchEventDetail(decodedId);
+      } catch (e) {
+        console.error("URL ID tidak valid/telah dirusak");
+        alert("Halaman tidak ditemukan atau link tidak valid.");
+        router.push("/EventsPage");
+      }
+    }
+
+    return () => resetActiveEvent();
+  }, [encryptedId, fetchEventDetail, resetActiveEvent, router]);
+
+  // }, [realId]);
+
   if (isLoadingDetail) return <Loading />;
 
   if (!activeEvent && !isLoadingDetail) {
@@ -97,7 +134,8 @@ export default function EventDetail() {
   }
 
   // cek available
-  const isAvailable = activeEvent?.status === "published" && !activeEvent?.is_full;
+  const isAvailable =
+    activeEvent?.status === "published" && !activeEvent?.is_full;
 
   return (
     <div
@@ -199,7 +237,9 @@ export default function EventDetail() {
                 <p className="text-sm md:text-base text-slate-700 mb-1">
                   Register until{" "}
                   <span className="font-bold text-slate-900">
-                    {formatDate(activeEvent?.register_until || activeEvent?.date)}
+                    {formatDate(
+                      activeEvent?.register_until || activeEvent?.date,
+                    )}
                   </span>
                 </p>
                 <p className="text-sm md:text-base text-slate-700">
@@ -257,7 +297,7 @@ export default function EventDetail() {
             {/* BUTTON REGISTER */}
             <div className="mt-8">
               {isAvailable ? (
-                <Link href={`/EventPage/EventRegister?id=${activeEvent?.id}`}>
+                <Link href={`/EventPage/EventRegister?id=${btoa(realId?.toString())}`}>
                   <button
                     className="w-full text-white font-bold py-3.5 md:py-4 text-sm md:text-base rounded-full shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 uppercase tracking-widest"
                     style={{ backgroundColor: "#A4CF4A" }}
