@@ -208,7 +208,7 @@ export default function RegisterEventPage() {
                 </label>
                 <input
                   type="text"
-                  name="certificate_name"
+                  name="participant_name"
                   value={formData.participant_name}
                   onChange={handleChange}
                   className={inputStyle}
