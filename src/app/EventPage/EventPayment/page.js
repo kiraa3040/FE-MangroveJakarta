@@ -90,7 +90,7 @@ export default function EventPaymentPage() {
       const token = localStorage.getItem("token") || "";
 
       const payload = new FormData();
-      payload.append("event_id", realId);
+      payload.append("event_id", activeEvent?.id);
       payload.append("email", tempRegData.email);
       // payload.append("name", tempRegData.name);
       payload.append("participant_name", tempRegData.participant_name);
