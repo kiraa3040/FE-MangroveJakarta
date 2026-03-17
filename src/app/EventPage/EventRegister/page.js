@@ -24,7 +24,7 @@ export default function RegisterEventPage() {
   const [formData, setFormData] = useState({
     email: "",
     name: "",
-    certificate_name: "",
+    participant_name: "",
     whatsapp: "",
     city: "",
     province: "",
@@ -209,7 +209,7 @@ export default function RegisterEventPage() {
                 <input
                   type="text"
                   name="certificate_name"
-                  value={formData.certificate_name}
+                  value={formData.participant_name}
                   onChange={handleChange}
                   className={inputStyle}
                   required
