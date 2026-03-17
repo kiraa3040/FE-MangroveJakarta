@@ -456,7 +456,7 @@ export default function MemberPage() {
                 {" "}
                 {newsData.map((item) => (
                   <Link
-                    href={`/BlogPage/DetailBlogs?id=${btoa(item.id.toString())}`}
+                    href={`/BlogPage/${item.slug}`}
                     key={item.id}
                   >
                     <div className="relative h-80 sm:h-[360px] md:h-[400px] rounded-[30px] overflow-hidden group shadow-md cursor-pointer">

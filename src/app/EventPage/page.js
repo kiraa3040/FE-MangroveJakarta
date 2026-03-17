@@ -221,7 +221,7 @@ export default function EventsPage() {
                       {/* View More Button */}
                       <div className="absolute bottom-4 right-4 z-10">
                         <Link
-                          href={`/EventPage/DetailEvents?id=${btoa(item.id.toString())}`}
+                          href={`/EventPage/${item.slug}`}
                         >
                           <button
                             className="px-5 py-1.5 rounded-full text-[10px] font-extrabold text-white shadow-md tracking-wider uppercase hover:brightness-110 transition"

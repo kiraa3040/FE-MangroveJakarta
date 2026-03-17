@@ -532,7 +532,7 @@ export default function LandingPage() {
 
                           <div className="absolute bottom-3 right-3 md:bottom-4 md:right-4 z-10">
                             <Link
-                              href={`/EventPage/DetailEvents?id=${btoa(item.id.toString())}`}
+                              href={`/EventPage/${item.slug}`}
                             >
                               <button
                                 className={`px-4 md:px-5 py-1.5 md:py-2 rounded-full text-[10px] md:text-[11px] font-bold text-white shadow-sm tracking-wider uppercase transition ${
@@ -639,7 +639,7 @@ export default function LandingPage() {
                       className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500 bg-white "
                     />
                     <div className="absolute inset-0 bg-linear-to-t from-[#A4CF4A]/80 md:from-[#A4CF4A] to-transparent pointer-events-none" />
-                    <Link href="/SignUp">
+                    <Link href="/SignIn">
                       <button
                         type="button"
                         className="absolute bottom-4 right-4 md:bottom-8 md:right-8 bg-white text-[#A4CF4A] px-4 md:px-6 py-2.5 md:py-3 rounded-full text-[10px] md:text-xs font-bold tracking-widest shadow-lg hover:scale-105 transition-transform"

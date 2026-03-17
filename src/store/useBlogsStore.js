@@ -3,7 +3,7 @@ import { create } from "zustand";
 const API_BASE_URL = "process.env.NEXT_PUBLIC_API_URL;";
 
 export const useBlogsStore = create((set, get) => ({
-  //  STATE 
+  //  STATE
   blogs: [],
   currentPage: 1,
   totalPages: 1,
@@ -13,7 +13,7 @@ export const useBlogsStore = create((set, get) => ({
   isLoadingDetail: false,
   error: null,
 
-  //  ACTIONS 
+  //  ACTIONS
   fetchBlog: async (page = 1, filter = "all") => {
     set({ isLoading: true, error: null });
 
@@ -26,9 +26,7 @@ export const useBlogsStore = create((set, get) => ({
       const response = await fetch(url);
 
       if (!response.ok) {
-        throw new Error(
-          `Gagal memuat blog (Error ${response.status}).`,
-        );
+        throw new Error(`Gagal memuat blog (Error ${response.status}).`);
       }
 
       const result = await response.json();
@@ -47,20 +45,19 @@ export const useBlogsStore = create((set, get) => ({
     }
   },
 
-  fetchBlogDetail: async (id) => {
+  fetchBlogDetail: async (slug) => {
     set({ isLoadingDetail: true, error: null, activeBlog: null });
 
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/blogs/${id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/blogs/${slug}`,
       );
 
       if (!response.ok) {
-        throw new Error("Gagal fetch detail berita");
+        throw new Error("The article was not found or failed to load.");
       }
 
       const result = await response.json();
-      // console.log("📦 HASIL API DETAIL:", result);
 
       const dataDetail = result.data || result;
       set({
@@ -68,12 +65,12 @@ export const useBlogsStore = create((set, get) => ({
         isLoadingDetail: false,
       });
     } catch (error) {
-      console.error("Gagal fetch blog detail:", err);
-      set({ error: err.message, isLoading: false });
+      console.error("Failed fetch blog detail:", err);
+      set({ error: error.message, isLoadingDetail: false });
     }
   },
 
-  resetActiveBlog: () => set({ activeBlog: null }),
+  resetActiveBlog: () => set({ activeBlog: null, error: null }),
 
   // Ganti Halaman
   setPage: (pageNumber) => {

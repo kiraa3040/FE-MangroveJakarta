@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { ChevronLeft } from "lucide-react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 
 import MemberHeader from "../../../components/SiteHeaderMember";
@@ -16,9 +16,10 @@ import Loading from "@/app/loading";
 
 export default function EventDetail() {
   const router = useRouter();
+  const params = useParams();
+  const slug = params.slug;
 
-  const searchParams = useSearchParams();
-  const encryptedId = searchParams.get("id");
+  // const encryptedId = searchParams.get("id");
   // const id = searchParams.get("id");
 
   const { isAuthenticated } = useAuthStore();
@@ -26,19 +27,31 @@ export default function EventDetail() {
 
   const handleToRegister = () => {
     if (!isAuthenticated) {
-      alert("Please login first to take this action");
-      router.push("/SignUp");
+      router.push("/SignIn");
     } else {
-      router.push(`/EventPage/EventRegister?id=${activeEvent.id}`);
+      router.push(`/EventPage/EventRegister?event=${activeEvent?.slug}`);
     }
   };
 
-  const { activeEvent, fetchEventDetail, isLoadingDetail, resetActiveEvent } =
-    useEventStore();
+  const {
+    activeEvent,
+    fetchEventDetail,
+    isLoadingDetail,
+    resetActiveEvent,
+    error,
+  } = useEventStore();
 
-  // useEffect(() => {
-  //   setIsHydrated(true);
-  // }, []);
+  useEffect(() => {
+    setIsHydrated(true);
+
+    if (slug) {
+      fetchEventDetail(slug);
+    }
+
+    return () => {
+      resetActiveEvent();
+    };
+  }, [slug, fetchEventDetail, resetActiveEvent]);
 
   //  FETCH DATA
   // useEffect(() => {
@@ -95,25 +108,25 @@ export default function EventDetail() {
   //     fetchEventDetail(realId);
   //   }
 
-  const [realId, setRealId] = useState(null);
-  useEffect(() => {
-    setIsHydrated(true);
+  // const [realId, setRealId] = useState(null);
+  // useEffect(() => {
+  //   setIsHydrated(true);
 
-    if (encryptedId) {
-      try {
-        const decodedId = atob(encryptedId);
-        setRealId(decodedId);
+  //   if (encryptedId) {
+  //     try {
+  //       const decodedId = atob(encryptedId);
+  //       setRealId(decodedId);
 
-        fetchEventDetail(decodedId);
-      } catch (e) {
-        console.error("URL ID tidak valid/telah dirusak");
-        alert("Halaman tidak ditemukan atau link tidak valid.");
-        router.push("/EventsPage");
-      }
-    }
+  //       fetchEventDetail(decodedId);
+  //     } catch (e) {
+  //       console.error("URL ID tidak valid/telah dirusak");
+  //       alert("Halaman tidak ditemukan atau link tidak valid.");
+  //       router.push("/EventsPage");
+  //     }
+  //   }
 
-    return () => resetActiveEvent();
-  }, [encryptedId, fetchEventDetail, resetActiveEvent, router]);
+  //   return () => resetActiveEvent();
+  // }, [encryptedId, fetchEventDetail, resetActiveEvent, router]);
 
   // }, [realId]);
 
@@ -122,7 +135,7 @@ export default function EventDetail() {
   if (!activeEvent && !isLoadingDetail) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-white gap-4">
-        <p className="text-slate-400 font-bold">Event tidak ditemukan.</p>
+        <p className="text-slate-400 font-bold">Event not found.</p>
         <button
           onClick={() => router.back()}
           className="text-[#A4CF4A] hover:underline font-bold"
@@ -297,14 +310,13 @@ export default function EventDetail() {
             {/* BUTTON REGISTER */}
             <div className="mt-8">
               {isAvailable ? (
-                <Link href={`/EventPage/EventRegister?id=${btoa(realId?.toString())}`}>
-                  <button
-                    className="w-full text-white font-bold py-3.5 md:py-4 text-sm md:text-base rounded-full shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 uppercase tracking-widest"
-                    style={{ backgroundColor: "#A4CF4A" }}
-                  >
-                    REGISTER NOW!
-                  </button>
-                </Link>
+                <button
+                  onClick={handleToRegister}
+                  className="w-full text-white font-bold py-3.5 md:py-4 text-sm md:text-base rounded-full shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 uppercase tracking-widest"
+                  style={{ backgroundColor: "#A4CF4A" }}
+                >
+                  REGISTER NOW!
+                </button>
               ) : (
                 <button
                   disabled

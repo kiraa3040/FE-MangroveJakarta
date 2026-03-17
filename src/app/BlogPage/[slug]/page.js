@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 // import Image from "next/image";
 import Link from "next/link";
 import { Calendar, ChevronLeft, Eye, User } from "lucide-react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 
 import MemberHeader from "../../../components/SiteHeaderMember";
 import SiteHeader from "../../../components/SiteHeader";
@@ -17,8 +17,9 @@ import Loading from "@/app/loading";
 
 export default function NewsDetail() {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const encryptedId = searchParams.get("id");
+  const params = useParams();
+  const slug = params.slug;
+  // const encryptedId = searchParams.get("id");
   // const id = searchParams.get("id");
 
   const { isAuthenticated } = useAuthStore();
@@ -31,53 +32,17 @@ export default function NewsDetail() {
     error,
   } = useBlogsStore();
 
-  // useEffect(() => {
-  //   if (id) {
-  //     fetchBlogDetail(id);
-  //   }
-
-  //   return () => {
-  //     resetActiveBlog();
-  //   };
-  // }, [id, fetchBlogDetail, resetActiveBlog]);
-
-  // let realId = null;
-  // if (encryptedId) {
-  //   try {
-  //     realId = atob(encryptedId);
-  //   } catch (e) {
-  //     console.error("ID not valid");
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   if (realId) {
-  //     fetchBlogDetail(realId);
-  //   }
-  // }, [realId]);
-
-  const [realId, setRealId] = useState(null);
-
   useEffect(() => {
     setIsHydrated(true); 
 
-    if (encryptedId) {
-      try {
-        const decodedId = atob(encryptedId);
-        setRealId(decodedId);
-
-        fetchBlogDetail(decodedId);
-      } catch (error) {
-        console.error("URL ID tidak valid/telah dirusak");
-        alert("Artikel tidak ditemukan atau link tidak valid.");
-        router.push("/BlogPage"); 
-      }
+    if (slug) {
+      fetchBlogDetail(slug);
     }
 
     return () => {
       resetActiveBlog();
     };
-  }, [encryptedId, fetchBlogDetail, resetActiveBlog, router]);
+  }, [slug, fetchBlogDetail, resetActiveBlog]);
 
   // TANGGAL
   const formatDate = (dateString) => {
@@ -105,14 +70,14 @@ export default function NewsDetail() {
   };
 
   //
-  if (isLoadingDetail || (id && !activeBlog && !error)) {
+  if (isLoadingDetail || (!activeBlog && !error)) {
     return <Loading />;
   }
 
   if (error || !activeBlog) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-white gap-4">
-        <p className="text-slate-400 font-bold">Artikel tidak ditemukan.</p>
+        <p className="text-slate-400 font-bold">Article not found.</p>
         <button
           onClick={() => router.back()}
           className="text-[#A4CF4A] hover:underline"

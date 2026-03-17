@@ -186,7 +186,7 @@ export default function NewsPage() {
                     </p>
                     <div>
                       <Link
-                        href={`/BlogPage/DetailBlogs?id=${btoa(item.id.toString())}`}
+                        href={`/BlogPage/${item.slug}`}
                       >
                         <button className="px-6 py-2.5 rounded-full bg-[#A4CF4A] text-white text-xs md:text-sm font-bold tracking-widest hover:bg-[#8eb63d] transition shadow-sm">
                           VIEW MORE

@@ -19,8 +19,6 @@ export const useEventStore = create((set, get) => ({
 
   setFilter: (filterType) => {
     set({ activeFilter: filterType });
-
- 
   },
 
   // FILTER
@@ -32,23 +30,27 @@ export const useEventStore = create((set, get) => ({
     }
 
     if (activeFilter === "available") {
-      return events.filter((item) => item.status === "published" && !item.is_full);
+      return events.filter(
+        (item) => item.status === "published" && !item.is_full,
+      );
     }
 
     if (activeFilter === "closed") {
-      return events.filter((item) => item.status !== "published" || item.is_full);
+      return events.filter(
+        (item) => item.status !== "published" || item.is_full,
+      );
     }
 
     return events;
   },
 
-  //  FETCH EVENT 
+  //  FETCH EVENT
   fetchEvents: async (page = 1) => {
     set({ isLoading: true, error: null });
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/events?page=${page}`,
-        { cache: "no-store" }
+        { cache: "no-store" },
       );
 
       if (!response.ok) {
@@ -76,18 +78,17 @@ export const useEventStore = create((set, get) => ({
     }
   },
 
-  //  FETCH EVENT DETAIL 
-  fetchEventDetail: async (id) => {
+  //  FETCH EVENT DETAIL
+  fetchEventDetail: async (slug) => {
     set({ isLoadingDetail: true, error: null, activeEvent: null });
 
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/events/${id}`,
-        { cache: "no-store" }
+        `${process.env.NEXT_PUBLIC_API_URL}/events/${slug}`,
       );
 
       if (!response.ok) {
-        throw new Error("Gagal fetch detail event");
+        throw new Error("Gagal fetch detail event (Error 404/500)");
       }
 
       const result = await response.json();
@@ -134,10 +135,10 @@ export const useEventStore = create((set, get) => ({
     }
   },
 
-  //  RESET ACTIVE EVENT 
+  //  RESET ACTIVE EVENT
   resetActiveEvent: () => set({ activeEvent: null }),
 
-  //  SET PAGE 
+  //  SET PAGE
   setPage: (pageNumber) => {
     const { fetchEvents } = get();
     fetchEvents(pageNumber);
