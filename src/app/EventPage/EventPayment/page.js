@@ -83,7 +83,7 @@ export default function EventPaymentPage() {
       const payload = new FormData();
       payload.append("event_id", id);
       payload.append("email", tempRegData.email);
-      payload.append("participant_name", tempRegData.name);
+      payload.append("participant_name", tempRegData.participant_name);
       payload.append("whatsapp_number", tempRegData.whatsapp);
       payload.append("city", tempRegData.city);
       payload.append("province", tempRegData.province);
