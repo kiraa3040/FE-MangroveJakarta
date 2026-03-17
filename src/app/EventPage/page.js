@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { MapPin, Filter, CalendarDays, ChevronDown, Check, ChevronLeft } from "lucide-react";
@@ -14,6 +15,9 @@ import { useAuthStore } from "@/store/useAuthStore";
 import { useEventStore } from "@/store/useEventStore";
 
 export default function EventsPage() {
+
+  const router = useRouter();
+  
   const ACCENT = "#A4CF4A";
   const SOFT = "#EEF7BE";
 
