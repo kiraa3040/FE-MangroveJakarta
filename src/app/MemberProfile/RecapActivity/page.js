@@ -65,7 +65,7 @@ export default function RecapActivityPage() {
             action: "You've Joined",
             event: item.event?.title || "Mangrove Event", 
             location: item.event?.location || "Lokasi Event",
-            link: `/EventPage/${item.event_id || item.event?.id}`,
+            link: `/EventPage/DetailEvents?id=${item.event_id || item.event?.id}`,
           }));
           
           combinedActivities = [...combinedActivities, ...mappedEvents];

@@ -24,6 +24,7 @@ export default function RegisterEventPage() {
   const [formData, setFormData] = useState({
     email: "",
     name: "",
+    certificate_name: "",
     whatsapp: "",
     city: "",
     province: "",
@@ -70,56 +71,58 @@ export default function RegisterEventPage() {
     e.preventDefault();
 
     if (!eventId) {
-      alert("Error: Event ID not found");
+      alert.error("Error: Event ID not found");
       return;
     }
 
     if (!formData.file) {
-      alert("Please upload the document first");
+      alert.error("Please upload the document first");
       return;
     }
 
-    setTempRegData(formData);
-    router.push(`/EventPage/EventPayment?id=${eventId}`);
+    // setTempRegData(formData);
+    // router.push(`/EventPage/EventPayment?id=${eventId}`);
 
-    // try {
-    //   setIsSubmitting(true);
-    //   const token = localStorage.getItem("token") || "";
+    try {
+      setIsSubmitting(true);
+      const token = localStorage.getItem("token") || "";
 
-    //   // FORM
-    //   const payload = new FormData();
-    //   payload.append("event_id", eventId);
-    //   payload.append("email", formData.email);
-    //   payload.append("participant_name", formData.name);
-    //   payload.append("whatsapp_number", formData.whatsapp);
-    //   payload.append("city", formData.city);
-    //   payload.append("province", formData.province);
-    //   payload.append("file", formData.file);
+      // FORM
+      const payload = new FormData();
+      payload.append("event_id", eventId);
+      payload.append("email", formData.email);
+      payload.append("account_name", formData.name);
+      payload.append("participant_name", formData.certificate_name);
+      payload.append("whatsapp_number", formData.whatsapp);
+      payload.append("city", formData.city);
+      payload.append("province", formData.province);
+      payload.append("file", formData.file);
 
-    //   const response = await axios.post(
-    //     `${process.env.NEXT_PUBLIC_API_URL}/events/${eventId}/register`,
-    //     payload,
-    //     {
-    //       headers: {
-    //         Authorization: `Bearer ${token}`,
-    //         "Content-Type": "multipart/form-data",
-    //         Accept: "application/json",
-    //       },
-    //     },
-    //   );
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/events/${eventId}/register`,
+        payload,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+            Accept: "application/json",
+          },
+        },
+      );
 
-    //   console.log("Sukses Daftar:", response.data);
-    //   alert("Berhasil mendaftar event! Mengarahkan ke halaman pembayaran...");
+      console.log("Registration:", response.data);
+      alert(
+        "You've successfully registered for the event! Redirected to the payment page...",
+      );
 
-    //   router.push(`/EventPage/EventPayment?id=${eventId}`);
-
-    // } catch (error) {
-    //   console.error("Failed entry event:", error);
-    //   const serverMessage = error.response?.data?.message || "Something Wrong";
-    //   alert(`${serverMessage}`);
-    // } finally {
-    //   setIsSubmitting(false);
-    // }
+      router.push(`/EventPage/EventPayment?id=${eventId}`);
+    } catch (error) {
+      console.error("Failed entry event:", error);
+      const serverMessage = error.response?.data?.message || "Something Wrong";
+      alert(`${serverMessage}`);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   useEffect(() => {
@@ -136,9 +139,7 @@ export default function RegisterEventPage() {
     return (
       <div className="min-h-screen bg-[#FDFDFD] flex flex-col items-center justify-center">
         <Loader2 className="w-10 h-10 animate-spin text-[#A4CF4A] mb-4" />
-        <p className="text-slate-500 font-medium animate-pulse">
-          Loading...
-        </p>
+        <p className="text-slate-500 font-medium animate-pulse">Loading...</p>
       </div>
     );
   }
@@ -207,8 +208,8 @@ export default function RegisterEventPage() {
                 </label>
                 <input
                   type="text"
-                  name="name"
-                  value={formData.name}
+                  name="certificate_name"
+                  value={formData.certificate_name}
                   onChange={handleChange}
                   className={inputStyle}
                   required
