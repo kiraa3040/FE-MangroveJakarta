@@ -75,10 +75,10 @@ export default function RegisterEventPage() {
       return;
     }
 
-    if (!formData.file) {
-      alert.error("Please upload the document first");
-      return;
-    }
+    // if (!formData.file) {
+    //   alert.error("Please upload the document first");
+    //   return;
+    // }
 
     setTempRegData(formData);
     router.push(`/EventPage/EventPayment?id=${eventId}`);
@@ -253,14 +253,14 @@ export default function RegisterEventPage() {
               </div>
 
               <div>
-                <label className={labelStyle}>Upload File (.pdf)</label>
+                <label className={labelStyle}>Upload File (CV, Portfolio, or Align certificate on PDF file) *Optional</label>
                 <div className="relative w-full">
                   <input
                     type="file"
                     accept=".pdf"
                     onChange={handleFileChange}
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
-                    required
+                    // required
                   />
                   <div
                     className="mt-2 w-full flex items-center justify-center gap-2 text-white font-bold text-sm py-4 rounded-full shadow-md transition-all duration-300 uppercase tracking-widest relative z-0"

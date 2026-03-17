@@ -199,7 +199,7 @@ export default function EventDetail() {
                 <p className="text-sm md:text-base text-slate-700 mb-1">
                   Register until{" "}
                   <span className="font-bold text-slate-900">
-                    {formatDate(activeEvent?.ends_at || activeEvent?.date)}
+                    {formatDate(activeEvent?.register_until || activeEvent?.date)}
                   </span>
                 </p>
                 <p className="text-sm md:text-base text-slate-700">

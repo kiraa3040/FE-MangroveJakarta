@@ -610,12 +610,12 @@ export default function ProfilePage() {
                     <div className="flex flex-col gap-2.5">
                       <div className="bg-[#EAF3C8] py-2.5 md:py-3 px-2 rounded-xl text-center">
                         <span className="font-bold text-slate-800 text-[13px] md:text-sm">
-                          50 points for each event
+                          25 points for each event
                         </span>
                       </div>
                       <div className="bg-[#EAF3C8] py-2.5 md:py-3 px-2 rounded-xl text-center">
                         <span className="font-bold text-slate-800 text-[13px] md:text-sm">
-                          1 point for every 10 upvotes
+                          1 point for every 5 upvotes
                         </span>
                       </div>
                     </div>
