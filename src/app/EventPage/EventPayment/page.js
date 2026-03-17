@@ -45,7 +45,7 @@ export default function EventPaymentPage() {
       } catch (error) {
         console.error("ID tidak valid");
         alert("Link pembayaran tidak valid atau telah rusak.");
-        router.push("/EventsPage");
+        router.push("/EventPage");
       }
     }
   }, [encryptedId, fetchEventDetail, router]);
