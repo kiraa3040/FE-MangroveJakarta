@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, Filter, CalendarDays, ChevronDown, Check } from "lucide-react";
+import { MapPin, Filter, CalendarDays, ChevronDown, Check, ChevronLeft } from "lucide-react";
 
 import MemberHeader from "../../components/SiteHeaderMember";
 import SiteHeader from "../../components/SiteHeader";
@@ -43,8 +43,7 @@ export default function EventsPage() {
 
     if (path.startsWith("http")) return path;
 
-    const baseUrl =
-      process.env.NEXT_PUBLIC_BASE_URL?.replace(/\/$/, "");
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL?.replace(/\/$/, "");
     let cleanPath = path.startsWith("/") ? path : `/${path}`;
 
     if (!cleanPath.startsWith("/storage")) {
@@ -93,6 +92,13 @@ export default function EventsPage() {
 
       <main className="grow pt-28 md:pt-32 lg:pt-36 pb-20">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <button
+            onClick={() => router.back()}
+            className="flex items-center gap-1 text-slate-500 hover:text-[#A4CF4A] transition mb-6 text-lg font-medium"
+          >
+            <ChevronLeft size={18} />
+            Back
+          </button>
           <div className="mb-8">
             <div className="text-center">
               <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900">

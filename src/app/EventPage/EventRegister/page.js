@@ -80,49 +80,49 @@ export default function RegisterEventPage() {
       return;
     }
 
-    // setTempRegData(formData);
-    // router.push(`/EventPage/EventPayment?id=${eventId}`);
+    setTempRegData(formData);
+    router.push(`/EventPage/EventPayment?id=${eventId}`);
 
-    try {
-      setIsSubmitting(true);
-      const token = localStorage.getItem("token") || "";
+    // try {
+    //   setIsSubmitting(true);
+    //   const token = localStorage.getItem("token") || "";
 
-      // FORM
-      const payload = new FormData();
-      payload.append("event_id", eventId);
-      payload.append("email", formData.email);
-      payload.append("account_name", formData.name);
-      payload.append("participant_name", formData.certificate_name);
-      payload.append("whatsapp_number", formData.whatsapp);
-      payload.append("city", formData.city);
-      payload.append("province", formData.province);
-      payload.append("file", formData.file);
+    //   // FORM
+    //   const payload = new FormData();
+    //   payload.append("event_id", eventId);
+    //   payload.append("email", formData.email);
+    //   payload.append("account_name", formData.name);
+    //   payload.append("participant_name", formData.certificate_name);
+    //   payload.append("whatsapp_number", formData.whatsapp);
+    //   payload.append("city", formData.city);
+    //   payload.append("province", formData.province);
+    //   payload.append("file", formData.file);
 
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/events/${eventId}/register`,
-        payload,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
-            Accept: "application/json",
-          },
-        },
-      );
+    //   const response = await axios.post(
+    //     `${process.env.NEXT_PUBLIC_API_URL}/events/${eventId}/register`,
+    //     payload,
+    //     {
+    //       headers: {
+    //         Authorization: `Bearer ${token}`,
+    //         "Content-Type": "multipart/form-data",
+    //         Accept: "application/json",
+    //       },
+    //     },
+    //   );
+    //   setTempRegData(formData);
+    //   console.log("Registration:", response.data);
+    //   alert(
+    //     "You've successfully registered for the event! Redirected to the payment page...",
+    //   );
 
-      console.log("Registration:", response.data);
-      alert(
-        "You've successfully registered for the event! Redirected to the payment page...",
-      );
-
-      router.push(`/EventPage/EventPayment?id=${eventId}`);
-    } catch (error) {
-      console.error("Failed entry event:", error);
-      const serverMessage = error.response?.data?.message || "Something Wrong";
-      alert(`${serverMessage}`);
-    } finally {
-      setIsSubmitting(false);
-    }
+    //   router.push(`/EventPage/EventPayment?id=${eventId}`);
+    // } catch (error) {
+    //   console.error("Failed entry event:", error);
+    //   const serverMessage = error.response?.data?.message || "Something Wrong";
+    //   alert(`${serverMessage}`);
+    // } finally {
+    //   setIsSubmitting(false);
+    // }
   };
 
   useEffect(() => {
