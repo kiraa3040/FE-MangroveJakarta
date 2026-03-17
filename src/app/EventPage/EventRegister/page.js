@@ -15,7 +15,7 @@ export default function RegisterEventPage() {
   const searchParams = useSearchParams();
 
   const { isAuthenticated, user } = useAuthStore();
-  const { setTempRegData } = useEventStore();
+  const { setTempRegData, activeEvent, fetchEventDetail } = useEventStore();
   const [isHydrated, setIsHydrated] = useState(false);
 
   const [eventId, setEventId] = useState(null);
@@ -37,16 +37,13 @@ export default function RegisterEventPage() {
     setIsHydrated(true);
 
     // const params = new URLSearchParams(window.location.search);
-    const encryptedId = searchParams.get("id");
-    if (encryptedId) {
-      try {
-        const decodedId = atob(encryptedId);
-        setEventId(decodedId);
-      } catch (error) {
-        console.error("ID tidak valid");
-        alert("Link pendaftaran tidak valid atau telah rusak.");
-        router.push("/EventsPage");
-      }
+    // const encryptedId = searchParams.get("id");
+
+    const eventSlug = searchParams.get("event");
+    if (eventSlug) {
+      fetchEventDetail(eventSlug);
+    } else {
+      console.error("Slug not found on url");
     }
 
     // autofill
@@ -57,7 +54,7 @@ export default function RegisterEventPage() {
         name: user.name || "",
       }));
     }
-  }, [user, searchParams]);
+  }, [user, searchParams, fetchEventDetail]);
 
   // Handler input
   const handleChange = (e) => {
@@ -77,18 +74,13 @@ export default function RegisterEventPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!eventId) {
+    if (!activeEvent?.id) {
       alert("Error: Event ID not found");
       return;
     }
 
-    // if (!formData.file) {
-    //   alert.error("Please upload the document first");
-    //   return;
-    // }
-
     setTempRegData(formData);
-    router.push(`/EventPage/EventPayment?id=${btoa(eventId.toString())}`);
+    router.push(`/EventPage/EventPayment?event=${activeEvent.slug}`);
 
     // try {
     //   setIsSubmitting(true);

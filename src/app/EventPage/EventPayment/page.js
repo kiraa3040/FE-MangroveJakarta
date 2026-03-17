@@ -16,10 +16,10 @@ import { useAuthStore } from "@/store/useAuthStore";
 export default function EventPaymentPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const encryptedId = searchParams.get("id");
+  // const encryptedId = searchParams.get("id");
   // const id = searchParams.get("id");
 
-  const [realId, setRealId] = useState(null);
+  const eventSlug = searchParams.get("event");
 
   const { isAuthenticated } = useAuthStore();
   const [isHydrated, setIsHydrated] = useState(false);
@@ -36,18 +36,12 @@ export default function EventPaymentPage() {
 
   useEffect(() => {
     setIsHydrated(true);
-    if (encryptedId) {
-      try {
-        const decodedId = atob(encryptedId);
-        setRealId(decodedId);
-        fetchEventDetail(decodedId);
-      } catch (error) {
-        console.error("ID tidak valid");
-        alert("Link pembayaran tidak valid atau telah rusak.");
-        router.push("/EventPage");
-      }
+    if (eventSlug) {
+      fetchEventDetail(eventSlug);
+    } else {
+      router.push("/EventPage");
     }
-  }, [encryptedId, fetchEventDetail, router]);
+  }, [eventSlug, fetchEventDetail, router]);
 
   const formatDate = (dateString) => {
     if (!dateString) return "-";
@@ -82,7 +76,12 @@ export default function EventPaymentPage() {
   const handleConfirmPayment = async () => {
     if (!tempRegData) {
       alert("Registration data not found. Please fill out the form again.");
-      router.push(`/EventPage/EventRegister?id=${encryptedId}`);
+      router.push(`/EventPage/EventRegister?event=${eventSlug}`);
+      return;
+    }
+
+    if (!activeEvent?.id) {
+      alert("Event details not loaded. Please try again.");
       return;
     }
 
