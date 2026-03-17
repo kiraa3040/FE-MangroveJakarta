@@ -38,7 +38,6 @@ export default function EventPaymentPage() {
     setIsHydrated(true);
     if (encryptedId) {
       try {
-        // BUKA BUNGKUSNYA!
         const decodedId = atob(encryptedId);
         setRealId(decodedId);
         fetchEventDetail(decodedId);

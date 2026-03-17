@@ -3,7 +3,7 @@ import axios from "axios";
 import { useAuthStore } from "./useAuthStore";
 
 export const useCommunityStore = create((set, get) => ({
-//  STATE
+  //  STATE
   activeTab: "general",
   posts: [],
   isLoading: false,
@@ -15,7 +15,9 @@ export const useCommunityStore = create((set, get) => ({
   fetchPosts: async () => {
     set({ isLoading: true });
     try {
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/posts`);
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/posts`,
+      );
 
       const fetchedPosts = response.data.data.data || [];
 
@@ -45,6 +47,26 @@ export const useCommunityStore = create((set, get) => ({
     set((state) => ({
       posts: [newPost, ...state.posts],
     }));
+  },
+
+  // DELETE MY POST
+  deletePost: async (postId) => {
+    const token = localStorage.getItem("token") || "";
+    try {
+      const response = await axios.delete(
+        `${process.env.NEXT_PUBLIC_API_URL}/posts/${postId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      return { success: true };
+    } catch (error) {
+      console.error("Delete error:", error);
+      return { success: false, message: error.message };
+    }
   },
 
   // FILTER (GENERAL ato MY POST)

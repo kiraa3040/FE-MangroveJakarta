@@ -14,6 +14,7 @@ import {
   X,
   Check,
   Loader2,
+  Trash2,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -34,7 +35,7 @@ export default function CommunityPage() {
   const [isHydrated, setIsHydrated] = useState(false);
 
   // STATE POST & FEED
-  const { activeTab, setTab, posts, fetchPosts, isLoading } =
+  const { activeTab, setTab, posts, fetchPosts, isLoading, deletePost } =
     useCommunityStore();
 
   const finalPosts =
@@ -141,6 +142,78 @@ export default function CommunityPage() {
     setImagePreviews(newPreviews);
   };
 
+  // DELETE POST
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [postIdToDelete, setPostIdToDelete] = useState(null);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const handleDeletePost = async (e, postId) => {
+    e.stopPropagation();
+
+    if (!window.confirm("Are you sure you want to delete this post?")) return;
+
+    const token = localStorage.getItem("token") || "";
+    try {
+      await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/posts/${postId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: "application/json",
+        },
+      });
+    } catch (error) {
+      console.error("Failed to delete post:", error);
+    }
+  };
+
+  const openDeleteModal = (e, postId) => {
+    e.stopPropagation();
+    setPostIdToDelete(postId);
+    setIsDeleteModalOpen(true);
+  };
+
+  const confirmDeletePost = async () => {
+    if (!postIdToDelete) return;
+
+    setIsDeleting(true);
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      alert("Session expired. Please login again.");
+      router.push("/SignIn");
+      return;
+    }
+
+    try {
+      await axios.delete(
+        `${process.env.NEXT_PUBLIC_API_URL}/posts/${postIdToDelete}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            "X-Requested-With": "XMLHttpRequest",
+          },
+        },
+      );
+
+      // Berhasil
+      setIsDeleteModalOpen(false);
+      setPostIdToDelete(null);
+      await fetchPosts();
+    } catch (error) {
+      console.error("Delete failed:", error);
+
+      const serverMessage =
+        error.response?.data?.message ||
+        "You don't have permission to delete this post.";
+
+      alert(`Error ${error.response?.status}: ${serverMessage}`);
+      setIsDeleteModalOpen(false);
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
   // STATE POPUP REPORT
   const [isReportModalOpen, setIsReportModalOpen] = useState(false);
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
@@ -244,8 +317,7 @@ export default function CommunityPage() {
     if (!path) return null;
     if (path.startsWith("http")) return path;
 
-    const baseUrl =
-      process.env.NEXT_PUBLIC_BASE_URL?.replace(/\/$/, "");
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL?.replace(/\/$/, "");
     let cleanPath = path.startsWith("/") ? path : `/${path}`;
 
     if (!cleanPath.startsWith("/storage")) {
@@ -410,7 +482,11 @@ export default function CommunityPage() {
                       className="animate-spin text-[#A4CF4A]"
                     />
                   ) : (
-                    <Send size={24} className="md:w-7 md:h-7" strokeWidth={2.5} />
+                    <Send
+                      size={24}
+                      className="md:w-7 md:h-7"
+                      strokeWidth={2.5}
+                    />
                   )}
                 </button>
               </div>
@@ -514,15 +590,26 @@ export default function CommunityPage() {
                         </div>
                       </div>
                       {/* FLAG REPORT*/}
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleOpenReportModal(post.id);
-                        }}
-                        className="text-slate-400 hover:text-red-500 transition"
-                      >
-                        <Flag size={18} />
-                      </button>
+                      {isMyPost ? (
+                        <button
+                          onClick={(e) => openDeleteModal(e, post.id)}
+                          className="text-slate-300 hover:text-red-600 transition-colors p-1"
+                          title="Delete My Post"
+                        >
+                          <Trash2 size={18} />{" "}
+                        </button>
+                      ) : (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleOpenReportModal(post.id);
+                          }}
+                          className="text-slate-400 hover:text-red-500 transition p-1"
+                          title="Report Post"
+                        >
+                          <Flag size={18} />
+                        </button>
+                      )}
                     </div>
 
                     <p className="text-slate-700 text-sm md:text-[15px] font-medium leading-relaxed mb-4 pl-1 line-clamp-4">
@@ -632,6 +719,66 @@ export default function CommunityPage() {
       </main>
 
       <SiteFooter />
+
+      {/* MODAL DELETE CONFIRM */}
+      {isDeleteModalOpen && (
+        <div className="fixed inset-0 z-60 flex items-center justify-center p-4">
+          <div
+            className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+            onClick={() => !isDeleting && setIsDeleteModalOpen(false)}
+          ></div>
+
+          <div className="relative z-10 w-full max-w-[450px] bg-[#FFBABD] rounded-[40px] p-8 md:p-10 flex flex-col items-center text-center shadow-2xl animate-in fade-in zoom-in-95 duration-200">
+            {/* Icon Trash Circle */}
+            <div className="relative w-24 h-24 mb-6 flex items-center justify-center">
+              <div className="absolute inset-0 bg-white/30 rounded-full scale-125 animate-pulse"></div>
+              <div className="absolute inset-2 bg-white/50 rounded-full scale-110"></div>
+              <div className="relative w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-sm z-10">
+                <Trash2
+                  size={32}
+                  className="text-[#FF4D4D]"
+                  strokeWidth={2.5}
+                />
+              </div>
+            </div>
+
+            <h2 className="text-2xl md:text-3xl font-extrabold text-black mb-3 tracking-tight">
+              Are you sure you want to delete this post?
+            </h2>
+            <p className="text-[13px] md:text-sm text-slate-800 font-medium mb-8 px-4 leading-relaxed">
+              Once deleted, this post and all its comments will no longer be
+              visible in the community
+            </p>
+
+            <div className="flex flex-col items-center mb-10 w-full">
+              <div className="w-0.5 h-12 bg-white/60"></div>
+              <div className="w-2.5 h-2.5 bg-white rounded-full -mt-1"></div>
+            </div>
+
+            {/* Buttons */}
+            <div className="flex w-full gap-4">
+              <button
+                onClick={() => setIsDeleteModalOpen(false)}
+                disabled={isDeleting}
+                className="flex-1 py-4 rounded-full bg-[#52B1D3] text-white text-sm md:text-base font-bold shadow-md hover:brightness-105 active:scale-95 transition-all uppercase tracking-widest disabled:opacity-50"
+              >
+                CANCEL
+              </button>
+              <button
+                onClick={confirmDeletePost}
+                disabled={isDeleting}
+                className="flex-1 py-4 rounded-full bg-[#FF4D4D] text-white text-sm md:text-base font-bold shadow-md hover:brightness-105 active:scale-95 transition-all uppercase tracking-widest disabled:opacity-50 flex justify-center items-center"
+              >
+                {isDeleting ? (
+                  <Loader2 className="animate-spin" size={20} />
+                ) : (
+                  "DELETE"
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* REPORT ISSUE */}
       {isReportModalOpen && (
