@@ -10,6 +10,8 @@ import { ChevronLeft, Upload, Loader2, Check } from "lucide-react";
 import MemberHeader from "../../components/SiteHeaderMember";
 import SiteFooter from "../../components/SiteFooter";
 
+import { useAuthStore } from "@/store/useAuthStore";
+
 const MapPicker = dynamic(
   () => import("../../components/MapComponentRestoration"),
   {
@@ -72,7 +74,7 @@ export default function MangroveRestorationPage() {
 
       // const token = localStorage.getItem("token");
       const token = useAuthStore.getState().token;
-      
+
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/restoration-reports`,
         formData,

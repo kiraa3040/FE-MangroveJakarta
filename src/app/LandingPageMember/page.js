@@ -185,7 +185,7 @@ export default function MemberPage() {
         if (error.response?.status === 401) {
           useAuthStore.getState().logout();
         }
-        
+
       }
     };
 
