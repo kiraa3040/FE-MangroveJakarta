@@ -53,6 +53,7 @@ export default function MemberHeader() {
                 fill
                 className="object-contain object-left"
                 priority
+
               />
             </div>
           </Link>

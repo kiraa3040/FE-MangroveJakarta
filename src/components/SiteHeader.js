@@ -15,7 +15,7 @@ export default function SiteHeader({ accent = "#A4CF4A" }) {
         <div className="flex items-center gap-3">
           <div className="relative w-[120px] sm:w-[140px] md:w-40 h-10">
             {" "}
-            <Link href="/LandingPage">
+            <Link href="/LandingPage" className="relative w-full h-full">
               <Image
                 src="/landing_page/logo2.png"
                 alt="Yayasan Mangrove"
