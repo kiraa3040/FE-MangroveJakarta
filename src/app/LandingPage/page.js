@@ -303,7 +303,7 @@ export default function LandingPage() {
 
                 {/* PRODUCT */}
                 <Link
-                  href="/"
+                  href="https://www.yayasanmangroveindonesia.com/BlogPage/sensasi-rasa-unik-dari-pesisir-nikmati-lezatnya-olahan-mangrove-penuh-khasiat"
                   className="flex-1 bg-white rounded-[28px] p-6 lg:p-8 flex flex-col items-center justify-center text-center shadow-[0_8px_30px_rgba(0,0,0,0.06)] border border-slate-100 transition-transform duration-300 hover:-translate-y-2 cursor-pointer group"
                 >
                   <div className="mb-3 transform transition-transform duration-300 group-hover:scale-110">

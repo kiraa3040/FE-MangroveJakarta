@@ -33,7 +33,7 @@ export default function NewsDetail() {
   } = useBlogsStore();
 
   useEffect(() => {
-    setIsHydrated(true); 
+    setIsHydrated(true);
 
     if (slug) {
       fetchBlogDetail(slug);
@@ -141,10 +141,11 @@ export default function NewsDetail() {
             {/* </figcaption> */}
           </figure>
 
-          <div className="prose prose-lg prose-slate max-w-3xl lg:max-w-4xl text-justify text-slate-700 leading-loose space-y-6">
+          {/* Konten Blog */}
+          <div className="mx-auto w-full">
             {/* <p>{activeBlog?.content}</p> */}
-
             <div
+              className="prose prose-lg prose-slate max-w-none text-justify text-slate-700 leading-relaxed space-y-6"
               dangerouslySetInnerHTML={{ __html: activeBlog?.content }}
             ></div>
           </div>
