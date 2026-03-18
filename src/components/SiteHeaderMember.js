@@ -7,6 +7,8 @@ import Image from "next/image";
 import { Bell, User } from "lucide-react";
 import axios from "axios";
 
+import { useAuthStore } from "@/store/useAuthStore";
+
 export default function MemberHeader() {
   const router = useRouter();
 

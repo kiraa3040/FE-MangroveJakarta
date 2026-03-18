@@ -17,7 +17,7 @@ import axios from "axios";
 import MemberHeader from "../../components/SiteHeaderMember";
 import SiteFooter from "../../components/SiteFooter";
 
-import { useAuthStore } from "../../store/useAuthStore";
+import { useAuthStore } from "@/store/useAuthStore";
 
 export default function MemberPage() {
   const ACCENT = "#A4CF4A";
