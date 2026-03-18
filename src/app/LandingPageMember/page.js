@@ -75,6 +75,7 @@ export default function MemberPage() {
   useEffect(() => {
     const fetchLatestNews = async () => {
       try {
+        const token = useAuthStore.getState().token;
         setIsLoadingNews(true);
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_API_URL}/blogs`,

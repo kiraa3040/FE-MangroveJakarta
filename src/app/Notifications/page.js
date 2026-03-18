@@ -8,7 +8,7 @@ import { ChevronLeft, Loader2, BellOff, BellRing } from "lucide-react";
 import MemberHeader from "@/components/SiteHeaderMember";
 import SiteFooter from "@/components/SiteFooter";
 
-import { useAuthStore } from "@/store/useAuthStore";
+import { useAuthStore } from "../../store/useAuthStore";
 
 export default function NotificationsPage() {
   const router = useRouter();
