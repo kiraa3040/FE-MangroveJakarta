@@ -25,7 +25,7 @@ export default function NotificationsPage() {
     try {
       setIsLoading(true);
       setError(null);
-      const token = localStorage.getItem("token") || "";
+      const token = useAuthStore.getState().token;
 
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_API_URL}/notifications`,
@@ -66,7 +66,9 @@ export default function NotificationsPage() {
   };
 
   const markSingleAsRead = async (id) => {
-    const token = localStorage.getItem("token") || "";
+    // const token = localStorage.getItem("token") || "";
+    const token = useAuthStore.getState().token;
+
     try {
       await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/notifications/${id}/read`,
@@ -119,7 +121,7 @@ export default function NotificationsPage() {
               onClick={() => router.back()}
               className="p-2 -ml-2 text-slate-400 hover:text-[#A4CF4A] hover:bg-[#F4F9EB] rounded-full transition-all"
             >
-              <ChevronLeft size={24} className="md:w-7 md:h-7"/>
+              <ChevronLeft size={24} className="md:w-7 md:h-7" />
             </button>
             <h1 className="text-lg sm:text-xl md:text-2xl font-medium text-slate-600 tracking-tight flex items-center gap-2 md:gap-3">
               Back

@@ -4,6 +4,7 @@ import React, { useEffect, useState, Suspense } from "react";
 import { useParams, useSearchParams, useRouter } from "next/navigation";
 import axios from "axios";
 import { Loader2, CheckCircle2, XCircle } from "lucide-react";
+import { useAuthStore } from "@/store/useAuthStore";
 
 function VerifyEmailContent() {
   const { id, hash } = useParams();
@@ -21,18 +22,23 @@ function VerifyEmailContent() {
     // verif be
     const verifyEmail = async () => {
       try {
+
+        const token = useAuthStore.getState().token;
+
         await axios.get(
           `${process.env.NEXT_PUBLIC_API_URL}/email/verify/${id}/${hash}`,
           {
             params: { expires, signature },
             headers: {
               "Accept": "application/json",
-              "Authorization": `Bearer ${localStorage.getItem("token") || ""}`,
+              "Authorization": token ? `Bearer ${token}` : "",
             },
           },
         );
 
         setStatus("success");
+
+        useAuthStore.getState().logout();
 
         // Redirect ke halaman login
         setTimeout(() => {

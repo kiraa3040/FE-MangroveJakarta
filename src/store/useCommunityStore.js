@@ -51,7 +51,9 @@ export const useCommunityStore = create((set, get) => ({
 
   // DELETE MY POST
   deletePost: async (postId) => {
-    const token = localStorage.getItem("token") || "";
+    // const token = localStorage.getItem("token") || "";
+    const token = useAuthStore.getState().token;
+    
     try {
       const response = await axios.delete(
         `${process.env.NEXT_PUBLIC_API_URL}/posts/${postId}`,

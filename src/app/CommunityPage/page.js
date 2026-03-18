@@ -58,7 +58,8 @@ export default function CommunityPage() {
     if (!postContent.trim() && selectedImages.length === 0) return;
 
     setIsSubmitting(true);
-    const token = localStorage.getItem("token") || "";
+    // const token = localStorage.getItem("token") || "";
+    const token = useAuthStore.getState().token;
 
     try {
       const formData = new FormData();
@@ -152,7 +153,8 @@ export default function CommunityPage() {
 
     if (!window.confirm("Are you sure you want to delete this post?")) return;
 
-    const token = localStorage.getItem("token") || "";
+    // const token = localStorage.getItem("token") || "";
+    const token = useAuthStore.getState().token;
     try {
       await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/posts/${postId}`, {
         headers: {
@@ -175,7 +177,8 @@ export default function CommunityPage() {
     if (!postIdToDelete) return;
 
     setIsDeleting(true);
-    const token = localStorage.getItem("token");
+    // const token = localStorage.getItem("token");
+    const token = useAuthStore.getState().token;
 
     if (!token) {
       alert("Session expired. Please login again.");
@@ -240,7 +243,8 @@ export default function CommunityPage() {
 
     try {
       setIsSubmittingReport(true);
-      const token = localStorage.getItem("token") || "";
+      // const token = localStorage.getItem("token") || "";
+      const token = useAuthStore.getState().token;
 
       const payload = {
         reason: reportCategory,
@@ -279,8 +283,9 @@ export default function CommunityPage() {
 
     try {
       setIsVoting(true);
-      const token = localStorage.getItem("token") || "";
-
+      // const token = localStorage.getItem("token") || "";
+      const token = useAuthStore.getState().token;
+      
       await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/posts/${postId}/vote`,
         { type: voteType },

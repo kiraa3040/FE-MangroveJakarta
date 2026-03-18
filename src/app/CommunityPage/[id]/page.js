@@ -372,7 +372,8 @@ export default function PostDetailPage() {
 
     try {
       setIsSubmittingReport(true);
-      const token = localStorage.getItem("token") || "";
+      // const token = localStorage.getItem("token") || "";
+      const token = useAuthStore.getState().token;
 
       const payload = {
         reason: reportCategory,
@@ -414,7 +415,8 @@ export default function PostDetailPage() {
 
     try {
       setIsLoading(true);
-      const token = localStorage.getItem("token") || "";
+      // const token = localStorage.getItem("token") || "";
+      const token = useAuthStore.getState().token;
 
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_API_URL}/posts/${postId}`,
@@ -440,7 +442,8 @@ export default function PostDetailPage() {
 
     try {
       setIsSubmittingComment(true);
-      const token = localStorage.getItem("token") || "";
+      // const token = localStorage.getItem("token") || "";
+      const token = useAuthStore.getState().token;
 
       const payload = {
         post_id: postId,
@@ -470,7 +473,9 @@ export default function PostDetailPage() {
   // HANDLE NESTED COMMENT
   const handleCreateReply = async (parentThreadId, text) => {
     try {
-      const token = localStorage.getItem("token") || "";
+      // const token = localStorage.getItem("token") || "";
+      const token = useAuthStore.getState().token;
+
       const payload = {
         post_id: postId,
         parent_thread_id: parentThreadId,

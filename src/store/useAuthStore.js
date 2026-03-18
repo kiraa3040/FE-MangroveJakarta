@@ -45,6 +45,10 @@ export const useAuthStore = create(
 
       //  LOGIN
       login: async (email, password) => {
+        
+        localStorage.removeItem("token");
+        sessionStorage.removeItem("auth-storage");
+
         set({ isLoading: true, error: null });
 
         try {
@@ -64,9 +68,6 @@ export const useAuthStore = create(
           }
 
           const token = loginData.access_token;
-
-          // delete token login
-          localStorage.removeItem("token");
 
           // console.log("Token found:", token);
 

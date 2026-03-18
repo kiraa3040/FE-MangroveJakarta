@@ -70,8 +70,9 @@ export default function MangroveRestorationPage() {
       formData.append("longitude", position.lng);
       formData.append("picture", file);
 
-      const token = localStorage.getItem("token");
-
+      // const token = localStorage.getItem("token");
+      const token = useAuthStore.getState().token;
+      
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/restoration-reports`,
         formData,

@@ -87,7 +87,13 @@ export default function EventPaymentPage() {
 
     try {
       setIsProcessing(true);
-      const token = localStorage.getItem("token") || "";
+      const token = useAuthStore.getState().token;
+
+      if (!token) {
+        alert("Session expired. Please login again.");
+        router.push("/SignIn");
+        return;
+      }
 
       const payload = new FormData();
       payload.append("event_id", activeEvent?.id);
@@ -131,6 +137,14 @@ export default function EventPaymentPage() {
       }
     } catch (error) {
       console.error("Payment Session Error:", error);
+
+      if (error.response?.status === 401) {
+        alert("Your session has ended. Please login again.");
+        useAuthStore.getState().logout();
+        router.push("/SignIn");
+        return;
+      }
+
       const serverMessage =
         error.response?.data?.message ||
         "Something went wrong while creating payment session.";

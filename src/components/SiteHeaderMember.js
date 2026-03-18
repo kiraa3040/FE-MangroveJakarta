@@ -15,7 +15,9 @@ export default function MemberHeader() {
   useEffect(() => {
     const fetchUnreadCount = async () => {
       try {
-        const token = localStorage.getItem("token");
+        // const token = localStorage.getItem("token");
+        const token = useAuthStore.getState().token;
+
         if (!token) return;
 
         const response = await axios.get(
