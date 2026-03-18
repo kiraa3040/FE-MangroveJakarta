@@ -15,7 +15,7 @@ export default function SignInPage() {
   const ACCENT = "#A4CF4A";
   const router = useRouter();
 
-  const { login, isLoading, error } = useAuthStore();
+  const { login, logout, isLoading, error } = useAuthStore();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -33,13 +33,15 @@ export default function SignInPage() {
     e.preventDefault();
     setLocalError("");
 
+    logout();
+
     const result = await login(formData.email, formData.password);
 
     // if admin
     if (result.success) {
       if (result.role === "admin") {
         // alert("Success..");
-        const currentToken = localStorage.getItem("token");
+        const currentToken = useAuthStore.getState().token;
         const baseUrl = process.env.NEXT_PUBLIC_BASE_URL?.replace(/\/$/, "");
 
         window.location.href = `${baseUrl}/admin/auth/session-login?token=${currentToken}`;

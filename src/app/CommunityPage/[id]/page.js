@@ -138,7 +138,7 @@ const CommentNode = ({
 
   return (
     <>
-    {/* comment section */}
+      {/* comment section */}
       <div
         onClick={toggleExpand}
         className={`p-4 md:p-6 lg:p-8 hover:bg-slate-50/50 transition-colors border-b border-slate-100 ${
@@ -301,25 +301,29 @@ const CommentNode = ({
       </div>
 
       {/* nested replies */}
-      {isExpanded && comment.replies && comment.replies.length > 0 && (
-        <div className="flex flex-col animate-in fade-in slide-in-from-top-2 duration-300">
-          {comment.replies.map((reply) => (
-            <CommentNode
-              key={reply.id}
-              comment={reply}
-              depth={depth + 1}
-              onReport={onReport}
-              onReply={onReply}
-              currentUser={currentUser}
-            />
-          ))}
-        </div>
-      )}
+      {isExpanded &&
+        comment.replies &&
+        comment.replies.filter((r) => r.status !== "deleted").length > 0 && (
+          <div className="flex flex-col animate-in fade-in slide-in-from-top-2 duration-300">
+            {comment.replies
+              .filter((reply) => reply.status !== "deleted")
+              .map((reply) => (
+                <CommentNode
+                  key={reply.id}
+                  comment={reply}
+                  depth={depth + 1}
+                  onReport={onReport}
+                  onReply={onReply}
+                  currentUser={currentUser}
+                />
+              ))}
+          </div>
+        )}
     </>
   );
 };
 
-//  DETAIL POST 
+//  DETAIL POST
 export default function PostDetailPage() {
   const router = useRouter();
   const params = useParams();
@@ -338,7 +342,7 @@ export default function PostDetailPage() {
   const [postData, setPostData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  //  STATE MODAL REPORT 
+  //  STATE MODAL REPORT
   const [isReportModalOpen, setIsReportModalOpen] = useState(false);
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
   const [selectedContentId, setSelectedContentId] = useState(null);
@@ -504,15 +508,17 @@ export default function PostDetailPage() {
 
   const getImageUrl = (path) => {
     if (!path) return null;
-    
+
     if (path.startsWith("http")) return path;
 
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL?.replace(/\/$/, "");
-    
+
     let cleanPath = path;
 
-    if (cleanPath.startsWith("public/")) cleanPath = cleanPath.replace("public/", "");
-    if (cleanPath.startsWith("/public/")) cleanPath = cleanPath.replace("/public/", "");
+    if (cleanPath.startsWith("public/"))
+      cleanPath = cleanPath.replace("public/", "");
+    if (cleanPath.startsWith("/public/"))
+      cleanPath = cleanPath.replace("/public/", "");
 
     cleanPath = cleanPath.startsWith("/") ? cleanPath : `/${cleanPath}`;
 
@@ -688,14 +694,14 @@ export default function PostDetailPage() {
                           key={idx}
                           className={`relative w-full rounded-2xl overflow-hidden shadow-sm border border-slate-100 ${
                             postData.images.length === 1
-                              ? "h-[250px] md:h-[400px]"
-                              : "h-[150px] md:h-[250px]"
+                              ? "h-[300px] md:h-[450px]"
+                              : "h-[140px] sm:h-40 md:h-[200px]"
                           }`}
                         >
                           <Image
                             src={fullImgUrl}
                             alt={`Post Image`}
-                            className="object-cover w-full h-full"
+                            className="object-contain w-full h-full"
                             fill
                           />
                         </div>
@@ -812,23 +818,27 @@ export default function PostDetailPage() {
 
             <hr className="border-slate-100" />
 
-            {/* NESTED COMMENTS LIST */}
+            {/* THREAD / REPLY */}
             <div className="flex flex-col">
-              {!postData.threads || postData.threads.length === 0 ? (
+              {!postData.threads ||
+              postData.threads.filter((t) => t.status !== "deleted").length ===
+                0 ? (
                 <div className="p-10 text-center text-slate-400 font-medium">
                   Be the first comment to discuss
                 </div>
               ) : (
-                postData.threads.map((thread) => (
-                  <CommentNode
-                    key={thread.id}
-                    comment={thread}
-                    depth={0}
-                    onReport={(id) => handleOpenReportModal(id, "thread")}
-                    onReply={handleCreateReply}
-                    currentUser={user}
-                  />
-                ))
+                postData.threads
+                  .filter((thread) => thread.status !== "deleted")
+                  .map((thread) => (
+                    <CommentNode
+                      key={thread.id}
+                      comment={thread}
+                      depth={0}
+                      onReport={(id) => handleOpenReportModal(id, "thread")}
+                      onReply={handleCreateReply}
+                      currentUser={user}
+                    />
+                  ))
               )}
             </div>
           </div>

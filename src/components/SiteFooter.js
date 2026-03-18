@@ -14,7 +14,7 @@ export default function SiteFooter() {
   const mailtoLink = `mailto:${emailTo}?cc=${emailCC}`;
 
   // wa
-  const waNumber = "08179460145";
+  const waNumber = "628179460145";
   const waMessage = encodeURIComponent("");
   const waLink = `https://wa.me/${waNumber}?text=${waMessage}`;
 

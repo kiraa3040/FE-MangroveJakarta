@@ -64,7 +64,9 @@ export const useAuthStore = create(
           }
 
           const token = loginData.access_token;
-          localStorage.setItem("token", token);
+
+          // delete token login
+          localStorage.removeItem("token");
 
           // console.log("Token found:", token);
 
@@ -102,6 +104,7 @@ export const useAuthStore = create(
             token: token,
             isAuthenticated: true,
             isLoading: false,
+            error: null,
           });
 
           return { 
@@ -118,15 +121,19 @@ export const useAuthStore = create(
 
       // LOGOUT 
       logout: () => {
+
+        localStorage.removeItem("token");
+        sessionStorage.removeItem("auth-storage");
+
         set({
           user: null,
           token: null,
           isAuthenticated: false,
           authError: null,
+          isLoading: false,
         });
-        sessionStorage.removeItem("auth-storage");
-        localStorage.removeItem("token");
-        set({ isAuthenticated: false, user: null, token: null });
+        
+        // set({ isAuthenticated: false, user: null, token: null });
       },
 
       fetchUser: async () => {
