@@ -15,13 +15,15 @@ export default function SiteHeader({ accent = "#A4CF4A" }) {
         <div className="flex items-center gap-3">
           <div className="relative w-[120px] sm:w-[140px] md:w-40 h-10">
             {" "}
-            <Link href="/LandingPage" className="relative w-full h-full">
+            <Link href="/LandingPage" className="block">
               <Image
                 src="/landing_page/logo2.png"
                 alt="Yayasan Mangrove"
-                fill
-                className="object-contain object-left"
+                width={160}
+                height={40}
+                className="w-[120px] sm:w-[140px] md:w-40 h-10 object-contain object-left"
                 priority
+                unoptimized
               />
             </Link>
           </div>
