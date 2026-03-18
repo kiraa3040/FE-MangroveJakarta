@@ -374,6 +374,7 @@ export default function MemberPage() {
             </div>
 
             <div className="flex flex-col gap-6 md:gap-11">
+              
               {/* MAP */}
               <div className="relative w-full aspect-4/3 sm:aspect-video md:aspect-16/7 min-h-[250px] md:min-h-0 rounded-3xl md:rounded-[30px] overflow-hidden shadow-lg mb-6 md:mb-8 bg-blue-50">
                 <MapComponent locations={MangroveAreas} />

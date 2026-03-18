@@ -12,7 +12,7 @@ export const useAuthStore = create(
       isLoading: false,
       error: null,
 
-      //  REGISTER 
+      //  REGISTER
       register: async (userData) => {
         set({ isLoading: true, error: null });
         try {
@@ -43,7 +43,7 @@ export const useAuthStore = create(
         }
       },
 
-      //  LOGIN 
+      //  LOGIN
       login: async (email, password) => {
         set({ isLoading: true, error: null });
 
@@ -76,6 +76,7 @@ export const useAuthStore = create(
             method: "GET",
             headers: {
               "Content-Type": "application/json",
+              Accept: "application/json",
               Authorization: `Bearer ${token}`,
             },
           });
@@ -107,11 +108,11 @@ export const useAuthStore = create(
             error: null,
           });
 
-          return { 
+          return {
             success: true,
             role: detectedRole,
             sessionUrl: sessionUrl,
-           };
+          };
         } catch (error) {
           console.error("Login Error:", error);
           set({ isLoading: false, error: error.message });
@@ -119,9 +120,8 @@ export const useAuthStore = create(
         }
       },
 
-      // LOGOUT 
+      // LOGOUT
       logout: () => {
-
         localStorage.removeItem("token");
         sessionStorage.removeItem("auth-storage");
 
@@ -129,10 +129,10 @@ export const useAuthStore = create(
           user: null,
           token: null,
           isAuthenticated: false,
-          authError: null,
+          error: null,
           isLoading: false,
         });
-        
+
         // set({ isAuthenticated: false, user: null, token: null });
       },
 
@@ -181,7 +181,7 @@ export const useAuthStore = create(
         }
       },
 
-      //  UPDATE PROFILE 
+      //  UPDATE PROFILE
       updateProfile: async (formDataObj) => {
         const token = get().token;
         if (!token) return { success: false, message: "No token found" };
