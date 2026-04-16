@@ -25,7 +25,7 @@ export default function AboutUsPage() {
 
   const teamMembers = [
     {
-      name: "Dr. (C) Paundra Hanutama M.I.Kom",
+      name: "Dr. (C) Paundra Hanutama S.I.Kom, M.I.Kom. M.Sc",
       role: "Founder",
       img: "/about_us/1.png",
       affiliations: [
