@@ -50,12 +50,6 @@ export default function AboutUsPage() {
         "Universitas Nasional",
       ],
     },
-    {
-      name: "Alfian Fajri Nasrulloh, S.Pd.",
-      role: "Head of Operations",
-      img: "/about_us/4.png",
-      affiliations: ["Universitas Sultan Ageng Tirtayasa"],
-    },
   ];
 
   const greensyMembers = [
@@ -102,52 +96,148 @@ export default function AboutUsPage() {
           </button>
 
           {/*  HEADER SECTION  */}
-          <div className="text-center mb-8 md:mb-10">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 md:mb-6">
-              About <span style={{ color: ACCENT }}>Us</span>
+          <div className="text-center mb-10 md:mb-12">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6">
+              About<span style={{ color: ACCENT }}>Us</span>
             </h1>
-            <p className="text-sm md:text-lg text-slate-800 leading-relaxed max-w-3xl mx-auto tracking-wide">
-              An initiative-starting community headquartered in{" "}
-              <b>North Jakarta</b> that focuses on <b>mangrove planting</b> and{" "}
-              <b>raising awareness</b> about global climate change.
-            </p>
+            <div className="flex flex-col gap-4 text-sm md:text-[19px] text-slate-800 leading-relaxed max-w-5xl mx-auto tracking-wide font-normal">
+              <p>
+                Yayasan Mangrove Indonesia Lestari is a North Jakarta–based
+                organization committed to restoring mangrove ecosystems and
+                strengthening coastal resilience in Indonesia. Established to
+                respond to escalating environmental challenges—such as coastal
+                erosion, habitat degradation, and climate change—we work at the
+                intersection of ecological restoration, community empowerment,
+                and climate action.
+              </p>
+              <p>
+                Our approach integrates science-based interventions with
+                participatory community engagement to ensure sustainable and
+                long-term environmental impact.
+              </p>
+            </div>
           </div>
 
           {/*  VISION & MISSION  */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6 mb-10 md:mb-12">
+          <div className="flex flex-col gap-6 max-w-5xl mx-auto mb-20 md:mb-28">
             {/* Vision Card */}
-            <div className="bg-white rounded-3xl md:rounded-[30px] border border-slate-200 shadow-sm p-6 md:p-8 text-center transition-all">
-              <h3 className="text-lg md:text-xl font-extrabold mb-2">Vision</h3>
+            <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 md:p-8 text-center transition-all">
+              <h3 className="text-lg md:text-xl font-extrabold mb-3 text-black">
+                Vision
+              </h3>
               <p className="text-slate-800 text-sm md:text-base font-medium">
-                Participate in education, prevention and utilization of
-                sustainable mangrove ecosystems in Jakarta.
+                To realize resilient coastal ecosystems through sustainable
+                mangrove management, environmental education, and
+                community-based conservation in Jakarta and beyond.
               </p>
             </div>
 
             {/* Mission Card */}
-            <div className="bg-white rounded-3xl md:rounded-[30px] border border-slate-200 shadow-sm p-6 md:p-8 text-center transition-all">
-              <h3 className="text-lg md:text-xl font-extrabold mb-2">
+            <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 md:p-8 text-center transition-all">
+              <h3 className="text-lg md:text-xl font-extrabold mb-4 text-black">
                 Mission
               </h3>
-              <p className="text-slate-800 text-sm md:text-base font-medium">
-                Invite the public to contribute to raising awareness and taking
-                part in protecting the mangrove ecosystem in Jakarta through
-                MJ.ID as a right platform.
-              </p>
+              <ul className="text-slate-800 text-sm md:text-base font-medium space-y-2 flex flex-col items-center">
+                <li>
+                  • To promote education and awareness on the ecological and
+                  economic importance of mangrove ecosystems
+                </li>
+                <li>
+                  • To implement mangrove restoration and conservation
+                  initiatives using sustainable, evidence-based approaches
+                </li>
+                <li>
+                  • To empower communities to actively participate in
+                  environmental stewardship
+                </li>
+                <li>
+                  • To provide an inclusive platform (MJ.ID) that connects
+                  individuals, institutions, and stakeholders in collective
+                  climate action
+                </li>
+              </ul>
             </div>
-          </div>
 
-          {/*  PARAGRAPH  */}
-          <div className="mb-16 md:mb-24 text-center">
-            <p className="text-slate-800 text-sm md:text-base leading-relaxed max-w-4xl mx-auto font-medium text-center md:text-center px-2 md:px-0">
-              Mangrove Jakarta Community raises donations and promotes actions
-              to safeguard the environment by planting mangrove trees. We feel
-              that taking this action now is necessary to increase public
-              consciousness about some of today's most critical concerns
-              (climate change, deforestation, and abrasion). Please join us in
-              our attempts to make a significant difference in the lives of
-              others.
-            </p>
+            {/* Core Programs Card */}
+            <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 md:p-10 transition-all text-left">
+              <h3 className="text-lg md:text-xl font-extrabold mb-6 text-black text-center">
+                Core Programs
+              </h3>
+              <ol className="text-slate-800 text-sm md:text-base font-medium space-y-4 list-decimal list-outside pl-5 md:pl-8">
+                <li>
+                  <span className="font-bold">Mangrove Restoration</span>
+                  <br />
+                  <span className="text-slate-600 font-normal">
+                    Reforestation and rehabilitation of degraded coastal areas
+                    through community-based planting and monitoring systems.
+                  </span>
+                </li>
+                <li>
+                  <span className="font-bold">
+                    Environmental Education & Awareness
+                  </span>
+                  <br />
+                  <span className="text-slate-600 font-normal">
+                    Public campaigns, workshops, and educational programs to
+                    enhance understanding of climate change, biodiversity, and
+                    coastal protection.
+                  </span>
+                </li>
+                <li>
+                  <span className="font-bold">Community Empowerment</span>
+                  <br />
+                  <span className="text-slate-600 font-normal">
+                    Capacity-building initiatives that support sustainable
+                    livelihoods linked to mangrove ecosystems.
+                  </span>
+                </li>
+                <li>
+                  <span className="font-bold">Partnership & Advocacy</span>
+                  <br />
+                  <span className="text-slate-600 font-normal">
+                    Collaboration with government, academia, NGOs, and private
+                    sector partners to scale impact and influence environmental
+                    policy.
+                  </span>
+                </li>
+              </ol>
+            </div>
+
+            {/* SDGs Alignment Card */}
+            <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 md:p-10 transition-all">
+              <div className="flex flex-col md:flex-row gap-6 md:gap-12 items-center md:items-start">
+                {/* Bagian Kiri: Judul */}
+                <div className="md:w-1/3 text-center md:text-left shrink-0 pt-2">
+                  <h3 className="text-xl md:text-2xl font-extrabold text-black mb-1">
+                    SDGs Alignment
+                  </h3>
+                  <p className="text-slate-600 font-medium text-sm md:text-base">
+                    Our work directly contributes to:
+                  </p>
+                </div>
+                {/* Bagian Kanan: List */}
+                <div className="md:w-2/3">
+                  <ul className="text-slate-800 text-sm md:text-base font-medium space-y-2 text-left list-disc list-outside pl-5">
+                    <li>
+                      SDG 13 – Climate Action: Mitigating climate change through
+                      carbon sequestration and ecosystem restoration
+                    </li>
+                    <li>
+                      SDG 14 – Life Below Water: Protecting marine biodiversity
+                      and coastal habitats
+                    </li>
+                    <li>
+                      SDG 15 – Life on Land: Promoting sustainable ecosystem
+                      management
+                    </li>
+                    <li>
+                      SDG 17 – Partnerships for the Goals: Strengthening
+                      multi-stakeholder collaboration
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* BEHIND US */}
@@ -157,7 +247,7 @@ export default function AboutUsPage() {
                 Behind<span style={{ color: ACCENT }}>Us</span>
               </h2>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-12 max-w-5xl mx-auto">
               {teamMembers.map((member, index) => (
                 <div key={index} className="group h-full">
                   <div className="bg-white rounded-3xl md:rounded-[30px] shadow-sm border border-slate-200 p-6 md:p-8 text-center h-full flex flex-col transition-all duration-300 hover:shadow-md">

@@ -119,7 +119,7 @@ export default function NewsDetail() {
             </div>
             <div className="flex items-center gap-2">
               <Calendar size={14} />
-              <span>{formatDate(activeBlog?.date)}</span>
+              <span>{formatDate(activeBlog?.created_at || activeBlog?.date)}</span>
             </div>
             <div className="flex items-center gap-2">
               <Eye size={14} />

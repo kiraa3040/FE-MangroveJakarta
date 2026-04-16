@@ -32,8 +32,12 @@ export const useBlogsStore = create((set, get) => ({
       const result = await response.json();
       const dataNews = result.data || [];
 
+      const sortedNews = dataNews.sort((a, b) => {
+        return new Date(b.created_at) - new Date(a.created_at);
+      });
+
       set({
-        blogs: dataNews,
+        blogs: sortedNews,
         currentPage: result.current_page || page,
         totalPages: Math.ceil((result.total || 0) / (result.per_page || 10)),
         activeFilter: filter,

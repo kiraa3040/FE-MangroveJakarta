@@ -187,6 +187,8 @@ export default function LandingPage() {
   const [sponsorIndex, setSponsorIndex] = useState(0);
   const [showDiscordModal, setShowDiscordModal] = useState(false);
 
+  const [isExpanded, setIsExpanded] = useState(false);
+
   return (
     <div className="min-h-screen bg-white text-slate-900 overflow-x-hidden w-full">
       {/* NAVBAR */}
@@ -197,23 +199,24 @@ export default function LandingPage() {
         <section className="py-8 md:py-12" id="about">
           <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-10">
             <div
-              className="rounded-4xl md:rounded-[48px] px-5 py-8 md:px-10 md:py-12 relative overflow-hidden"
+              className="relative overflow-hidden rounded-3xl md:rounded-[40px] lg:rounded-[48px] px-5 py-8 md:px-8 md:py-10 lg:px-10 lg:py-12"
               style={{ background: SOFT }}
             >
-              <div className="pointer-events-none absolute -right-24 -bottom-24 w-[300px] md:w-[520px] h-[300px] md:h-[520px] rounded-full bg-emerald-900/10 blur-2xl z-0" />
-              <div className="pointer-events-none absolute right-0 bottom-0 w-[300px] md:w-[520px] h-[150px] md:h-[260px] bg-linear-to-tr from-transparent via-emerald-900/10 to-transparent opacity-60 z-0" />
-              <div className="absolute bottom-0 left-0 w-full h-[200px] md:h-[500px] pointer-events-none z-0">
+              <div className="pointer-events-none absolute -right-24 -bottom-24 w-[300px] md:w-[420px] lg:w-[520px] h-[300px] md:h-[420px] lg:h-[520px] rounded-full bg-emerald-900/10 blur-2xl z-0" />
+              <div className="pointer-events-none absolute right-0 bottom-0 w-[300px] md:w-[420px] lg:w-[520px] h-[150px] md:h-[220px] lg:h-[260px] bg-linear-to-tr from-transparent via-emerald-900/10 to-transparent opacity-60 z-0" />
+
+              <div className="absolute bottom-0 left-0 w-full h-[180px] md:h-[300px] lg:h-[500px] pointer-events-none z-0">
                 <Image
                   src="/landing_page/Pohon-2.png"
                   alt="Background Tree"
                   fill
-                  className="object-contain object-bottom opacity-40"
+                  className="object-contain object-bottom opacity-20"
                 />
               </div>
 
-              <div className="relative z-10 grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-                <div className="lg:col-span-4 flex justify-center w-full">
-                  <div className="relative w-full max-w-[320px] lg:max-w-[380px] aspect-3/4 rounded-3xl overflow-hidden mx-auto">
+              <div className="relative z-10 grid lg:grid-cols-12 gap-8 md:gap-10 lg:gap-12 items-center">
+                <div className="lg:col-span-4 flex justify-center">
+                  <div className="relative w-full max-w-[220px] sm:max-w-[260px] md:max-w-[300px] lg:max-w-[380px] aspect-3/4 rounded-3xl overflow-hidden shadow-md">
                     <Image
                       src="/images/PHOTO PAUNDRA HANUTAMA.jpeg"
                       alt="FOTO PAK PAUNDRA HANUTAMA"
@@ -223,40 +226,56 @@ export default function LandingPage() {
                     />
                     <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/0 to-transparent z-10" />
 
-                    <div className="absolute left-5 bottom-5 z-20">
-                      <p className="text-[#EEF7BE] font-bold text-xl md:text-2xl drop-shadow-md">
+                    <div className="absolute left-4 bottom-4 md:left-5 md:bottom-5 z-20">
+                      <p className="text-[#EEF7BE] font-bold text-base sm:text-lg md:text-xl lg:text-2xl drop-shadow-md">
                         Paundra Hanutama
                       </p>
-                      <p className="text-white text-xs md:text-sm font-medium drop-shadow-md mt-0.5">
-                        Bapak Mangrove Indonesia
+                      <p className="text-white text-[10px] sm:text-xs md:text-sm font-medium drop-shadow-md mt-0.5">
+                        Founder
                       </p>
                     </div>
                   </div>
                 </div>
 
-                <div className="lg:col-span-8 flex flex-col justify-items-start mt-4 md:mt-0 md:pl-4 text-center md:text-left">
-                  <div className=" md:text-right">
-                    <h1 className="text-3xl sm:text-4xl md:text-6xl  text-black font-extrabold leading-tight uppercase">
-                      Yayasan <span style={{ color: ACCENT }}>Mangrove</span>{" "}
-                      Indonesia Lestari
+                <div className="lg:col-span-8 flex flex-col justify-center text-center md:text-center lg:text-left lg:pl-6">
+                  <div className="lg:text-right w-full mb-5 sm:mb-6">
+                    <h1 className="text-xl sm:text-2xl md:text-3xl text-black font-extrabold leading-snug tracking-wide">
+                      YAYASAN MANGROVE INDONESIA LESTARI
                     </h1>
-                    <p className="mt-2 md:mt-0.5 text-base sm:text-lg md:text-2xl font-medium text-black">
+                    <p className="mt-2 text-sm sm:text-base md:text-lg lg:text-[20px] font-medium text-black">
                       was born from a shared passion
                     </p>
                   </div>
-                  <p className="font-normal mt-4 md:mt-6 text-base md:text-xl text-black md:leading-loose max-w-prose mx-auto md:mx-0 tracking-wide text-justify md:text-left">
-                    Yayasan Mangrove Indonesia Lestari was created from a shared
-                    commitment to safeguard Jakarta vulnerable coastal
-                    ecosystem. As environmental challenges continue to worsen,
-                    coastal abrasion, habitat loss, and rising carbon emissions,
-                    our mission is to bring people together to take collective
-                    action.
-                  </p>
-                  <div className="mt-8 w-full md:max-w-[800px] mx-auto md:ml-auto md:mr-0">
-                    <Link href="/BlogPage" className="w-full">
+
+                  <div className="flex flex-col gap-4 font-normal text-sm md:text-[15px] text-black leading-relaxed text-justify lg:text-left">
+                    <p>
+                      Yayasan Mangrove Indonesia Lestari, founded by Paundra
+                      Hanutama in 2020, was established to address the urgent
+                      threats facing Jakarta's coastal ecosystems, including
+                      erosion, habitat degradation, and increasing carbon
+                      emissions. Grounded in a shared commitment to
+                      sustainability, we work to deliver measurable
+                      environmental and social impact.
+                    </p>
+                    <p>
+                      Our programs focus on mangrove restoration, community
+                      empowerment, and climate resilience through
+                      evidence-based, nature-based solutions. By collaborating
+                      with local communities, government, and private sector
+                      partners, we ensure that every initiative contributes to
+                      long-term ecological recovery and sustainable livelihoods.
+                      We invite partners and donors to join us in scaling
+                      impactful solutions that protect coastlines, enhance
+                      biodiversity, and contribute to global climate goals.
+                    </p>
+                  </div>
+
+                  {/* CTA Button */}
+                  <div className="mt-8 w-full flex justify-center lg:justify-start">
+                    <Link href="/BlogPage" className="w-full ">
                       <button
                         type="button"
-                        className="w-full rounded-full bg-white border-3 border-[#A4CF4A] text-[#6AAE1F] px-4 md:px-6 py-3 text-xs md:text-[14px] font-bold tracking-wider md:tracking-widest hover:bg-emerald-600 hover:text-white hover:border-emerald-600 transition"
+                        className="w-full sm:px-8 rounded-full bg-white border-2 border-[#A4CF4A] text-[#86B429] px-4 py-3.5 text-xs sm:text-sm font-extrabold tracking-[0.15em] hover:bg-[#A4CF4A] hover:text-white transition-all shadow-sm"
                       >
                         SAVE MANGROVE, SAVE THE WORLD!
                       </button>
@@ -531,9 +550,7 @@ export default function LandingPage() {
                           </div>
 
                           <div className="absolute bottom-3 right-3 md:bottom-4 md:right-4 z-10">
-                            <Link
-                              href={`/EventPage/${item.slug}`}
-                            >
+                            <Link href={`/EventPage/${item.slug}`}>
                               <button
                                 className={`px-4 md:px-5 py-1.5 md:py-2 rounded-full text-[10px] md:text-[11px] font-bold text-white shadow-sm tracking-wider uppercase transition ${
                                   isAvailable
