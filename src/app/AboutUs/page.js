@@ -25,7 +25,7 @@ export default function AboutUsPage() {
 
   const teamMembers = [
     {
-      name: "Dr. (C) Paundra Hanutama S.I.Kom, M.I.Kom. M.Sc",
+      name: "Dr. (C) Paundra Hanutama, S.I.Kom., M.I.Kom., M.Sc",
       role: "Founder",
       img: "/about_us/1.png",
       affiliations: [
@@ -36,13 +36,13 @@ export default function AboutUsPage() {
       ],
     },
     {
-      name: "Bayu Pamungkas S.I.K., M.SI",
+      name: "Bayu Pamungkas, S.I.K., M.Si",
       role: "Head of Program",
       img: "/about_us/2.png",
       affiliations: ["IPB University"],
     },
     {
-      name: "Galih Hakim Antarnusa M. Si.",
+      name: "Galih Hakim Antarnusa M.Si",
       role: "Head of Community Engagement & Communications",
       img: "/about_us/3.png",
       affiliations: [
