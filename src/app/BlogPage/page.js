@@ -66,10 +66,16 @@ export default function NewsPage() {
   };
 
   // filter
-  const filteredBlogs =
+  const filteredBlogs = (
     activeFilter === "all"
-      ? blogs
-      : blogs.filter((item) => item.type === activeFilter);
+      ? [...blogs]
+      : blogs.filter((item) => item.type === activeFilter)
+  ).sort((a, b) => {
+    // sorting tanggal
+    const dateA = new Date(a.created_at || a.updated_at || a.date || 0);
+    const dateB = new Date(b.created_at || b.updated_at || b.date || 0);
+    return dateB - dateA;
+  });
 
   if (!isHydrated) {
     return (
@@ -185,9 +191,7 @@ export default function NewsPage() {
                       {stripHtml(item.content)}
                     </p>
                     <div>
-                      <Link
-                        href={`/BlogPage/${item.slug}`}
-                      >
+                      <Link href={`/BlogPage/${item.slug}`}>
                         <button className="px-6 py-2.5 rounded-full bg-[#A4CF4A] text-white text-xs md:text-sm font-bold tracking-widest hover:bg-[#8eb63d] transition shadow-sm">
                           VIEW MORE
                         </button>

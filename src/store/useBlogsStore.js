@@ -1,7 +1,5 @@
 import { create } from "zustand";
 
-const API_BASE_URL = "process.env.NEXT_PUBLIC_API_URL;";
-
 export const useBlogsStore = create((set, get) => ({
   //  STATE
   blogs: [],
@@ -43,9 +41,9 @@ export const useBlogsStore = create((set, get) => ({
         activeFilter: filter,
         isLoading: false,
       });
-    } catch (err) {
-      console.error("Gagal fetch blog:", err);
-      set({ error: err.message, isLoading: false });
+    } catch (error) {
+      console.error("Gagal fetch blog:", error);
+      set({ error: error.message, isLoading: false });
     }
   },
 
