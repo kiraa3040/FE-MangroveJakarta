@@ -17,6 +17,8 @@ export default function NewsPage() {
   const { isAuthenticated } = useAuthStore();
   const [isHydrated, setIsHydrated] = useState(false);
 
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+
   const {
     blogs,
     currentPage,
@@ -118,7 +120,10 @@ export default function NewsPage() {
             {/*  DROPDOWN FILTER START  */}
             <div className="mt-4 md:mt-0 md:absolute md:right-0 relative group z-30">
               {/* Trigger Button */}
-              <button className="flex items-center gap-2 text-slate-700 hover:text-[#A4CF4A] transition py-2 outline-none">
+              <button
+                onClick={() => setIsFilterOpen(!isFilterOpen)}
+                className="flex items-center gap-2 text-slate-700 hover:text-[#A4CF4A] transition py-2 outline-none"
+              >
                 <Filter size={20} />
                 <span className="text-sm font-medium uppercase">
                   Filter: {activeFilter}
@@ -135,7 +140,10 @@ export default function NewsPage() {
                   {["all", "news", "education"].map((filterType) => (
                     <button
                       key={filterType}
-                      onClick={() => setFilter(filterType)}
+                      onClick={() => {
+                        setFilter(filterType);
+                        setIsFilterOpen(false);
+                      }}
                       className={`px-4 py-3 text-xs font-bold uppercase text-left transition-colors
                         ${
                           activeFilter === filterType

@@ -67,7 +67,7 @@ export const useBlogsStore = create((set, get) => ({
         isLoadingDetail: false,
       });
     } catch (error) {
-      console.error("Failed fetch blog detail:", err);
+      console.error("Failed fetch blog detail:", error);
       set({ error: error.message, isLoadingDetail: false });
     }
   },
