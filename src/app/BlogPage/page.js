@@ -119,7 +119,6 @@ export default function NewsPage() {
 
             {/*  DROPDOWN FILTER START  */}
             <div className="mt-4 md:mt-0 md:absolute md:right-0 relative group z-30">
-              {/* Trigger Button */}
               <button
                 onClick={() => setIsFilterOpen(!isFilterOpen)}
                 className="flex items-center gap-2 text-slate-700 hover:text-[#A4CF4A] transition py-2 outline-none"
@@ -130,12 +129,14 @@ export default function NewsPage() {
                 </span>
                 <ChevronDown
                   size={14}
-                  className="group-hover:rotate-180 transition-transform duration-300"
+                  className={`transition-transform duration-300 ${isFilterOpen ? "rotate-180" : "group-hover:rotate-180"}`}
                 />
               </button>
 
-              {/* Dropdown Content */}
-              <div className="absolute top-full right-0 pt-2 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-300 transform origin-top-right">
+              <div
+                className={`absolute top-full right-0 pt-2 transition-all duration-300 transform origin-top-right z-40
+                ${isFilterOpen ? "visible opacity-100" : "invisible opacity-0 md:group-hover:visible md:group-hover:opacity-100"}`}
+              >
                 <div className="bg-white rounded-xl shadow-xl border border-slate-100 overflow-hidden w-40 flex flex-col">
                   {["all", "news", "education"].map((filterType) => (
                     <button
