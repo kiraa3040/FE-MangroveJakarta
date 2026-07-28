@@ -204,7 +204,7 @@ export default function NewsPage() {
           </div>
 
           {/* PAGINATION CONTROLS */}
-          {!isLoading && totalPages > 1 && (
+          {/* {!isLoading && totalPages > 1 && (
             <div className="flex justify-center md:justify-start items-center gap-4 md:gap-6 mt-16 text-slate-400 font-medium select-none">
               {Array.from({ length: totalPages }, (_, i) => i + 1).map(
                 (number) => (
@@ -234,7 +234,7 @@ export default function NewsPage() {
                 {">"}
               </button>
             </div>
-          )}
+          )} */}
         </div>
       </main>
 
